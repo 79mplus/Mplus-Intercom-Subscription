@@ -1,14 +1,13 @@
 <?php
+
 /**
- * The public-facing functionality of the plugin.
- *
+ * The admin-specific functionality of the plugin.
  *
  * @package    Mplus_Intercom_Core
- * @subpackage Mplus_Intercom_Core/public
+ * @subpackage Mplus_Intercom_Core/admin
  * @author     79mplus
  */
-
-class Mplus_Intercom_Core_Public
+class Mplus_Intercom_Core_Admin
 {
 
     /**
@@ -33,38 +32,32 @@ class Mplus_Intercom_Core_Public
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param      string    $plugin_name       The name of the plugin.
+     * @param      string    $plugin_name       The name of this plugin.
      * @param      string    $version    The version of this plugin.
      */
-    public function __construct($plugin_name, $version)
-    {
+    public function __construct($plugin_name, $version){
 
         $this->plugin_name = $plugin_name;
         $this->version = $version;
     }
 
     /**
-     * Register the stylesheets for the public-facing side of the site.
+     * Register the stylesheets for the admin area.
      *
      * @since    1.0.0
      */
-    public function tj_enqueue_styles()
-    {
+    public function tj_enqueue_styles(){
 
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/mplus-core-public.css', array(), $this->version, 'all');
-
+        wp_enqueue_style($this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/css/mplus-core-admin.css', array(), $this->version, 'all');
     }
 
     /**
-     * Register the stylesheets for the public-facing side of the site.
+     * Register the JavaScript for the admin area.
      *
      * @since    1.0.0
      */
-    public function tj_enqueue_scripts()
-    {
+    public function tj_enqueue_scripts(){
 
-        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/mplus-core-public.js', array('jquery'), $this->version, false);
-
+        wp_enqueue_script($this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-admin.js', array('jquery'), $this->version, false);
     }
-
 }
