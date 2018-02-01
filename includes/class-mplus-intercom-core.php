@@ -62,8 +62,8 @@ class Mplus_Intercom_Core
 
         $this->mplus_load_dependencies();
         $this->mplus_set_locale();
-        $this->tj_admin_hooks_define();
-        $this->tj_public_hooks_define();
+        $this->mplus_admin_hooks_define();
+        $this->mplus_public_hooks_define();
 
     }
 
@@ -128,7 +128,7 @@ class Mplus_Intercom_Core
         $plugin_i18n = new Mplus_Intercom_Core_i18n();
         $plugin_i18n->set_domain($this->get_plugin_name());
 
-        $this->loader->add_action('plugins_loaded', $plugin_i18n, 'tj_load_plugin_textdomain');
+        $this->loader->add_action('plugins_loaded', $plugin_i18n, 'mplus_load_plugin_textdomain');
     }
 
     /**
@@ -138,12 +138,12 @@ class Mplus_Intercom_Core
      * @since    1.0.0
      * @access   private
      */
-    private function tj_admin_hooks_define()
+    private function mplus_admin_hooks_define()
     {
 
         $plugin_admin = new Mplus_Intercom_Core_Admin($this->get_plugin_name(), $this->get_version());
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'tj_enqueue_styles');
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'tj_enqueue_scripts');
+        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_styles');
+        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_scripts');
 
     }
 
@@ -154,12 +154,12 @@ class Mplus_Intercom_Core
      * @since    1.0.0
      * @access   private
      */ 
-    private function tj_public_hooks_define(){
+    private function mplus_public_hooks_define(){
 
         $plugin_public = new Mplus_Intercom_Core_Public($this->get_plugin_name(), $this->get_version());
 
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'tj_enqueue_styles');
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'tj_enqueue_scripts');
+        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles');
+        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts');
     }
 
     /**

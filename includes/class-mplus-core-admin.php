@@ -46,7 +46,7 @@ class Mplus_Intercom_Core_Admin
      *
      * @since    1.0.0
      */
-    public function tj_enqueue_styles(){
+    public function mplus_enqueue_styles(){
 
         wp_enqueue_style($this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/css/mplus-core-admin.css', array(), $this->version, 'all');
     }
@@ -56,7 +56,7 @@ class Mplus_Intercom_Core_Admin
      *
      * @since    1.0.0
      */
-    public function tj_enqueue_scripts(){
+    public function mplus_enqueue_scripts(){
 
         wp_enqueue_script($this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-admin.js', array('jquery'), $this->version, false);
     }

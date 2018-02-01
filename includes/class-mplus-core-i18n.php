@@ -29,7 +29,7 @@ class Mplus_Intercom_Core_i18n {
 	 *
 	 * @since    1.0.0
 	 */
-	public function tj_load_plugin_textdomain() {
+	public function mplus_load_plugin_textdomain() {
 
 		load_plugin_textdomain(
 			$this->domain,
