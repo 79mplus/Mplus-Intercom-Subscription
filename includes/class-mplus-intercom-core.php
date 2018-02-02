@@ -87,6 +87,13 @@ class Mplus_Intercom_Core
     private function mplus_load_dependencies()
     {
 
+
+        // Autoload
+        require_once plugin_dir_path(dirname(__FILE__)) . '/vendor/autoload.php';
+
+        // Intercom Settings
+        require_once plugin_dir_path(dirname(__FILE__)) . '/includes/class.mplus-intercom-settings.php';
+
         /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
@@ -108,7 +115,7 @@ class Mplus_Intercom_Core
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-core-public.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-core-public.php'; 
 
         $this->loader = new Mplus_Intercom_Core_Loader();
     } 
@@ -144,6 +151,8 @@ class Mplus_Intercom_Core
         $plugin_admin = new Mplus_Intercom_Core_Admin($this->get_plugin_name(), $this->get_version());
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_scripts');
+
+        $mplus_intercom_settings = new Mplus_Intercom_Settings();
 
     }
 
