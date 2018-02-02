@@ -52,7 +52,7 @@ class Mplus_Intercom_Core
      * Load the dependencies, define the locale, and set the hooks for the admin area and
      * the public-facing side of the site.
      *
-     * @since    1.1.0
+     * @since    1.0.0
      */
     public function __construct()
     {
@@ -64,6 +64,8 @@ class Mplus_Intercom_Core
         $this->mplus_set_locale();
         $this->mplus_admin_hooks_define();
         $this->mplus_public_hooks_define();
+
+        spl_autoload_register( array( $this, 'autoload') );
 
     }
 
@@ -174,6 +176,22 @@ class Mplus_Intercom_Core
 
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts');
+    }
+
+    /**
+     * Autoload class files on demand
+     * @since    1.0.0
+     * @param string  $class requested class name
+     */
+
+    public function autoload( $class ){
+        if ( stripos( $class, 'Mplus_Intercom_' ) !== false ) {
+            $class_name = str_replace( '_', '-', $class );
+            $file_path = MPLUSI_PLUGINS_DIR . 'classes/' . strtolower( $class_name ) . '.php';
+            if ( file_exists( $file_path ) ) {
+                require_once $file_path;
+            }
+        }
     }
 
     /**
