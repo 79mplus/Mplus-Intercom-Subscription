@@ -31,6 +31,15 @@ class Mplus_Intercom_Core_Loader
     protected $filters;
 
     /**
+     * The array of shortcodes.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      array    $shortcodes    The shortcodes created when the plugin loads.
+     */
+    protected $shortcodes;
+
+    /**
      * Initialize the collections used to maintain the actions and filters.
      *
      * @since    1.0.0
@@ -38,8 +47,9 @@ class Mplus_Intercom_Core_Loader
     public function __construct()
     {
 
-        $this->actions = array();
-        $this->filters = array();
+        $this->actions      = array();
+        $this->filters      = array();
+        $this->shortcodes   = array();
     }
 
     /**

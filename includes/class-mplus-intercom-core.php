@@ -153,6 +153,8 @@ class Mplus_Intercom_Core
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_scripts');
 
         $mplus_intercom_settings = new Mplus_Intercom_Settings();
+        $this->loader->add_action( 'admin_menu', $mplus_intercom_settings, 'admin_menu', 999 );
+        $this->loader->add_action( 'admin_init', $mplus_intercom_settings, 'mplus_intercom_settings_fields' );
 
     }
 

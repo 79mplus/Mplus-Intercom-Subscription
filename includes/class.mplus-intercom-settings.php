@@ -19,9 +19,6 @@ class Mplus_Intercom_Settings {
 	 */
 	function __construct() {
 
-		add_action( 'admin_menu', array($this, 'admin_menu'), 999 );
-		add_action( 'admin_init', array($this, 'mplus_intercom_settings_fields') );
-
 	}
 
 	/**
