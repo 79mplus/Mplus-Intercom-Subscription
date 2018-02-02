@@ -161,6 +161,8 @@ class Mplus_Intercom_Core
         $this->loader->add_action( 'admin_menu', $mplus_intercom_settings, 'admin_menu', 999 );
         $this->loader->add_action( 'admin_init', $mplus_intercom_settings, 'mplus_intercom_settings_fields' );
 
+        $this->loader->add_action( 'wp_ajax_intercom_form_submit', 'Mplus_intercom_Subscription_Form', 'submit_handler' );
+
     }
 
     /**
@@ -176,6 +178,8 @@ class Mplus_Intercom_Core
 
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts');
+
+        $this->loader->add_action( 'wp_ajax_nopriv_intercom_form_submit', 'Mplus_intercom_Subscription_Form', 'submit_handler' );
     }
 
     /**

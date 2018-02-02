@@ -39,5 +39,12 @@ class Mplus_Intercom_Subscription_Form
         
     }
 
+    /**
+     * handling submission of the form
+     */
+    public static function submit_handler(){
+
+    }
+
 
 }
