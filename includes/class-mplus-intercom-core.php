@@ -92,7 +92,10 @@ class Mplus_Intercom_Core
         require_once plugin_dir_path(dirname(__FILE__)) . '/vendor/autoload.php';
 
         // Intercom Settings
-        require_once plugin_dir_path(dirname(__FILE__)) . '/includes/class.mplus-intercom-settings.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . '/includes/helper-function.php';
+
+        // Intercom Settings
+        require_once plugin_dir_path(dirname(__FILE__)) . '/includes/class-mplus-intercom-settings.php';
 
         /**
          * The class responsible for orchestrating the actions and filters of the
