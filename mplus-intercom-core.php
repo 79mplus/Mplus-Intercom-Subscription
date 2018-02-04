@@ -7,7 +7,7 @@
  * Author:            79mplus
  * Author URI:        https://www.79mplus.com/
  * License:           GNU General Public License v2 or later
- * Text Domain:       mplus-intercom-core 
+ * Text Domain:       mplus-intercom-core
  * Domain Path:       /languages
  */
 
@@ -58,6 +58,7 @@ function run_Mplus_Intercom_Core() {
 
 	$plugin = new Mplus_Intercom_Core();
 	$plugin->run();
-
+	do_action( MPLUSI_NAME.'_loaded' );
+	
 }
 run_Mplus_Intercom_Core();
