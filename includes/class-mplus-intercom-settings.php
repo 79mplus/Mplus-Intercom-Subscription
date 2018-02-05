@@ -75,9 +75,5 @@ class Mplus_Intercom_Settings {
 	public function mplus_display_ic_api_key() {
 		echo '<textarea name="mplus_ic_api_key" id="mplus_ic_api_key" class="regular-text mpss-settings-apikey" style="height:70px">'.get_option( 'mplus_ic_api_key' ).'</textarea>';
 		echo '<p class="description">Input Intercom API Access Token.</p>';
-
-		$script = new Mplus_Intercom_Subscription_Form();
-
-		echo '<pre>';echo $script->submit_handler();
 	}
 }
