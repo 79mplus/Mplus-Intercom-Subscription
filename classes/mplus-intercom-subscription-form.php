@@ -113,46 +113,17 @@ class Mplus_Intercom_Subscription_Form
      */
     public function submit_handler(){
 
-        $html = '';
+        $fields = array();
         foreach ($this->fields as $field) :
-            $key = $field['intercom_attribute'];
-            $html .= "data[$key] = $( 'form.mpss_intercom #$key' ).val();";
+            $intercom_attribute = $field['intercom_attribute'];
+            $name = $field['name'];
+            $fields[$intercom_attribute] = $_POST[$name];
         endforeach;
 
-        $script = "jQuery(function( $ ) {
+        $intercom_submitter = new Mplus_Intercom_Submitter();
 
-            $( 'form.mpss_intercom' ).submit(function(e){
-                e.preventDefault();
-
-                var data;
-
-                ".$html."
-
-                $.ajax({
-                    url : wp.ajaxurl,
-                    data : data,
-                    type: 'POST',
-                    action: 'intercom_form_submit',
-                    
-                    beforeSend: function() {
-
-                    },
-
-                    success: function(data, textStatus, jqXHR) {
- 
-                    },
-
-                    error: function(jqXHR, textStatus, errorThrown) {
-
-                        console.log('The following error occured: ' + textStatus, errorThrown);
-                    }
-                })
-
-            });
-            
-        });";
-
-        return $script;
+        $intercom_submitter->create_user($fields);
+        die();
 
     }
 
