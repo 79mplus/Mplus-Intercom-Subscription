@@ -18,11 +18,7 @@ class Mplus_Intercom_Shortcode {
 	 * @return void
 	 */
 	function __construct() {
-		/*
-		 * Adds the [mplus_intercom_subscription] shortcode for
-		 * landing page
-		 */
-		add_shortcode( 'mplus_intercom_subscription', array( $this, 'mplus_intercom_subscription' ) );
+
 	}
 
 	/**
