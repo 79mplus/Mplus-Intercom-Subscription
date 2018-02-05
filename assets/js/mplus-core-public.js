@@ -6,16 +6,13 @@
 	    $( 'form.mpss_intercom' ).submit(function(e){
 	        e.preventDefault();
 
-	        var data;
-
-	        data = $( this ).serializeArray();
-	        console.log( data );
-
 	        $.ajax({
 	            url : wp.ajaxurl,
-	            data : data,
 	            type: 'POST',
-	            action: 'intercom_form_submit',
+				data: {
+                	action: 'intercom_form_submit',
+                	fields: $( 'form.mpss_intercom' ).serializeArray()
+            	};
 	            
 	            beforeSend: function() {
 
