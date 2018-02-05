@@ -5,20 +5,23 @@
 */
 class Mplus_Intercom_Submitter
 {
-  private $api;
+  private $access_token;
+
+  private $client;
 
   public function __construct(){
     /* initialize the api with the accesstoken*/
-    $this->api = get_option('mplus_ic_api_key');
+    $this->access_token = get_option('mplus_ic_api_key');
+    $this->client = new Intercom\IntercomClient($this->access_token, null);
   }
 
   /**
-  * @param array $fields fields to submit
+  * @param object $fields fields to submit
   * @param string $user_type either user or lead
   */
   public function create_user($fields, $user_type = 'user' ){
 
-    $client = new Intercom\IntercomClient($this->$api, null);
+    $client = $this->client;
 
     $response = array();
     if($user_type == 'lead'){
