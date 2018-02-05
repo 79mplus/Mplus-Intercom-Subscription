@@ -20,7 +20,7 @@
 
 	            success: function(data, textStatus, jqXHR) {
 	            	if (data.success == 1) {
-	            		$("form.mpss_intercom").remove();
+	            		$("form.mpss_intercom").hide();
 	            		$( '.message' ).show();
 	            		$( '.message' ).fadeIn().delay(10000).fadeOut();
 	            	}else{

@@ -29,6 +29,11 @@ class Mplus_Intercom_Subscription_Form
                 'attribute_type' => 'basic',
                 'required' => true
             ),
+            array(
+                'type' => 'submit',
+                'label' => 'Submit',
+                'name' => 'submit',
+            ),
         );
 
         $this->fields = apply_filters( 'mplus_intercom_form_fields', $fields );
@@ -91,7 +96,7 @@ class Mplus_Intercom_Subscription_Form
                 break;
             case 'button':
             case 'submit':
-                $input = '<input type="'.esc_attr($type).'" id="'.esc_attr($intercom_attribute).'" value="'.esc_attr($label).'" '.$onclick.' />';
+                $input = '<input type="'.esc_attr($type).'" id="'.esc_attr($name).'" value="'.esc_attr($label).'" '.$onclick.' />';
                 break;
             default:
                 # code...
