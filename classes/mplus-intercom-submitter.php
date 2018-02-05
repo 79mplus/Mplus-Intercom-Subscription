@@ -14,22 +14,19 @@ class Mplus_Intercom_Submitter
   }
 
   /**
-  * @param object $fields fields to submit
+  * @param array $fields fields to submit
   * @param string $user_type either user or lead
   */
   public function create_user($fields, $user_type = 'user' ){
 
     $client = $this->client;
 
+    $fields = self::get_fields($fields);
+
     $response = array();
     if($user_type == 'lead'){
       try{
-        $new_user = $client->leads->create([
-          "email" => "$fields->email",
-          "name" => "$fields->name",
-          "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
-          "custom_attributes" => $fields->custom_attributes,
-        ]);
+        $new_user = $client->leads->create($fields);
       }catch (Exception $e){
         $response['success'] = 0;
         if ( $e->getCode() == 409 ){
@@ -41,13 +38,8 @@ class Mplus_Intercom_Submitter
           if(!$user_found){
             $user_id = 'nanit-' . time();
           }
-          $new_user = $client->leads->create([
-            "user_id" => "$fields->user_id",
-            "email" => "$fields->email",
-            "name" => "$fields->name",
-            "unsubscribed_from_emails" => $fields->unsubscrihisbed_from_emails,
-            "custom_attributes" => $fields->custom_attributes,
-          ]);
+          $fields['user_id'] = "$user_id";
+          $new_user = $client->leads->create($fields);
           if($new_user && !$user_found){
             update_option('intercom_' . $fields->email, $user_id);
           }
@@ -60,12 +52,7 @@ class Mplus_Intercom_Submitter
       }
     }else{
       try{
-        $new_user = $client->users->create([
-          "email" => "$fields->email",
-          "name" => "$fields->name",
-          "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
-          "custom_attributes" => $fields->custom_attributes,
-        ]);
+        $new_user = $client->users->create($fields);
       }catch (Exception $e){
         $response['success'] = 0;
         if ( $e->getCode() == 409 ){
@@ -77,13 +64,8 @@ class Mplus_Intercom_Submitter
           if(!$user_found){
             $user_id = 'nanit-' . time();
           }
-          $new_user = $client->users->create([
-            "user_id" => "$fields->user_id",
-            "email" => "$fields->email",
-            "name" => "$fields->name",
-            "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
-            "custom_attributes" => $fields->custom_attributes,
-          ]);
+          $fields['user_id'] = "$user_id";
+          $new_user = $client->users->create($fields);
           if($new_user && !$user_found){
             update_option('intercom_' . $fields->email, $user_id);
           }
@@ -97,5 +79,22 @@ class Mplus_Intercom_Submitter
     }
 
     return $new_user;
+  }
+
+  /**
+  * @param object $fields fields to submit
+  */
+  public function get_fields($fields){
+    $basic = array();
+    $custom = array();
+    foreach ($fields as $field) {
+      if($field['attribute_type'] == 'basic'){
+        $basic[$field['intercom_attribute']] = $field['value'];
+      }else{
+        $custom[$field['intercom_attribute']] = $field['value'];
+      }
+    }
+    $basic['custom_attributes'] = $custom;
+    return $basic;
   }
 }
