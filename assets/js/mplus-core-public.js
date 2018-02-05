@@ -12,7 +12,7 @@
 				data: {
                 	action: 'intercom_form_submit',
                 	fields: $( 'form.mpss_intercom' ).serializeArray()
-            	};
+            	},
 	            
 	            beforeSend: function() {
 

@@ -122,6 +122,12 @@ class Mplus_Intercom_Core
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-core-public.php'; 
 
+        /**
+         * The class responsible for defining shortcode functionality
+         * of the plugin.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-intercom-shortcode.php';
+
         $this->loader = new Mplus_Intercom_Core_Loader();
     } 
 
@@ -160,6 +166,9 @@ class Mplus_Intercom_Core
         $mplus_intercom_settings = new Mplus_Intercom_Settings();
         $this->loader->add_action( 'admin_menu', $mplus_intercom_settings, 'admin_menu', 999 );
         $this->loader->add_action( 'admin_init', $mplus_intercom_settings, 'mplus_intercom_settings_fields' );
+
+        $mplus_intercom_shortcode = new Mplus_Intercom_Shortcode();
+        $this->loader->add_shortcode( 'mplus_intercom_subscription', $mplus_intercom_shortcode, 'mplus_intercom_subscription' );
 
         $this->loader->add_action( 'wp_ajax_intercom_form_submit', 'Mplus_intercom_Subscription_Form', 'submit_handler' );
 
