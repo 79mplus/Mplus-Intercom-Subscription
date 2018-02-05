@@ -9,6 +9,7 @@ class Mplus_Intercom_Submitter
 
   public function __construct(){
     /* initialize the api with the accesstoken*/
+    $this->api = get_option('mplus_ic_api_key');
   }
 
   /**
