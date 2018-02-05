@@ -40,10 +40,12 @@ class Mplus_Intercom_Subscription_Form
     public function render_form(){
 
         $html = '';
-        foreach ($this->fields as $field) :
-            $html .= render_form_input($field);
-        endforeach;
 
+        $html .= '<form class="mpss_intercom" method="post">';
+            foreach ($this->fields as $field) :
+                $html .= $this->render_form_input($field);
+            endforeach;
+        $html .= '</form>';
         return $html;
     }
 
@@ -95,20 +97,62 @@ class Mplus_Intercom_Subscription_Form
                 break;
         endswitch;
 
+        $html ='';
         $html .= '<div class="input-group">';
             if($label !='' && $type !='button' && $type != 'submit') :
                 $html .= '<label for="'.esc_attr($name).'">'.esc_attr($label).'</label>';
             endif;
             $html .= $input;
         $html .= '</div>';
-        
+
         return $html;
     }
 
     /**
      * handling submission of the form
      */
-    public static function submit_handler(){
+    public function submit_handler(){
+
+        $html = '';
+        foreach ($this->fields as $field) :
+            $key = $field['intercom_attribute'];
+            $html .= "data[$key] = $( 'form.mpss_intercom #$key' ).val();";
+        endforeach;
+
+        $script = "jQuery(function( $ ) {
+
+            $( 'form.mpss_intercom' ).submit(function(e){
+                e.preventDefault();
+
+                var data;
+
+                ".$html."
+
+                $.ajax({
+                    url : wp.ajaxurl,
+                    data : data,
+                    type: 'POST',
+                    action: 'intercom_form_submit',
+                    
+                    beforeSend: function() {
+
+                    },
+
+                    success: function(data, textStatus, jqXHR) {
+ 
+                    },
+
+                    error: function(jqXHR, textStatus, errorThrown) {
+
+                        console.log('The following error occured: ' + textStatus, errorThrown);
+                    }
+                })
+
+            });
+            
+        });";
+
+        return $script;
 
     }
 
