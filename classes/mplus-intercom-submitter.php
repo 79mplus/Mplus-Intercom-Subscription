@@ -9,20 +9,22 @@ class Mplus_Intercom_Submitter
 
   public function __construct(){
     /* initialize the api with the accesstoken*/
-    $access_token = get_option('');
+    $access_token = get_option('mplus_ic_api_key');
     $this->client = new Intercom\IntercomClient($access_token, null);
   }
 
   /**
-  * @param array $fields fields to submit
+  * @param object $fields fields to submit
   * @param string $user_type either user or lead
   */
   public function create_user($fields, $user_type = 'user' ){
 
+    $client = $this->client;
+
     $response = array();
     if($user_type == 'lead'){
       try{
-        $new_user = $this->client->leads->create([
+        $new_user = $client->leads->create([
           "email" => "$fields->email",
           "name" => "$fields->name",
           "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
@@ -39,11 +41,11 @@ class Mplus_Intercom_Submitter
           if(!$user_found){
             $user_id = 'nanit-' . time();
           }
-          $new_user = $this->client->leads->create([
+          $new_user = $client->leads->create([
             "user_id" => "$fields->user_id",
             "email" => "$fields->email",
             "name" => "$fields->name",
-            "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
+            "unsubscribed_from_emails" => $fields->unsubscrihisbed_from_emails,
             "custom_attributes" => $fields->custom_attributes,
           ]);
           if($new_user && !$user_found){
@@ -58,7 +60,7 @@ class Mplus_Intercom_Submitter
       }
     }else{
       try{
-        $new_user = $this->client->users->create([
+        $new_user = $client->users->create([
           "email" => "$fields->email",
           "name" => "$fields->name",
           "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
@@ -75,7 +77,7 @@ class Mplus_Intercom_Submitter
           if(!$user_found){
             $user_id = 'nanit-' . time();
           }
-          $new_user = $this->client->users->create([
+          $new_user = $client->users->create([
             "user_id" => "$fields->user_id",
             "email" => "$fields->email",
             "name" => "$fields->name",
