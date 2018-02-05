@@ -5,10 +5,12 @@
 */
 class Mplus_Intercom_Submitter
 {
-  private $api;
+  private $client;
 
   public function __construct(){
     /* initialize the api with the accesstoken*/
+    $access_token = get_option('');
+    $this->client = new Intercom\IntercomClient($access_token, null);
   }
 
   /**
@@ -17,12 +19,10 @@ class Mplus_Intercom_Submitter
   */
   public function create_user($fields, $user_type = 'user' ){
 
-    $client = new Intercom\IntercomClient($this->$api, null);
-
     $response = array();
     if($user_type == 'lead'){
       try{
-        $new_user = $client->leads->create([
+        $new_user = $this->client->leads->create([
           "email" => "$fields->email",
           "name" => "$fields->name",
           "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
@@ -39,7 +39,7 @@ class Mplus_Intercom_Submitter
           if(!$user_found){
             $user_id = 'nanit-' . time();
           }
-          $new_user = $client->leads->create([
+          $new_user = $this->client->leads->create([
             "user_id" => "$fields->user_id",
             "email" => "$fields->email",
             "name" => "$fields->name",
@@ -58,7 +58,7 @@ class Mplus_Intercom_Submitter
       }
     }else{
       try{
-        $new_user = $client->users->create([
+        $new_user = $this->client->users->create([
           "email" => "$fields->email",
           "name" => "$fields->name",
           "unsubscribed_from_emails" => $fields->unsubscribed_from_emails,
@@ -75,7 +75,7 @@ class Mplus_Intercom_Submitter
           if(!$user_found){
             $user_id = 'nanit-' . time();
           }
-          $new_user = $client->users->create([
+          $new_user = $this->client->users->create([
             "user_id" => "$fields->user_id",
             "email" => "$fields->email",
             "name" => "$fields->name",
