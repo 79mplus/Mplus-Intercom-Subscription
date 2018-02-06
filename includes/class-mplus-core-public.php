@@ -63,12 +63,11 @@ class Mplus_Intercom_Core_Public
     public function mplus_enqueue_scripts()
     {
 
+        wp_enqueue_script($this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-public.js', array('jquery'), $this->version, false);
+
         wp_localize_script( $this->plugin_name, 'wp', array(
             'ajaxurl' => admin_url( 'admin-ajax.php' ) ,
         ));
-        wp_enqueue_script($this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-public.js', array('jquery'), $this->version, false);
-
-
     }
 
 }
