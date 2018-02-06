@@ -27,8 +27,15 @@ class Mplus_Intercom_Submitter
     if($user_type == 'lead'){
       try{
         $new_user = $client->leads->create($fields);
+        if(!empty($new_user->id)):
+          $response['massage'] =  "Added New User.";
+          $response['success'] = 1;
+        else:
+          $response['massage'] =  "Something Wrong.";
+          $response['success'] = 0;
+        endif;
       }catch (Exception $e){
-        $response['success'] = 0;
+        $response['success'] = 0; 
         if ( $e->getCode() == 409 ){
           /*there are multiple users with this email.
           in this case we create the user using a custom user_id and save that in wp*/
@@ -52,6 +59,13 @@ class Mplus_Intercom_Submitter
     }else{
       try{
         $new_user = $client->users->create($fields);
+        if(!empty($new_user->id)):
+          $response['massage'] =  "Added New User.";
+          $response['success'] = 1;
+        else:
+          $response['massage'] =  "Something Wrong.";
+          $response['success'] = 0;
+        endif;
       }catch (Exception $e){
         $response['success'] = 0;
         if ( $e->getCode() == 409 ){
@@ -76,7 +90,7 @@ class Mplus_Intercom_Submitter
       }
     }
 
-    return $new_user;
+    return $response;
   }
 
   /**

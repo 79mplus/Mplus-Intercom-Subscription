@@ -128,7 +128,10 @@ class Mplus_Intercom_Subscription_Form
 
         $intercom_submitter = new Mplus_Intercom_Submitter();
 
-        $intercom_submitter->create_user($fields);
+        $intercom_res = $intercom_submitter->create_user($fields);
+
+        wp_send_json($intercom_res);
+        
         die();
 
     }

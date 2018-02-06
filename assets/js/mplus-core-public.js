@@ -19,8 +19,9 @@
 	            },
 
 	            success: function(data, textStatus, jqXHR) {
+	            	console.log(data);
 	            	if (data.success == 1) {
-	            		$("form.mpss_intercom").hide();
+	            		$("form.mpss_intercom").remove();
 	            		$( '.message' ).show();
 	            		$( '.message' ).fadeIn().delay(10000).fadeOut();
 	            	}else{
