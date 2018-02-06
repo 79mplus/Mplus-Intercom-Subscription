@@ -170,7 +170,8 @@ class Mplus_Intercom_Core
         $mplus_intercom_shortcode = new Mplus_Intercom_Shortcode();
         $this->loader->add_shortcode( 'mplus_intercom_subscription', $mplus_intercom_shortcode, 'mplus_intercom_subscription' );
 
-        $this->loader->add_action( 'wp_ajax_intercom_form_submit', 'Mplus_intercom_Subscription_Form', 'submit_handler' );
+        $subscription_form = new Mplus_intercom_Subscription_Form();
+        $this->loader->add_action( 'wp_ajax_intercom_form_submit', $subscription_form, 'submit_handler' );
 
     }
 
@@ -188,7 +189,8 @@ class Mplus_Intercom_Core
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts');
 
-        $this->loader->add_action( 'wp_ajax_nopriv_intercom_form_submit', 'Mplus_intercom_Subscription_Form', 'submit_handler' );
+        $subscription_form = new Mplus_intercom_Subscription_Form();
+        $this->loader->add_action( 'wp_ajax_nopriv_intercom_form_submit', $subscription_form, 'submit_handler' );
     }
 
     /**
