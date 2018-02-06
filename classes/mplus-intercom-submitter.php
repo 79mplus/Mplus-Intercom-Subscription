@@ -46,8 +46,7 @@ class Mplus_Intercom_Submitter
 
         }else{
           $response['message'] = "An error occurred while registering the user.";
-          wp_send_json( $response );
-          die();
+          return $response;
         }
       }
     }else{
@@ -72,8 +71,7 @@ class Mplus_Intercom_Submitter
 
         }else{
           $response['message'] = "An error occurred while registering the user.";
-          wp_send_json( $response );
-          die();
+          return $response;
         }
       }
     }
