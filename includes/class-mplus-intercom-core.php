@@ -60,13 +60,12 @@ class Mplus_Intercom_Core
         $this->plugin_name = 'mplus-intercom-core';
         $this->version = '1.0.0';
 
+        spl_autoload_register( array( $this, 'autoload') );
+
         $this->mplus_load_dependencies();
         $this->mplus_set_locale();
         $this->mplus_admin_hooks_define();
         $this->mplus_public_hooks_define();
-
-        spl_autoload_register( array( $this, 'autoload') );
-
     }
 
 
