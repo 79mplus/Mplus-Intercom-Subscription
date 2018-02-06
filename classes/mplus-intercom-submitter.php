@@ -28,10 +28,10 @@ class Mplus_Intercom_Submitter
       try{
         $new_user = $client->leads->create($fields);
         if(!empty($new_user->id)):
-          $response['massage'] =  "Added New User.";
+          $response['massage'] =  __( "Added New User.", "mplus-intercom-core" );
           $response['success'] = 1;
         else:
-          $response['massage'] =  "Something Wrong.";
+          $response['massage'] =  __( "Something Wrong.", "mplus-intercom-core" );
           $response['success'] = 0;
         endif;
       }catch (Exception $e){
@@ -52,7 +52,7 @@ class Mplus_Intercom_Submitter
           }
 
         }else{
-          $response['message'] = "An error occurred while registering the user.";
+          $response['message'] = __( "An error occurred while registering the user.", "mplus-intercom-core" );
           return $response;
         }
       }
@@ -60,10 +60,10 @@ class Mplus_Intercom_Submitter
       try{
         $new_user = $client->users->create($fields);
         if(!empty($new_user->id)):
-          $response['massage'] =  "Added New User.";
+          $response['massage'] =  __( "Added New User.", "mplus-intercom-core" );
           $response['success'] = 1;
         else:
-          $response['massage'] =  "Something Wrong.";
+          $response['massage'] =  __( "Something Wrong.", "mplus-intercom-core" );
           $response['success'] = 0;
         endif;
       }catch (Exception $e){
@@ -84,7 +84,7 @@ class Mplus_Intercom_Submitter
           }
 
         }else{
-          $response['message'] = "An error occurred while registering the user.";
+          $response['message'] = __( "An error occurred while registering the user.", "mplus-intercom-core" );
           return $response;
         }
       }

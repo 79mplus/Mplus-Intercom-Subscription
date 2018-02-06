@@ -51,7 +51,7 @@ class Mplus_Intercom_Subscription_Form
                 $html .= $this->render_form_input($field);
             endforeach;
         $html .= '</form>';
-        $html .= '<div class="message">Thank You!</div>';
+        $html .= '<div class="message">' . __( 'Thank You!', 'mplus-intercom-core' ). '</div>';
         return $html;
     }
 
