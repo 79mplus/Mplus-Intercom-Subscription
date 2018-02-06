@@ -119,16 +119,19 @@ class Mplus_Intercom_Subscription_Form
      */
     public function submit_handler(){
 
-        $fields = array();
-        foreach ($this->fields as $field) :
-            $intercom_attribute = $field['intercom_attribute'];
-            $name = $field['name'];
-            $fields[$intercom_attribute] = $_POST[$name];
-        endforeach;
+        $submitted_fields = array();
+        foreach ($this->fields as $field) {
+            foreach( $_POST['fields'] as $f ){
+                if( $f['name'] == $field['name'] ){
+                    $field['value'] = $f['value'];
+                    $submitted_fields[] = $field;
+                }
+            }
+        }
 
         $intercom_submitter = new Mplus_Intercom_Submitter();
 
-        $intercom_res = $intercom_submitter->create_user($fields);
+        $intercom_res = $intercom_submitter->create_user($submitted_fields);
 
         wp_send_json($intercom_res);
         
