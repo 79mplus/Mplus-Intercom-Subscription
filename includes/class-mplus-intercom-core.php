@@ -14,8 +14,7 @@
  * @package    Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/includes
  */
-class Mplus_Intercom_Core
-{
+class Mplus_Intercom_Core{
 
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
@@ -54,8 +53,7 @@ class Mplus_Intercom_Core
      *
      * @since    1.0.0
      */
-    public function __construct()
-    {
+    public function __construct(){
 
         $this->plugin_name = 'mplus-intercom-core';
         $this->version = '1.0.0';
@@ -85,47 +83,45 @@ class Mplus_Intercom_Core
      * @since    1.0.0
      * @access   private
      */
-    private function mplus_load_dependencies()
-    {
-
+    private function mplus_load_dependencies() {
 
         // Autoload
-        require_once plugin_dir_path(dirname(__FILE__)) . '/vendor/autoload.php';
+        require_once MPLUSI_PLUGINS_DIR . 'vendor/autoload.php';
 
         // Intercom Settings
-        require_once plugin_dir_path(dirname(__FILE__)) . '/includes/helper-function.php';
+        require_once MPLUSI_PLUGINS_DIR . 'includes/helper-function.php';
 
         // Intercom Settings
-        require_once plugin_dir_path(dirname(__FILE__)) . '/includes/class-mplus-intercom-settings.php';
+        require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-settings.php';
 
         /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-core-loader.php';
+        require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-loader.php';
 
         /**
          * The class responsible for defining internationalization functionality
          * of the plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-core-i18n.php';
+        require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-i18n.php';
 
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-core-admin.php';
+        require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-admin.php';
 
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-core-public.php'; 
+        require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-public.php'; 
 
         /**
          * The class responsible for defining shortcode functionality
          * of the plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mplus-intercom-shortcode.php';
+        require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-shortcode.php';
 
         $this->loader = new Mplus_Intercom_Core_Loader();
     } 
@@ -139,13 +135,12 @@ class Mplus_Intercom_Core
      * @since    1.0.0
      * @access   private
      */
-    private function mplus_set_locale()
-    {
+    private function mplus_set_locale(){
 
         $plugin_i18n = new Mplus_Intercom_Core_i18n();
-        $plugin_i18n->set_domain($this->get_plugin_name());
+        $plugin_i18n->set_domain( $this->get_plugin_name() );
 
-        $this->loader->add_action('plugins_loaded', $plugin_i18n, 'mplus_load_plugin_textdomain');
+        $this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'mplus_load_plugin_textdomain' );
     }
 
     /**
@@ -155,12 +150,11 @@ class Mplus_Intercom_Core
      * @since    1.0.0
      * @access   private
      */
-    private function mplus_admin_hooks_define()
-    {
+    private function mplus_admin_hooks_define(){
 
-        $plugin_admin = new Mplus_Intercom_Core_Admin($this->get_plugin_name(), $this->get_version());
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_styles');
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_scripts');
+        $plugin_admin = new Mplus_Intercom_Core_Admin( $this->get_plugin_name(), $this->get_version() );
+        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_styles' );
+        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_scripts' );
 
         $mplus_intercom_settings = new Mplus_Intercom_Settings();
         $this->loader->add_action( 'admin_menu', $mplus_intercom_settings, 'admin_menu', 999 );
@@ -185,8 +179,8 @@ class Mplus_Intercom_Core
 
         $plugin_public = new Mplus_Intercom_Core_Public($this->get_plugin_name(), $this->get_version());
 
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles');
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts');
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles' );
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts' );
 
         $subscription_form = new Mplus_intercom_Subscription_Form();
         $this->loader->add_action( 'wp_ajax_nopriv_intercom_form_submit', $subscription_form, 'submit_handler' );
@@ -199,13 +193,13 @@ class Mplus_Intercom_Core
      */
 
     public function autoload( $class ){
-        if ( stripos( $class, 'Mplus_Intercom_' ) !== false ) {
+        if ( stripos( $class, 'Mplus_Intercom_' ) !== false ) :
             $class_name = str_replace( '_', '-', $class );
             $file_path = MPLUSI_PLUGINS_DIR . 'classes/' . strtolower( $class_name ) . '.php';
-            if ( file_exists( $file_path ) ) {
+            if ( file_exists( $file_path ) ) :
                 require_once $file_path;
-            }
-        }
+            endif;
+        endif;
     }
 
     /**
@@ -213,8 +207,8 @@ class Mplus_Intercom_Core
      *
      * @since    1.0.0
      */
-    public function run()
-    {
+    public function run(){
+
         $this->loader->run();
     }
 
@@ -225,8 +219,8 @@ class Mplus_Intercom_Core
      * @since     1.0.0
      * @return    string    The name of the plugin.
      */
-    public function get_plugin_name()
-    {
+    public function get_plugin_name(){
+
         return $this->plugin_name;
     }
 
@@ -236,8 +230,8 @@ class Mplus_Intercom_Core
      * @since     1.0.0
      * @return    Mplus_Intercom_Core_Loader    Orchestrates the hooks of the plugin.
      */
-    public function get_loader()
-    {
+    public function get_loader(){
+
         return $this->loader;
     }
 
@@ -247,8 +241,8 @@ class Mplus_Intercom_Core
      * @since     1.0.0
      * @return    string    The version number of the plugin.
      */
-    public function get_version()
-    {
+    public function get_version(){
+        
         return $this->version;
     }
 }

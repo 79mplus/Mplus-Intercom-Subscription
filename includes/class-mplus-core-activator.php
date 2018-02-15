@@ -10,8 +10,7 @@
  * @subpackage Mplus_Intercom_Core/includes
  * @author     79mplus
  */
-class Mplus_Intercom_Core_Activator
-{
+class Mplus_Intercom_Core_Activator{
 
     /**
      *

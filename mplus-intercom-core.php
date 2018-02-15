@@ -21,8 +21,8 @@ define( 'MPLUSI', __FILE__ );
 define( 'MPLUSILANGUAGE', 'mplus-intercom-core' );
 define( 'MPLUSI_NAME', 'mplus-intercom-core' );
 define( 'MPLUSIVERSION', '1.0.0' );
-define( 'MPLUSI_PLUGINS_DIR', trailingslashit( plugin_dir_path( MPLUSI )));
-define( 'MPLUSI_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSI )));
+define( 'MPLUSI_PLUGINS_DIR', trailingslashit( plugin_dir_path( MPLUSI ) ) );
+define( 'MPLUSI_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSI ) ) );
 
 /**
  * Function that runs during plugin activation.

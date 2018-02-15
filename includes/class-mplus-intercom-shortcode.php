@@ -34,7 +34,7 @@ class Mplus_Intercom_Shortcode {
 		), $atts );
 
 		// Generates shortcode output.
-		$html = mplus_intercom_get_template('mplus-shortcode.php');
+		$html = mplus_intercom_get_template( 'mplus-shortcode.php' );
 
 		return $html;
 	}
