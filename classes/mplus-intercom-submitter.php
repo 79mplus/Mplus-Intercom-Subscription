@@ -7,9 +7,11 @@ class Mplus_Intercom_Submitter
 {
   private $client;
 
-  public function __construct(){
+  public function __construct( $access_token ){
     /* initialize the api with the accesstoken*/
-    $access_token = get_option('mplus_ic_api_key');
+    if( empty( $access_token ) ){
+      $access_token = get_option('mplus_ic_api_key');
+    }
     $this->client = new Intercom\IntercomClient($access_token, null);
   }
 
@@ -35,7 +37,7 @@ class Mplus_Intercom_Submitter
           $response['success'] = 0;
         endif;
       }catch (Exception $e){
-        $response['success'] = 0; 
+        $response['success'] = 0;
         if ( $e->getCode() == 409 ){
           /*there are multiple users with this email.
           in this case we create the user using a custom user_id and save that in wp*/
