@@ -12,6 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Mplus_Intercom_Settings {
 
+    /**
+     * The menupage hold manu page ID
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      Mplus_Intercom_Settings    $menupage    Hold Menu page Id.
+     */
+    
+	protected $menupage;
+
 	/**
 	 * Constructs the class.
 	 * 
@@ -26,10 +36,10 @@ class Mplus_Intercom_Settings {
 	 * 
 	 * @return void
 	 */
-	function admin_menu() {
+	function admin_menu() { 
 
-		add_menu_page( 'Mplus Intercom', 'Mplus Intercom', 'manage_options', 'mi-settings', array( $this, 'mplus_personal_token_settings' ), 'dashicons-admin-settings', 27 );
-
+		$this->menupage = add_menu_page( 'Mplus Intercom', 'Mplus Intercom', 'manage_options', 'mi-settings', array( $this, 'mplus_personal_token_settings' ), 'dashicons-admin-settings', 27 );
+		add_action( "load-{$this->menupage}", array( $this, 'mplus_intercom_settings_help' ) );
 	}
 
 	/**
@@ -76,4 +86,78 @@ class Mplus_Intercom_Settings {
 		echo '<textarea name="mplus_ic_api_key" id="mplus_ic_api_key" class="regular-text mpss-settings-apikey" style="height:70px">'.get_option( 'mplus_ic_api_key' ).'</textarea>';
 		echo '<p class="description">Input Intercom API Access Token.</p>';
 	}
+
+    /**
+     * Display help page
+     *
+     * @since 1.0
+     */
+    function mplus_intercom_settings_help() {
+
+        $screen = get_current_screen();
+
+        if ( $screen->id != $this->menupage )
+            return;
+
+        $screen->add_help_tab( array(
+            'id'      => 'mplus_intercom_settings_overview',
+            'title'   => __( 'Overview', MPLUSILANGUAGE ),
+            'content' => __( sprintf( "<h3>Mplus Intercom Subscription Plugin</h3><p>Modern messaging for sales, marketing and support – all on the first platform made with customers in mind.
+                Please <a target='_blank' href='%s'>click here</a> to get more information.</p>",
+                esc_url( 'http://www.79mplus.com/' ) ) , MPLUSILANGUAGE ),
+        ));
+
+        $screen->add_help_tab( array(
+            'id'      => 'mplus_intercom_settings_info',
+            'title'   => __( 'Settings', MPLUSILANGUAGE ),
+            'content' => __( self::mplus_intercom_settings_connect(), MPLUSILANGUAGE ),
+        ));
+
+        /* Set Help Sidebar */
+        $screen->set_help_sidebar(
+            '<p><strong>' . __( 'For more information:', MPLUSILANGUAGE ) . '</strong></p>' .
+            '<p><a href="#" target="_blank">'     . __( 'FAQ',     MPLUSILANGUAGE ) . '</a></p>' .
+            '<p><a href="#" target="_blank">' . __( 'Support Forum', MPLUSILANGUAGE ) . '</a></p>'
+        );
+    }
+    /**
+     * Help page content
+     *
+     * @since 1.0
+     */
+    public static function mplus_intercom_settings_connect() {
+        return sprintf( "
+        <p><strong>Where is Intercom Access Token?</strong></p>
+        <ol>
+            <li>Please visit <a target='_blank' href='https://developers.intercom.com/docs/personal-access-tokens'>Intercom Application</a> to get more about Intercom Access Token.</li>
+        </ol>
+
+        <p><strong>I am new. How do I get access token?</strong> Please follow the instruction below to create a Intercom Access Token:</p>
+        <ol>
+            <li>To create your Access Token, go to the dashboard in the Intercom Developer Hub by <a target='_blank' href='https://app.intercom.com/developers/_'>clicking here</a> or by clicking on Dashboard at the top of the page and click <strong>'Get an Access Token'</strong></li>
+            <li>When you setup your Token, you will be asked to choose between two levels of scopes. Select Your Scopes.</li>
+            <li>Once you have created your Access Token you will see it in the same section in your Dashboard. You can edit or delete the token from here..</li>
+        </ol>
+        ", home_url('/') );
+    }
+    /**
+     * Display admin notice - Facebook application settings
+     *
+     * @since 1.0
+     */
+    function mplus_admin_notices() {
+
+        /* Get the options */
+        $access_token = get_option('mplus_ic_api_key');
+
+        $page = (isset($_GET['page']) ? $_GET['page'] : null);
+
+        //echo "$page";
+
+        if ( empty( $access_token ) && $page != 'mi-settings' && current_user_can( 'manage_options' ) ) :
+	        echo '<div class="error fade">';
+	            echo sprintf( __('<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd Access Token%s to use the plugin.</p>', MPLUSILANGUAGE ), '<a href="admin.php?page=mi-settings">', '</a>' );
+	        echo '</div>';
+        endif;
+    }
 }
