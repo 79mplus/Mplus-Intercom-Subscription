@@ -23,7 +23,7 @@
 	            	if (data.success == 1) {
 	            		$("form.mpss_intercom").remove();
 	            		$( '.message' ).show();
-	            		$( '.message' ).fadeIn().delay(10000).fadeOut();
+	            		//$( '.message' ).fadeIn().delay(10000).fadeOut();
 	            	}else{
 	            		$( '.message' ).html( data.message ).show();
 						$( '.message' ).fadeIn().delay(10000).fadeOut();

@@ -6,7 +6,7 @@
 class Mplus_Intercom_Submitter {
   private $client;
 
-  public function __construct( $access_token == null ){
+  public function __construct( $access_token = null ){
     /* initialize the api with the accesstoken*/
     if( empty( $access_token ) ){
       $access_token = get_option( 'mplus_ic_api_key' );
