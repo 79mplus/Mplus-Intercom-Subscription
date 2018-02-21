@@ -29,7 +29,7 @@ class Mplus_Intercom_Core_i18n {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mplus_load_plugin_textdomain(){
+	public function mplus_load_plugin_textdomain() {
 
 		load_plugin_textdomain(
 			$this->domain,
@@ -45,7 +45,7 @@ class Mplus_Intercom_Core_i18n {
 	 * @since    1.0.0
 	 * @param    string    $domain    The domain that represents the locale of this plugin.
 	 */
-	public function set_domain( $domain ){
+	public function set_domain( $domain ) {
 		$this->domain = $domain;
 	}
 

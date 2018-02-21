@@ -8,7 +8,7 @@
  * @author     79mplus
  */
 
-class Mplus_Intercom_Core_Public{
+class Mplus_Intercom_Core_Public {
 
     /**
      * The ID of this plugin.
@@ -35,7 +35,7 @@ class Mplus_Intercom_Core_Public{
      * @param      string    $plugin_name       The name of the plugin.
      * @param      string    $version    The version of this plugin.
      */
-    public function __construct( $plugin_name, $version ){
+    public function __construct( $plugin_name, $version ) {
 
         $this->plugin_name = $plugin_name;
         $this->version = $version;
@@ -46,7 +46,7 @@ class Mplus_Intercom_Core_Public{
      *
      * @since    1.0.0
      */
-    public function mplus_enqueue_styles(){
+    public function mplus_enqueue_styles() {
 
         wp_enqueue_style( $this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/css/mplus-core-public.css', array(), $this->version, 'all' );
 
@@ -57,7 +57,7 @@ class Mplus_Intercom_Core_Public{
      *
      * @since    1.0.0
      */
-    public function mplus_enqueue_scripts(){
+    public function mplus_enqueue_scripts() {
 
         wp_enqueue_script( $this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-public.js', array('jquery'), $this->version, false );
 

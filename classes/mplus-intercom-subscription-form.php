@@ -118,6 +118,7 @@ class Mplus_Intercom_Subscription_Form{
      */
     public function submit_handler(){
 
+        $sub_type = '';
         $submitted_fields = array();
         foreach ( $this->fields as $field ) {
             foreach( $_POST['fields'] as $f ){
@@ -128,9 +129,11 @@ class Mplus_Intercom_Subscription_Form{
             }
         }
 
+        $sub_type = get_option('mplus_ic_sub_type');
+
         $intercom_submitter = new Mplus_Intercom_Submitter();
 
-        $intercom_res = $intercom_submitter->create_user( $submitted_fields );
+        $intercom_res = $intercom_submitter->create_user( $submitted_fields, $sub_type );
 
         wp_send_json( $intercom_res );
         

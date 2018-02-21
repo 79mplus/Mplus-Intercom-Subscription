@@ -28,7 +28,7 @@ define( 'MPLUSI_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSI ) ) );
  * Function that runs during plugin activation.
  */
 function mplus_core_activate() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-mplus-core-activator.php';
+	require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-activator.php';
 	Mplus_Intercom_Core_Activator::activate();
 }
 
@@ -36,18 +36,18 @@ function mplus_core_activate() {
  * Function that runs during plugin deactivation.
  */
 function mplus_core_deactivate() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-mplus-core-deactivator.php';
+	require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-deactivator.php';
 	Mplus_Intercom_Core_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'mplus_core_activate' );
-register_deactivation_hook( __FILE__, 'mplus_core_deactivate' );
+register_activation_hook( MPLUSI , 'mplus_core_activate' );
+register_deactivation_hook( MPLUSI , 'mplus_core_deactivate' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-mplus-intercom-core.php';
+require MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-core.php';
 
 /**
  * Begins execution of the plugin.

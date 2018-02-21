@@ -73,8 +73,10 @@ class Mplus_Intercom_Settings {
 	public function mplus_intercom_settings_fields() {
 		add_settings_section( 'mplusi-section', 'Mplus Intercom General Settings', null, 'mplusi-options' );
 		add_settings_field( "mplus_ic_api_key", "Access Token", array( $this, 'mplus_display_ic_api_key' ), "mplusi-options", "mplusi-section" );
+        add_settings_field( "mplus_ic_sub_type", "Subscription Type", array( $this, 'mplus_display_ic_sub_type' ), "mplusi-options", "mplusi-section" );
 		
 		register_setting( "mplusi-section", "mplus_ic_api_key" );
+        register_setting( "mplusi-section", "mplus_ic_sub_type" );
 	}
 
 	/**
@@ -87,6 +89,19 @@ class Mplus_Intercom_Settings {
 		echo '<p class="description">Input Intercom API Access Token.</p>';
 	}
 
+    /**
+     * Shows Intercom API Access Token fields.
+     * 
+     * @return void
+     */
+    public function mplus_display_ic_sub_type() {
+        echo '<select name="mplus_ic_sub_type">';
+            echo '<option value="user" ' . selected(get_option('mplus_ic_sub_type'), "user") .'>User</option>';
+            echo '<option value="lead" ' . selected(get_option('mplus_ic_sub_type'), "lead") .'>Lead</option>';
+        echo '</select>';
+        echo '<p class="description">Select Intercom Subscription Type.</p>';
+    }
+    
     /**
      * Display help page
      *
