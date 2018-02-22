@@ -86,7 +86,8 @@ class Mplus_Intercom_Settings {
 	 */
 	public function mplus_display_ic_api_key() {
 		echo '<textarea name="mplus_ic_api_key" id="mplus_ic_api_key" class="regular-text mpss-settings-apikey" style="height:70px">'.get_option( 'mplus_ic_api_key' ).'</textarea>';
-		echo '<p class="description">Input Intercom API Access Token.</p>';
+        echo '<p class="description">Input Intercom API Access Token.</p>';
+		echo '<p class="description">To create your Access Token, go to <a href="https://app.intercom.com/developers/_" target="_blank">https://app.intercom.com/developers/_</a> and then click &quot;Get an Access Token&quot;. <a href="https://developers.intercom.com/docs/personal-access-tokens#section-creating-your-access-token" target="_blank">more info</a></p>';
 	}
 
     /**
