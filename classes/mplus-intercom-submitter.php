@@ -31,11 +31,11 @@ class Mplus_Intercom_Submitter {
 		if ( $user_type == 'lead' ) {
 			try {
 				$new_user = $client->leads->create( $fields );
-				if ( ! empty( $new_user->id ) ):
-					$response['massage'] =  __( "Added New User.", "mplus-intercom-core" );
+				if ( ! empty( $new_user->id ) ) :
+					$response['massage'] =  __( 'Added New User.', 'mplus-intercom-core' );
 					$response['success'] = 1;
 				else:
-					$response['massage'] =  __( "Something Wrong.", "mplus-intercom-core" );
+					$response['massage'] =  __( 'Something Wrong.', 'mplus-intercom-core' );
 					$response['success'] = 0;
 				endif;
 			} catch ( Exception $e ) {
@@ -51,12 +51,12 @@ class Mplus_Intercom_Submitter {
 					}
 					$fields['user_id'] = "$user_id";
 					$new_user = $client->leads->create( $fields );
-					if ( $new_user && !$user_found ) {
+					if ( $new_user && ! $user_found ) {
 						update_option( 'intercom_' . $fields->email, $user_id );
 					}
 
 				} else {
-					$response['message'] = __( "An error occurred while registering the user.", "mplus-intercom-core" );
+					$response['message'] = __( 'An error occurred while registering the user.', 'mplus-intercom-core' );
 					return $response;
 				}
 			}
@@ -64,10 +64,10 @@ class Mplus_Intercom_Submitter {
 			try {
 				$new_user = $client->users->create( $fields );
 				if ( ! empty( $new_user->id ) ):
-					$response['massage'] =  __( "Added New User.", "mplus-intercom-core" );
+					$response['massage'] =  __( 'Added New User.', 'mplus-intercom-core' );
 					$response['success'] = 1;
 				else :
-					$response['massage'] =  __( "Something Wrong.", "mplus-intercom-core" );
+					$response['massage'] =  __( 'Something Wrong.', 'mplus-intercom-core' );
 					$response['success'] = 0;
 				endif;
 			} catch ( Exception $e ) {
@@ -88,7 +88,7 @@ class Mplus_Intercom_Submitter {
 					}
 
 				} else {
-					$response['message'] = __( "An error occurred while registering the user.", "mplus-intercom-core" );
+					$response['message'] = __( 'An error occurred while registering the user.', 'mplus-intercom-core' );
 					return $response;
 				}
 			}

@@ -4,149 +4,148 @@
  * The subscription form class.
  */
 class Mplus_Intercom_Subscription_Form{
-    /**
-     * @var array $fields Contains the form fields.
-     */
-    private $fields = array();
+	/**
+	 * @var array $fields Contains the form fields.
+	 */
+	private $fields = array();
 
-    public function __construct() {
+	public function __construct() {
 
-        $fields = array(
-            array(
-                'type' => 'text',
-                'label' => 'Name',
-                'name' => 'name',
-                'intercom_attribute' => 'name',
-                'attribute_type' => 'basic',
-                'required' => true
-            ),
-            array(
-                'type' => 'email',
-                'label' => 'Email',
-                'name' => 'email',
-                'intercom_attribute' => 'email',
-                'attribute_type' => 'basic',
-                'required' => true
-            ),
-            array(
-                'type' => 'submit',
-                'label' => 'Submit',
-                'name' => 'submit',
-            ),
-        );
+		$fields = array(
+			array(
+				'type' => 'text',
+				'label' => 'Name',
+				'name' => 'name',
+				'intercom_attribute' => 'name',
+				'attribute_type' => 'basic',
+				'required' => true
+			),
+			array(
+				'type' => 'email',
+				'label' => 'Email',
+				'name' => 'email',
+				'intercom_attribute' => 'email',
+				'attribute_type' => 'basic',
+				'required' => true
+			),
+			array(
+				'type' => 'submit',
+				'label' => 'Submit',
+				'name' => 'submit',
+			),
+		);
 
-        $this->fields = apply_filters( 'mplus_intercom_form_fields', $fields );
-    }
+		$this->fields = apply_filters( 'mplus_intercom_form_fields', $fields );
+	}
 
-    /**
-     * Returns or renders the form html.
-     * 
-     * @return string
-     */
-    public function render_form() {
+	/**
+	 * Returns or renders the form html.
+	 * 
+	 * @return string
+	 */
+	public function render_form() {
 
-        $html = '';
+		$html = '';
 
-        $html .= '<form class="mpss_intercom" method="post">';
-            foreach ($this->fields as $field) :
-                $html .= $this->render_form_input( $field );
-            endforeach;
-        $html .= '</form>';
-        $html .= '<div class="message">' . __( 'Thank You!', 'mplus-intercom-core' ). '</div>';
-        return $html;
-    }
+		$html .= '<form class="mpss_intercom" method="post">';
+			foreach ( $this->fields as $field ) :
+				$html .= $this->render_form_input( $field );
+			endforeach;
+		$html .= '</form>';
+		$html .= '<div class="message">' . __( 'Thank You!', 'mplus-intercom-core' ) . '</div>';
+		return $html;
+	}
 
 
-    /**
-     * Returns or renders the form single input field.
-     * 
-     * @return string
-     */
-    public function render_form_input( $field ) {
-        $default = array(
-                'type' => 'text',
-                'label' => '',
-                'name' => '',
-                'intercom_attribute' => '',
-                'attribute_type' => 'basic',
-                'required' => true,
-                'onclick'   => '',
-            );
+	/**
+	 * Returns or renders the form single input field.
+	 * 
+	 * @return string
+	 */
+	public function render_form_input( $field ) {
+		$default = array(
+				'type' => 'text',
+				'label' => '',
+				'name' => '',
+				'intercom_attribute' => '',
+				'attribute_type' => 'basic',
+				'required' => true,
+				'onclick'   => '',
+			);
 
-        // Merge default field with user submitted field.
-        $field = array_replace_recursive( $default, $field );
-        extract( $field );
+		// Merge default field with user submitted field.
+		$field = array_replace_recursive( $default, $field );
+		extract( $field );
 
-        if($required) :
-            $required = 'required="required"';
-        else:
-            $required = '';
-        endif;
+		if ( $required ) :
+			$required = 'required="required"';
+		else:
+			$required = '';
+		endif;
 
-        if($onclick != ''):
-            $onclick = 'onclick="'.$onclick.'()">';
-        else:
-            $onclick = '';
-        endif;
-        switch ($type) :
-            case 'text':
-            case 'tel':
-            case 'email':
-                $input = '<input type="'.esc_attr( $type ).'" name="'.esc_attr( $name ).'" id="'.esc_attr( $intercom_attribute ).'" '. $required .' value="" />';
-                break;
-            case 'textarea':
-                $input = '<textarea name="'.esc_attr( $name ).'" id="'.esc_attr( $intercom_attribute ).'" '. $required .' /></textarea>';
-                break;
-            case 'button':
-            case 'submit':
-                $input = '<input type="'.esc_attr( $type ).'" id="'.esc_attr( $name ).'" value="'.esc_attr( $label ).'" '.$onclick.' />';
-                break;
-            default:
-                # code...
-                break;
-        endswitch;
+		if ( $onclick != '' ) :
+			$onclick = 'onclick="' . $onclick . '()">';
+		else:
+			$onclick = '';
+		endif;
+		switch ( $type ) :
+			case 'text' :
+			case 'tel' :
+			case 'email' :
+				$input = '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" ' . $required . ' value="" />';
+				break;
+			case 'textarea' :
+				$input = '<textarea name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" ' . $required .' /></textarea>';
+				break;
+			case 'button' :
+			case 'submit' :
+				$input = '<input type="' . esc_attr( $type ) . '" id="' . esc_attr( $name ) . '" value="' . esc_attr( $label ) . '" ' . $onclick . ' />';
+				break;
+			default :
+				break;
+		endswitch;
 
-        $html ='';
-        $html .= '<div class="input-group">';
-            if( $label !='' && $type !='button' && $type != 'submit' ) :
-                $html .= '<label for="'.esc_attr( $name ).'">'.esc_attr( $label ).'</label>';
-            endif;
-            $html .= $input;
-        $html .= '</div>';
+		$html ='';
+		$html .= '<div class="input-group">';
+			if ( $label != '' && $type != 'button' && $type != 'submit' ) :
+				$html .= '<label for="' . esc_attr( $name ) . '">' . esc_attr( $label ) . '</label>';
+			endif;
+			$html .= $input;
+		$html .= '</div>';
 
-        return $html;
-    }
+		return $html;
+	}
 
-    /**
-     * Handles submission of the form.
-     * 
-     * @return void
-     */
-    public function submit_handler() {
+	/**
+	 * Handles submission of the form.
+	 * 
+	 * @return void
+	 */
+	public function submit_handler() {
 
-        $sub_type = '';
-        $submitted_fields = array();
+		$sub_type = '';
+		$submitted_fields = array();
 
-        foreach ( $this->fields as $field ) {
-            foreach( $_POST['fields'] as $f ) {
-                if( $f['name'] == $field['name'] ) {
-                    $field['value'] = $f['value'];
-                    $submitted_fields[] = $field;
-                }
-            }
-        }
+		foreach ( $this->fields as $field ) {
+			foreach ( $_POST['fields'] as $f ) {
+				if ( $f['name'] == $field['name'] ) {
+					$field['value'] = $f['value'];
+					$submitted_fields[] = $field;
+				}
+			}
+		}
 
-        $sub_type = get_option('mplus_ic_sub_type');
+		$sub_type = get_option( 'mplus_ic_sub_type' );
 
-        $intercom_submitter = new Mplus_Intercom_Submitter();
+		$intercom_submitter = new Mplus_Intercom_Submitter();
 
-        $intercom_res = $intercom_submitter->create_user( $submitted_fields, $sub_type );
+		$intercom_res = $intercom_submitter->create_user( $submitted_fields, $sub_type );
 
-        wp_send_json( $intercom_res );
-        
-        die();
+		wp_send_json( $intercom_res );
+		
+		die();
 
-    }
+	}
 
 
 }

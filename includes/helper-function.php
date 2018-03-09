@@ -1,7 +1,7 @@
 <?php
 
 	// File Security Check
-	if ( ! defined( 'ABSPATH' ) ): 
+	if ( ! defined( 'ABSPATH' ) ) :
 	    exit;
 	endif;
 
