@@ -118,23 +118,23 @@ class Mplus_Intercom_Settings {
 
         $screen->add_help_tab( array(
             'id'      => 'mplus_intercom_settings_overview',
-            'title'   => __( 'Overview', MPLUSILANGUAGE ),
+            'title'   => __( 'Overview', 'mplus-intercom-core' ),
             'content' => __( sprintf( "<h3>Mplus Intercom Subscription Plugin</h3><p>Modern messaging for sales, marketing and support – all on the first platform made with customers in mind.
                 Please <a target='_blank' href='%s'>click here</a> to get more information.</p>",
-                esc_url( 'http://www.79mplus.com/' ) ) , MPLUSILANGUAGE ),
+                esc_url( 'http://www.79mplus.com/' ) ) , 'mplus-intercom-core' ),
         ));
 
         $screen->add_help_tab( array(
             'id'      => 'mplus_intercom_settings_info',
-            'title'   => __( 'Settings', MPLUSILANGUAGE ),
-            'content' => __( self::mplus_intercom_settings_connect(), MPLUSILANGUAGE ),
+            'title'   => __( 'Settings', 'mplus-intercom-core' ),
+            'content' => __( self::mplus_intercom_settings_connect(), 'mplus-intercom-core' ),
         ));
 
         /* Set Help Sidebar */
         $screen->set_help_sidebar(
-            '<p><strong>' . __( 'For more information:', MPLUSILANGUAGE ) . '</strong></p>' .
-            '<p><a href="#" target="_blank">'     . __( 'FAQ',     MPLUSILANGUAGE ) . '</a></p>' .
-            '<p><a href="#" target="_blank">' . __( 'Support Forum', MPLUSILANGUAGE ) . '</a></p>'
+            '<p><strong>' . __( 'For more information:', 'mplus-intercom-core' ) . '</strong></p>' .
+            '<p><a href="#" target="_blank">'     . __( 'FAQ',     'mplus-intercom-core' ) . '</a></p>' .
+            '<p><a href="#" target="_blank">' . __( 'Support Forum', 'mplus-intercom-core' ) . '</a></p>'
         );
     }
 
@@ -176,7 +176,7 @@ class Mplus_Intercom_Settings {
 
         if ( empty( $access_token ) && $page != 'mi-settings' && current_user_can( 'manage_options' ) ) :
 	        echo '<div class="error fade">';
-	            echo sprintf( __( '<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd Access Token%s to use the plugin.</p>', MPLUSILANGUAGE ), '<a href="admin.php?page=mi-settings">', '</a>' );
+	            echo sprintf( __( '<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd Access Token%s to use the plugin.</p>', 'mplus-intercom-core' ), '<a href="admin.php?page=mi-settings">', '</a>' );
 	        echo '</div>';
         endif;
     }
