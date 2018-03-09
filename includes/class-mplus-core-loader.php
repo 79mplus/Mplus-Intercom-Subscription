@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register all actions and filters for the plugin
  *
@@ -8,7 +9,6 @@
  * @package    Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/includes
  */
-
 class Mplus_Intercom_Core_Loader {
 
 	/**
@@ -124,7 +124,7 @@ class Mplus_Intercom_Core_Loader {
 	}
 
 	/**
-	 * Register the filters and actions with WordPress.
+	 * Registers the filters and actions with WordPress.
 	 *
 	 * @since   1.0.0
 	 * @return  void

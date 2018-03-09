@@ -77,7 +77,7 @@ function run_Mplus_Intercom_Core() {
 
 	$plugin = new Mplus_Intercom_Core();
 	$plugin->run();
-	do_action( MPLUSI_NAME.'_loaded' );
+	do_action( MPLUSI_NAME . '_loaded' );
 	
 }
 run_Mplus_Intercom_Core();

@@ -4,8 +4,17 @@
  * class to submit data to intercom
  */
 class Mplus_Intercom_Submitter {
+	/**
+	 * @var \Intercom\IntercomClient $client Holds the Intercom client instance.
+	 */
 	private $client;
 
+	/**
+	 * Constructor the class.
+	 * 
+	 * @param string|null $access_token Access token for Intercom API.
+	 * @return void
+	 */
 	public function __construct( $access_token = null ) {
 		/* Initialize the api with the accesstoken */
 		if ( empty( $access_token ) ) {
@@ -34,7 +43,7 @@ class Mplus_Intercom_Submitter {
 				if ( ! empty( $new_user->id ) ) :
 					$response['massage'] =  __( 'Added New User.', 'mplus-intercom-core' );
 					$response['success'] = 1;
-				else:
+				else :
 					$response['massage'] =  __( 'Something Wrong.', 'mplus-intercom-core' );
 					$response['success'] = 0;
 				endif;
@@ -63,7 +72,7 @@ class Mplus_Intercom_Submitter {
 		} else {
 			try {
 				$new_user = $client->users->create( $fields );
-				if ( ! empty( $new_user->id ) ):
+				if ( ! empty( $new_user->id ) ) :
 					$response['massage'] =  __( 'Added New User.', 'mplus-intercom-core' );
 					$response['success'] = 1;
 				else :
@@ -83,7 +92,7 @@ class Mplus_Intercom_Submitter {
 					}
 					$fields['user_id'] = "$user_id";
 					$new_user = $client->users->create( $fields );
-					if ( $new_user && !$user_found ) {
+					if ( $new_user && ! $user_found ) {
 						update_option( 'intercom_' . $fields->email, $user_id );
 					}
 

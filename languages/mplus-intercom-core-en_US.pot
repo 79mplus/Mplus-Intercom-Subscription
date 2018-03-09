@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mplus Intercom Subscription Plugin\n"
-"POT-Creation-Date: 2018-03-09 16:27+0600\n"
+"POT-Creation-Date: 2018-03-09 17:36+0600\n"
 "PO-Revision-Date: 2018-03-09 13:18+0600\n"
 "Last-Translator: \n"
 "Language-Team: 79mplus\n"
@@ -16,18 +16,18 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/mplus-intercom-submitter.php:35
-#: classes/mplus-intercom-submitter.php:67
+#: classes/mplus-intercom-submitter.php:44
+#: classes/mplus-intercom-submitter.php:76
 msgid "Added New User."
 msgstr ""
 
-#: classes/mplus-intercom-submitter.php:38
-#: classes/mplus-intercom-submitter.php:70
+#: classes/mplus-intercom-submitter.php:47
+#: classes/mplus-intercom-submitter.php:79
 msgid "Something Wrong."
 msgstr ""
 
-#: classes/mplus-intercom-submitter.php:59
-#: classes/mplus-intercom-submitter.php:91
+#: classes/mplus-intercom-submitter.php:68
+#: classes/mplus-intercom-submitter.php:100
 msgid "An error occurred while registering the user."
 msgstr ""
 

@@ -12,7 +12,6 @@
  * @package    Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/includes
  */
-
 class Mplus_Intercom_Core_i18n {
 
 	/**
@@ -44,7 +43,7 @@ class Mplus_Intercom_Core_i18n {
 	 * Set the domain equal to that of the specified domain.
 	 *
 	 * @since    1.0.0
-	 * @param    string    $domain    The domain that represents the locale of this plugin.
+	 * @param    string $domain The domain that represents the locale of this plugin.
 	 * @return   void
 	 */
 	public function set_domain( $domain ) {

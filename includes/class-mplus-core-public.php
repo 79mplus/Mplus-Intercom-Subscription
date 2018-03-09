@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -7,7 +8,6 @@
  * @subpackage Mplus_Intercom_Core/public
  * @author     79mplus
  */
-
 class Mplus_Intercom_Core_Public {
 
 	/**
