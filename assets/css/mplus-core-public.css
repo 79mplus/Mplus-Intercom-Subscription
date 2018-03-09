@@ -1,7 +1,7 @@
-/**
- * All of the CSS for your public-facing functionality should be
+/*
+ * All of the CSS for public-facing functionality should be
  * included in this file.
  */
 .mplus-intercom-form .message {
-    display: none;
+	display: none;
 }

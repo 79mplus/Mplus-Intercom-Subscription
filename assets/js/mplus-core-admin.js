@@ -1,7 +1,7 @@
 (function($) {
-    'use strict';
+	'use strict';
 
-    jQuery(document).on('ready', function(){
+	jQuery(document).on('ready', function(){
 
 	});
 	
