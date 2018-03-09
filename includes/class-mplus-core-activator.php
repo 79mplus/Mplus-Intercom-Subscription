@@ -13,8 +13,10 @@
 class Mplus_Intercom_Core_Activator {
 
     /**
-     *
+     * Runs when plugin is activated.
+     * 
      * @since    1.0.0
+     * @return   void
      */
     public static function activate() {
 

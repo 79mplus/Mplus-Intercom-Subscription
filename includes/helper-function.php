@@ -7,7 +7,7 @@
 
 
 	/**
-	 * Locate template.
+	 * Locates template.
 	 *
 	 * Locate the called template.
 	 * Search Order:
@@ -44,7 +44,7 @@
 
 
 	/**
-	 * Get template.
+	 * Gets template.
 	 *
 	 * Search for the template and include the file.
 	 *
@@ -56,6 +56,7 @@
 	 * @param array 	$args					Args passed for the template file.
 	 * @param string 	$string $template_path	Path to templates.
 	 * @param string	$default_path			Default path to template files.
+	 * @return null|void
 	 */
 	function mplus_intercom_get_template( $template_name, $args = array(), $tempate_path = '', $default_path = '' ) {
 		if ( is_array( $args ) && isset( $args ) ) :

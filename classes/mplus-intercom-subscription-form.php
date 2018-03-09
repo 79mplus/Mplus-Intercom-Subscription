@@ -1,15 +1,15 @@
 <?php
 
 /**
- * The subscription form
+ * The subscription form class.
  */
 class Mplus_Intercom_Subscription_Form{
     /**
-     * the form fields
+     * @var array $fields Contains the form fields.
      */
     private $fields = array();
 
-    public function __construct(){
+    public function __construct() {
 
         $fields = array(
             array(
@@ -39,9 +39,11 @@ class Mplus_Intercom_Subscription_Form{
     }
 
     /**
-     * render the form
+     * Returns or renders the form html.
+     * 
+     * @return string
      */
-    public function render_form(){
+    public function render_form() {
 
         $html = '';
 
@@ -56,9 +58,11 @@ class Mplus_Intercom_Subscription_Form{
 
 
     /**
-     * render the form single input field
+     * Returns or renders the form single input field.
+     * 
+     * @return string
      */
-    public function render_form_input( $field ){
+    public function render_form_input( $field ) {
         $default = array(
                 'type' => 'text',
                 'label' => '',
@@ -114,15 +118,18 @@ class Mplus_Intercom_Subscription_Form{
     }
 
     /**
-     * handling submission of the form
+     * Handles submission of the form.
+     * 
+     * @return void
      */
-    public function submit_handler(){
+    public function submit_handler() {
 
         $sub_type = '';
         $submitted_fields = array();
+
         foreach ( $this->fields as $field ) {
-            foreach( $_POST['fields'] as $f ){
-                if( $f['name'] == $field['name'] ){
+            foreach( $_POST['fields'] as $f ) {
+                if( $f['name'] == $field['name'] ) {
                     $field['value'] = $f['value'];
                     $submitted_fields[] = $field;
                 }

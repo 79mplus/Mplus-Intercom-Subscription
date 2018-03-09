@@ -17,15 +17,35 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 
+/**
+ * Stores plugin file path.
+ */
 define( 'MPLUSI', __FILE__ );
+/**
+ * Contains the language identifier for the plugin.
+ */
 define( 'MPLUSILANGUAGE', 'mplus-intercom-core' );
+/**
+ * Plugin name in slug.
+ */
 define( 'MPLUSI_NAME', 'mplus-intercom-core' );
+/**
+ * Plugin version.
+ */
 define( 'MPLUSIVERSION', '1.0.0' );
+/**
+ * Plugin directory.
+ */
 define( 'MPLUSI_PLUGINS_DIR', trailingslashit( plugin_dir_path( MPLUSI ) ) );
+/**
+ * Plugin directory url.
+ */
 define( 'MPLUSI_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSI ) ) );
 
 /**
  * Function that runs during plugin activation.
+ * 
+ * @return void
  */
 function mplus_core_activate() {
 	require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-activator.php';
@@ -34,6 +54,8 @@ function mplus_core_activate() {
 
 /**
  * Function that runs during plugin deactivation.
+ * 
+ * @return void
  */
 function mplus_core_deactivate() {
 	require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-deactivator.php';
@@ -52,7 +74,8 @@ require MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-core.php';
 /**
  * Begins execution of the plugin.
  *
- * @since    1.0.0
+ * @since 1.0.0
+ * @return void
  */
 function run_Mplus_Intercom_Core() {
 

@@ -20,7 +20,7 @@ class Mplus_Intercom_Core_i18n {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $domain    The domain identifier for this plugin.
+	 * @var      string $domain The domain identifier for this plugin.
 	 */
 	private $domain;
 
@@ -28,6 +28,7 @@ class Mplus_Intercom_Core_i18n {
 	 * Load the plugin text domain for translation.
 	 *
 	 * @since    1.0.0
+	 * @return   void
 	 */
 	public function mplus_load_plugin_textdomain() {
 
@@ -44,6 +45,7 @@ class Mplus_Intercom_Core_i18n {
 	 *
 	 * @since    1.0.0
 	 * @param    string    $domain    The domain that represents the locale of this plugin.
+	 * @return   void
 	 */
 	public function set_domain( $domain ) {
 		$this->domain = $domain;

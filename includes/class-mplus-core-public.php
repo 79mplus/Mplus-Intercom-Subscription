@@ -15,7 +15,7 @@ class Mplus_Intercom_Core_Public {
      *
      * @since    1.0.0
      * @access   private
-     * @var      string    $plugin_name    The ID of this plugin.
+     * @var      string $plugin_name The ID of this plugin.
      */
     private $plugin_name;
 
@@ -24,7 +24,7 @@ class Mplus_Intercom_Core_Public {
      *
      * @since    1.0.0
      * @access   private
-     * @var      string    $version    The current version of this plugin.
+     * @var      string $version The current version of this plugin.
      */
     private $version;
 
@@ -32,8 +32,9 @@ class Mplus_Intercom_Core_Public {
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param      string    $plugin_name       The name of the plugin.
-     * @param      string    $version    The version of this plugin.
+     * @param    string $plugin_name The name of the plugin.
+     * @param    string $version The version of this plugin.
+     * @return   void
      */
     public function __construct( $plugin_name, $version ) {
 
@@ -45,6 +46,7 @@ class Mplus_Intercom_Core_Public {
      * Register the stylesheets for the public-facing side of the site.
      *
      * @since    1.0.0
+     * @return   void
      */
     public function mplus_enqueue_styles() {
 
@@ -56,14 +58,15 @@ class Mplus_Intercom_Core_Public {
      * Register the stylesheets for the public-facing side of the site.
      *
      * @since    1.0.0
+     * @return   void
      */
     public function mplus_enqueue_scripts() {
 
-        wp_enqueue_script( $this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-public.js', array('jquery'), $this->version, false );
+        wp_enqueue_script( $this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-public.js', array( 'jquery' ), $this->version, false );
 
         wp_localize_script( $this->plugin_name, 'wp', array(
             'ajaxurl' => admin_url( 'admin-ajax.php' ) ,
-        ));
+        ) );
     }
 
 }

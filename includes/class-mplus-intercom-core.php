@@ -17,12 +17,12 @@
 class Mplus_Intercom_Core {
 
     /**
-     * The loader that's responsible for maintaining and registering all hooks that power
-     * the plugin.
+     * The loader that's responsible for maintaining and registering all hooks
+     * that power the plugin.
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Mplus_Intercom_Core_Loader    $loader    Maintains and registers all hooks for the plugin.
+     * @var      \Mplus_Intercom_Core_Loader $loader Maintains and registers all hooks for the plugin.
      */
     protected $loader;
 
@@ -31,7 +31,7 @@ class Mplus_Intercom_Core {
      *
      * @since    1.0.0
      * @access   protected
-     * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+     * @var      string $plugin_name The string used to uniquely identify this plugin.
      */
     protected $plugin_name;
 
@@ -40,18 +40,19 @@ class Mplus_Intercom_Core {
      *
      * @since    1.0.0
      * @access   protected
-     * @var      string    $version    The current version of the plugin.
+     * @var      string $version The current version of the plugin.
      */
     protected $version;
 
     /**
-     * Define the core functionality of the plugin.
+     * Defines the core functionality of the plugin.
      *
      * Set the plugin name and the plugin version that can be used throughout the plugin.
      * Load the dependencies, define the locale, and set the hooks for the admin area and
      * the public-facing side of the site.
      *
      * @since    1.0.0
+     * @return   void
      */
     public function __construct() {
 
@@ -68,7 +69,7 @@ class Mplus_Intercom_Core {
 
 
     /**
-     * Load the required dependencies for this plugin.
+     * Loads the required dependencies for this plugin.
      *
      * Include the following files that make up the plugin:
      *
@@ -82,6 +83,7 @@ class Mplus_Intercom_Core {
      *
      * @since    1.0.0
      * @access   private
+     * @return   void
      */
     private function mplus_load_dependencies() {
 
@@ -134,6 +136,7 @@ class Mplus_Intercom_Core {
      *
      * @since    1.0.0
      * @access   private
+     * @return   void
      */
     private function mplus_set_locale() {
 
@@ -149,6 +152,7 @@ class Mplus_Intercom_Core {
      *
      * @since    1.0.0
      * @access   private
+     * @return   void
      */
     private function mplus_admin_hooks_define() {
 
@@ -175,6 +179,7 @@ class Mplus_Intercom_Core {
      *
      * @since    1.0.0
      * @access   private
+     * @return   void
      */ 
     private function mplus_public_hooks_define(){
 
@@ -188,11 +193,12 @@ class Mplus_Intercom_Core {
     }
 
     /**
-     * Autoload class files on demand
+     * Autoload class files on demand.
+     * 
      * @since    1.0.0
-     * @param string  $class requested class name
+     * @param    string $class Requested class name.
+     * @return   void
      */
-
     public function autoload( $class ) {
         if ( stripos( $class, 'Mplus_Intercom_' ) !== false ) :
             $class_name = str_replace( '_', '-', $class );
@@ -207,6 +213,7 @@ class Mplus_Intercom_Core {
      * Run the loader to execute all of the hooks with WordPress.
      *
      * @since    1.0.0
+     * @return   void
      */
     public function run() {
 
@@ -218,7 +225,7 @@ class Mplus_Intercom_Core {
      * WordPress and to define internationalization functionality.
      *
      * @since     1.0.0
-     * @return    string    The name of the plugin.
+     * @return    string The name of the plugin.
      */
     public function get_plugin_name() {
 
@@ -229,7 +236,7 @@ class Mplus_Intercom_Core {
      * The reference to the class that orchestrates the hooks with the plugin.
      *
      * @since     1.0.0
-     * @return    Mplus_Intercom_Core_Loader    Orchestrates the hooks of the plugin.
+     * @return    \Mplus_Intercom_Core_Loader Orchestrates the hooks of the plugin.
      */
     public function get_loader() {
 
@@ -240,7 +247,7 @@ class Mplus_Intercom_Core {
      * Retrieve the version number of the plugin.
      *
      * @since     1.0.0
-     * @return    string    The version number of the plugin.
+     * @return    string The version number of the plugin.
      */
     public function get_version() {
         

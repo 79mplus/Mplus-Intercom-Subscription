@@ -7,19 +7,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Manages Admin settings
+ * Manages Admin settings.
+ * 
  * @author 79mplus
  */
 class Mplus_Intercom_Settings {
 
     /**
-     * The menupage hold manu page ID
+     * To hold manu page ID.
      *
-     * @since    1.0.0
-     * @access   protected
-     * @var      Mplus_Intercom_Settings    $menupage    Hold Menu page Id.
+     * @since 1.0.0
+     * @access protected
+     * @var string $menupage Hold Menu page Id.
      */
-    
 	protected $menupage;
 
 	/**
@@ -104,9 +104,10 @@ class Mplus_Intercom_Settings {
     }
     
     /**
-     * Display help page
+     * Displays Help page.
      *
      * @since 1.0
+     * @return null|void
      */
     function mplus_intercom_settings_help() {
 
@@ -136,10 +137,12 @@ class Mplus_Intercom_Settings {
             '<p><a href="#" target="_blank">' . __( 'Support Forum', MPLUSILANGUAGE ) . '</a></p>'
         );
     }
+
     /**
-     * Help page content
+     * Returns Help page content.
      *
      * @since 1.0
+     * @return string
      */
     public static function mplus_intercom_settings_connect() {
         return sprintf( "
@@ -156,23 +159,24 @@ class Mplus_Intercom_Settings {
         </ol>
         ", home_url('/') );
     }
+
     /**
-     * Display admin notice - Facebook application settings
+     * Displays admin notice - Facebook application settings.
      *
      * @since 1.0
      */
     function mplus_admin_notices() {
 
         /* Get the options */
-        $access_token = get_option('mplus_ic_api_key');
+        $access_token = get_option( 'mplus_ic_api_key' );
 
-        $page = (isset($_GET['page']) ? $_GET['page'] : null);
+        $page = ( isset( $_GET['page'] ) ? $_GET['page'] : null );
 
         //echo "$page";
 
         if ( empty( $access_token ) && $page != 'mi-settings' && current_user_can( 'manage_options' ) ) :
 	        echo '<div class="error fade">';
-	            echo sprintf( __('<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd Access Token%s to use the plugin.</p>', MPLUSILANGUAGE ), '<a href="admin.php?page=mi-settings">', '</a>' );
+	            echo sprintf( __( '<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd Access Token%s to use the plugin.</p>', MPLUSILANGUAGE ), '<a href="admin.php?page=mi-settings">', '</a>' );
 	        echo '</div>';
         endif;
     }
