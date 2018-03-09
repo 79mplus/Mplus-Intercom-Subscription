@@ -22,13 +22,6 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'MPLUSI', __FILE__ );
 /**
- * Contains the language identifier for the plugin.
- * 
- * This is deprecated. Using this may break translation functionality.
- * DO NOT USE.
- */
-define( 'MPLUSILANGUAGE', 'mplus-intercom-core' );
-/**
  * Plugin name in slug.
  */
 define( 'MPLUSI_NAME', 'mplus-intercom-core' );
