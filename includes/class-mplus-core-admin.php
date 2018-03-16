@@ -70,8 +70,8 @@ class Mplus_Intercom_Core_Admin {
     public function mplus_plugin_row_meta( $links, $file ) {
 
         if ( strpos( $file, $this->plugin_name . '.php' ) !== false  ) :
-            $links[] = sprintf( '<a href="%s">%s</a>', esc_url( '#' ), __( 'Docs', 'mplus-intercom-addon-wc' )  );
-            $links[] = sprintf( '<a href="%s">%s</a>', esc_url( '#' ), __( 'Premium support', 'mplus-intercom-addon-wc' )  );
+            $links[] = sprintf( '<a href="%s" target="_blank">%s</a>', esc_url( 'http://docs.79mplus.com/intercom-subscription-base-plugin/' ), __( 'Docs', 'mplus-intercom-addon-wc' )  );
+            $links[] = sprintf( '<a href="%s" target="_blank">%s</a>', esc_url( '#' ), __( 'Premium support', 'mplus-intercom-addon-wc' )  );
         endif;
 
         return $links;
