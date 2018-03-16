@@ -62,4 +62,33 @@ class Mplus_Intercom_Core_Admin {
 
 		wp_enqueue_script( $this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-admin.js', array( 'jquery' ), $this->version, false );
 	}
+
+    /**
+     * Plugin row meta
+     * @since 1.0
+     */
+    public function mplus_plugin_row_meta( $links, $file ) {
+
+        if ( strpos( $file, $this->plugin_name . '.php' ) !== false  ) :
+            $links[] = sprintf( '<a href="%s">%s</a>', esc_url( '#' ), __( 'Docs', 'mplus-intercom-addon-wc' )  );
+            $links[] = sprintf( '<a href="%s">%s</a>', esc_url( '#' ), __( 'Premium support', 'mplus-intercom-addon-wc' )  );
+        endif;
+
+        return $links;
+    }
+
+    /**
+     * Plugin action links
+     *
+     * @since 1.0
+     */
+    public function mplus_add_action_links( $actions, $plugin_file ) {
+
+        if ( strpos( $plugin_file, $this->plugin_name . '.php' ) !== false  ) :
+
+            $actions['settings'] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( "admin.php?page=mi-settings" ) ), __( 'Settings', 'mplus-intercom-addon-wc' )  );
+        endif;
+
+        return $actions;
+    }
 }

@@ -165,7 +165,9 @@ class Mplus_Intercom_Core {
 		$this->loader->add_action( 'admin_menu', $mplus_intercom_settings, 'admin_menu', 999 );
 		$this->loader->add_action( 'admin_init', $mplus_intercom_settings, 'mplus_intercom_settings_fields' );
 		$this->loader->add_action( 'admin_notices', $mplus_intercom_settings, 'mplus_admin_notices' );
-
+        $this->loader->add_filter( 'plugin_row_meta', $plugin_admin ,'mplus_plugin_row_meta', 10, 2 );
+        $this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'mplus_add_action_links', 10, 5 );
+		
 		$mplus_intercom_shortcode = new Mplus_Intercom_Shortcode();
 		$this->loader->add_shortcode( 'mplus_intercom_subscription', $mplus_intercom_shortcode, 'mplus_intercom_subscription' );
 
