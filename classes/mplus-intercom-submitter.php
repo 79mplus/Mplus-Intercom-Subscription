@@ -11,7 +11,7 @@ class Mplus_Intercom_Submitter {
 
 	/**
 	 * Constructor the class.
-	 * 
+	 *
 	 * @param string|null $access_token Access token for Intercom API.
 	 * @return void
 	 */
@@ -25,7 +25,7 @@ class Mplus_Intercom_Submitter {
 
 	/**
 	 * Creates user with the given info.
-	 * 
+	 *
 	 * @param array $fields fields to submit
 	 * @param string $user_type either user or lead
 	 * @return array
@@ -108,7 +108,7 @@ class Mplus_Intercom_Submitter {
 
 	/**
 	 * Gets fields.
-	 * 
+	 *
 	 * @param object $fields fields to submit
 	 * @return array
 	 */

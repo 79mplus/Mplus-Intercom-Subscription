@@ -3,38 +3,37 @@
 /**
  * The public-facing functionality of the plugin.
  *
- *
- * @package    Mplus_Intercom_Core
+ * @package Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/public
- * @author     79mplus
+ * @author 79mplus
  */
 class Mplus_Intercom_Core_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $plugin_name The ID of this plugin.
+	 * @since 1.0.0
+	 * @access private
+	 * @var string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $version The current version of this plugin.
+	 * @since 1.0.0
+	 * @access private
+	 * @var string $version The current version of this plugin.
 	 */
 	private $version;
 
 	/**
 	 * Initializes the class and set its properties.
 	 *
-	 * @since    1.0.0
-	 * @param    string $plugin_name The name of the plugin.
-	 * @param    string $version The version of this plugin.
-	 * @return   void
+	 * @since 1.0.0
+	 * @param string $plugin_name The name of the plugin.
+	 * @param string $version The version of this plugin.
+	 * @return void
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -45,8 +44,8 @@ class Mplus_Intercom_Core_Public {
 	/**
 	 * Registers the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
-	 * @return   void
+	 * @since 1.0.0
+	 * @return void
 	 */
 	public function mplus_enqueue_styles() {
 
@@ -57,8 +56,8 @@ class Mplus_Intercom_Core_Public {
 	/**
 	 * Registers the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
-	 * @return   void
+	 * @since 1.0.0
+	 * @return void
 	 */
 	public function mplus_enqueue_scripts() {
 

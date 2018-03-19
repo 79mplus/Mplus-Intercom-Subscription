@@ -2,7 +2,7 @@
 
 	// File Security Check
 	if ( ! defined( 'ABSPATH' ) ) :
-	    exit;
+		exit;
 	endif;
 
 
@@ -16,10 +16,10 @@
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param 	string 	$template_name			Template to load.
-	 * @param 	string 	$string $template_path	Path to templates.
-	 * @param 	string	$default_path			Default path to template files.
-	 * @return 	string 							Path to the template file.
+	 * @param string $template_name Template to load.
+	 * @param string $template_path Path to templates.
+	 * @param string $default_path Default path to template files.
+	 * @return string Path to the template file.
 	 */
 	function mplus_intercom_locate_template( $template_name, $template_path = '', $default_path = '' ) {
 		// Set variable to search in templates folder of theme.
@@ -28,7 +28,7 @@
 		endif;
 		// Set default plugin templates path.
 		if ( ! $default_path ) :
-			$default_path = MPLUSI_PLUGINS_DIR . 'templates/'; 
+			$default_path = MPLUSI_PLUGINS_DIR . 'templates/';
 		endif;
 		// Search template file in theme folder.
 		$template = locate_template( array(
@@ -52,10 +52,10 @@
 	 *
 	 * @see mplus_intercom_locate_template()
 	 *
-	 * @param string 	$template_name			Template to load.
-	 * @param array 	$args					Args passed for the template file.
-	 * @param string 	$string $template_path	Path to templates.
-	 * @param string	$default_path			Default path to template files.
+	 * @param string $template_name Template to load.
+	 * @param array $args Args passed for the template file.
+	 * @param string $string $template_path	Path to templates.
+	 * @param string $default_path Default path to template files.
 	 * @return null|void
 	 */
 	function mplus_intercom_get_template( $template_name, $args = array(), $tempate_path = '', $default_path = '' ) {

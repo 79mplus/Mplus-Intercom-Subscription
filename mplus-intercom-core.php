@@ -40,7 +40,7 @@ define( 'MPLUSI_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSI ) ) );
 
 /**
  * Function that runs during plugin activation.
- * 
+ *
  * @return void
  */
 function mplus_core_activate() {
@@ -50,7 +50,7 @@ function mplus_core_activate() {
 
 /**
  * Function that runs during plugin deactivation.
- * 
+ *
  * @return void
  */
 function mplus_core_deactivate() {
@@ -78,6 +78,6 @@ function run_Mplus_Intercom_Core() {
 	$plugin = new Mplus_Intercom_Core();
 	$plugin->run();
 	do_action( MPLUSI_NAME . '_loaded' );
-	
+
 }
 run_Mplus_Intercom_Core();

@@ -14,7 +14,7 @@ class Mplus_Intercom_Shortcode {
 
 	/**
 	 * Constructs the class.
-	 * 
+	 *
 	 * @return void
 	 */
 	function __construct() {
@@ -23,7 +23,7 @@ class Mplus_Intercom_Shortcode {
 
 	/**
 	 * Handles the [mplus_intercom_subscription] shortcode.
-	 * 
+	 *
 	 * @param array $atts Holds the shortcode parameters.
 	 * @return string Returns html for the ouput.
 	 */

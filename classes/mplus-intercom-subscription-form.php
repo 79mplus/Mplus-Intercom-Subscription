@@ -9,6 +9,11 @@ class Mplus_Intercom_Subscription_Form{
 	 */
 	private $fields = array();
 
+	/**
+	 * Constructor for the class.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 
 		$fields = array(
@@ -40,7 +45,7 @@ class Mplus_Intercom_Subscription_Form{
 
 	/**
 	 * Returns or renders the form html.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function render_form() {
@@ -59,7 +64,7 @@ class Mplus_Intercom_Subscription_Form{
 
 	/**
 	 * Returns or renders the form single input field.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function render_form_input( $field ) {
@@ -118,7 +123,7 @@ class Mplus_Intercom_Subscription_Form{
 
 	/**
 	 * Handles submission of the form.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function submit_handler() {
@@ -142,7 +147,7 @@ class Mplus_Intercom_Subscription_Form{
 		$intercom_res = $intercom_submitter->create_user( $submitted_fields, $sub_type );
 
 		wp_send_json( $intercom_res );
-		
+
 		die();
 
 	}

@@ -3,10 +3,10 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       https://www.79mplus.com/
- * @since      1.0.0
+ * @link https://www.79mplus.com/
+ * @since 1.0.0
  *
- * @package    Mplus_Intercom_Core
+ * @package Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/includes
  */
 class Mplus_Intercom_Core_Loader {
@@ -14,35 +14,35 @@ class Mplus_Intercom_Core_Loader {
 	/**
 	 * The array of actions registered with WordPress.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      array $actions The actions registered with WordPress to fire when the plugin loads.
+	 * @since 1.0.0
+	 * @access protected
+	 * @var array $actions The actions registered with WordPress to fire when the plugin loads.
 	 */
 	protected $actions;
 
 	/**
 	 * The array of filters registered with WordPress.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      array $filters The filters registered with WordPress to fire when the plugin loads.
+	 * @since 1.0.0
+	 * @access protected
+	 * @var array $filters The filters registered with WordPress to fire when the plugin loads.
 	 */
 	protected $filters;
 
 	/**
 	 * The array of shortcodes.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      array $shortcodes The shortcodes created when the plugin loads.
+	 * @since 1.0.0
+	 * @access protected
+	 * @var array $shortcodes The shortcodes created when the plugin loads.
 	 */
 	protected $shortcodes;
 
 	/**
 	 * Initialize the collections used to maintain the actions and filters.
 	 *
-	 * @since    1.0.0
-	 * @return   void
+	 * @since 1.0.0
+	 * @return void
 	 */
 	public function __construct() {
 
@@ -100,14 +100,14 @@ class Mplus_Intercom_Core_Loader {
 	 * A utility function that is used to register the actions and hooks into a single
 	 * collection.
 	 *
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 * @access private
-	 * @param  array $hooks The collection of hooks that is being registered (that is, actions or filters).
-	 * @param  string $hook The name of the WordPress filter that is being registered.
-	 * @param  object $component A reference to the instance of the object on which the filter is defined.
-	 * @param  string $callback The name of the function definition on the $component.
-	 * @param  int $priority (optional) The priority at which the function should be fired.
-	 * @param  int $accepted_args (optional) The number of arguments that should be passed to the $callback.
+	 * @param array $hooks The collection of hooks that is being registered (that is, actions or filters).
+	 * @param string $hook The name of the WordPress filter that is being registered.
+	 * @param object $component A reference to the instance of the object on which the filter is defined.
+	 * @param string $callback The name of the function definition on the $component.
+	 * @param int $priority (optional) The priority at which the function should be fired.
+	 * @param int $accepted_args (optional) The number of arguments that should be passed to the $callback.
 	 * @return array The collection of actions and filters registered with WordPress.
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
@@ -126,8 +126,8 @@ class Mplus_Intercom_Core_Loader {
 	/**
 	 * Registers the filters and actions with WordPress.
 	 *
-	 * @since   1.0.0
-	 * @return  void
+	 * @since 1.0.0
+	 * @return void
 	 */
 	public function run() {
 
