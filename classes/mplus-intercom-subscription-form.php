@@ -23,7 +23,8 @@ class Mplus_Intercom_Subscription_Form{
 				'name' => 'name',
 				'intercom_attribute' => 'name',
 				'attribute_type' => 'basic',
-				'required' => true
+				'required' => true,
+				'sanitize' => 'sanitize_text',
 			),
 			array(
 				'type' => 'email',
@@ -31,7 +32,8 @@ class Mplus_Intercom_Subscription_Form{
 				'name' => 'email',
 				'intercom_attribute' => 'email',
 				'attribute_type' => 'basic',
-				'required' => true
+				'required' => true,
+				'sanitize' => 'sanitize_email',
 			),
 			array(
 				'type' => 'submit',
@@ -76,6 +78,7 @@ class Mplus_Intercom_Subscription_Form{
 				'attribute_type' => 'basic',
 				'required' => true,
 				'onclick'   => '',
+				'sanitize' => '',
 			);
 
 		// Merge default field with user submitted field.
@@ -133,10 +136,12 @@ class Mplus_Intercom_Subscription_Form{
 
 		foreach ( $this->fields as $field ) {
 			foreach ( $_POST['fields'] as $f ) {
-				if ( $f['name'] == $field['name'] ) {
-					$field['value'] = $f['value'];
+				if ( $f['name'] == $field['name'] ) :
+
+					$field['value'] = array_key_exists('sanitize', $field ) ? self::field_value_sanitize( $f['value'], $field['sanitize'] ) : $f['value'];
+					//$field['value'] = $f['value'];
 					$submitted_fields[] = $field;
-				}
+				endif;
 			}
 		}
 
@@ -152,5 +157,31 @@ class Mplus_Intercom_Subscription_Form{
 
 	}
 
+	/**
+	 * Handles Sanitizing: Cleaning User Input when form submited.
+	 *
+	 * @return string
+	 */
+	public static function field_value_sanitize( $field_value, $sanitize_type = '' ) {
+
+		switch ( $sanitize_type ) :
+			case 'sanitize_text':
+				$field_value = sanitize_text_field( $field_value );
+				break;
+			case 'sanitize_textarea':
+				$field_value = sanitize_textarea_field( $field_value );
+				break;
+			case 'sanitize_email':
+				$field_value = sanitize_email( $field_value );
+				break;
+			case 'esc_textarea':
+				$field_value = esc_textarea( $field_value );
+				break;
+			default:
+				# code...
+				break;
+		endswitch;
+
+	}
 
 }
