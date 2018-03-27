@@ -51,7 +51,6 @@ class Mplus_Intercom_Settings {
 
 		?>
 		   <div class="wrap">
-			<!-- <h1>JobAdder Settings</h1> -->
 				<form method="post" action="options.php">
 
 					<?php settings_fields( "mplusi-section" ); ?>
