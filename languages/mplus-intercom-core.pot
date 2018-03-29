@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mplus Intercom Subscription Plugin\n"
-"POT-Creation-Date: 2018-03-09 17:36+0600\n"
+"POT-Creation-Date: 2018-03-29 16:23+0600\n"
 "PO-Revision-Date: 2018-03-09 13:18+0600\n"
 "Last-Translator: \n"
 "Language-Team: 79mplus\n"
@@ -17,45 +17,54 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: classes/mplus-intercom-submitter.php:44
-#: classes/mplus-intercom-submitter.php:76
+#: classes/mplus-intercom-submitter.php:78
 msgid "Added New User."
 msgstr ""
 
 #: classes/mplus-intercom-submitter.php:47
-#: classes/mplus-intercom-submitter.php:79
+#: classes/mplus-intercom-submitter.php:81
 msgid "Something Wrong."
 msgstr ""
 
-#: classes/mplus-intercom-submitter.php:68
-#: classes/mplus-intercom-submitter.php:100
+#: classes/mplus-intercom-submitter.php:70
+#: classes/mplus-intercom-submitter.php:104
 msgid "An error occurred while registering the user."
 msgstr ""
 
-#: classes/mplus-intercom-subscription-form.php:55
+#: classes/mplus-intercom-subscription-form.php:62
 msgid "Thank You!"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:121
-msgid "Overview"
+#: includes/class-mplus-core-admin.php:79
+msgid "Docs"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:129
+#: includes/class-mplus-core-admin.php:80
+msgid "Premium support"
+msgstr ""
+
+#: includes/class-mplus-core-admin.php:99
+#: includes/class-mplus-intercom-settings.php:128
 msgid "Settings"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:135
+#: includes/class-mplus-intercom-settings.php:120
+msgid "Overview"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:134
 msgid "For more information:"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:136
+#: includes/class-mplus-intercom-settings.php:135
 msgid "FAQ"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:137
+#: includes/class-mplus-intercom-settings.php:136
 msgid "Support Forum"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:177
+#: includes/class-mplus-intercom-settings.php:179
 #, php-format
 msgid ""
 "<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd "
