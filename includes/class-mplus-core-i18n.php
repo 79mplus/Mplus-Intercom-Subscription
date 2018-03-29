@@ -24,7 +24,7 @@ class Mplus_Intercom_Core_i18n {
 	private $domain;
 
 	/**
-	 * Load the plugin text domain for translation.
+	 * Loads the plugin text domain for translation.
 	 *
 	 * @since 1.0.0
 	 * @return void

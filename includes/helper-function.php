@@ -5,7 +5,6 @@
 		exit;
 	endif;
 
-
 	/**
 	 * Locates template.
 	 *
@@ -17,8 +16,8 @@
 	 * @since 1.0.0
 	 *
 	 * @param string $template_name Template to load.
-	 * @param string $template_path Path to templates.
-	 * @param string $default_path Default path to template files.
+	 * @param string $template_path (optional) Path to templates.
+	 * @param string $default_path (optional) Default path to template files.
 	 * @return string Path to the template file.
 	 */
 	function mplus_intercom_locate_template( $template_name, $template_path = '', $default_path = '' ) {
@@ -54,8 +53,8 @@
 	 *
 	 * @param string $template_name Template to load.
 	 * @param array $args Args passed for the template file.
-	 * @param string $string $template_path	Path to templates.
-	 * @param string $default_path Default path to template files.
+	 * @param string $template_path (optional) Path to templates.
+	 * @param string $default_path (optional) Default path to template files.
 	 * @return null|void
 	 */
 	function mplus_intercom_get_template( $template_name, $args = array(), $tempate_path = '', $default_path = '' ) {

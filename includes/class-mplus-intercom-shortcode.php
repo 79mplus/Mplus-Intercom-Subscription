@@ -7,7 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Manages Shortcodes
+ * Manages Shortcodes.
+ *
  * @author 79mplus
  */
 class Mplus_Intercom_Shortcode {
@@ -28,11 +29,6 @@ class Mplus_Intercom_Shortcode {
 	 * @return string Returns html for the ouput.
 	 */
 	public function mplus_intercom_subscription( $atts ) {
-		// Default values for shortcode
-		$a = shortcode_atts( array(
-			'test' => 'testvalue',
-		), $atts );
-
 		// Generates shortcode output.
 		$html = mplus_intercom_get_template( 'mplus-shortcode.php' );
 

@@ -17,6 +17,7 @@ class Mplus_Intercom_Core_Deactivator {
 	 * Runs when plugin is deactivated.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public static function deactivate() {

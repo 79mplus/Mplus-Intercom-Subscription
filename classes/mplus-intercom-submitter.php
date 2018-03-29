@@ -10,13 +10,13 @@ class Mplus_Intercom_Submitter {
 	private $client;
 
 	/**
-	 * Constructor the class.
+	 * Constructor for the class.
 	 *
 	 * @param string|null $access_token Access token for Intercom API.
 	 * @return void
 	 */
 	public function __construct( $access_token = null ) {
-		/* Initialize the api with the accesstoken */
+		// Initializes the api with the accesstoken.
 		if ( empty( $access_token ) ) {
 			$access_token = get_option( 'mplus_ic_api_key' );
 		}
@@ -26,8 +26,8 @@ class Mplus_Intercom_Submitter {
 	/**
 	 * Creates user with the given info.
 	 *
-	 * @param array $fields fields to submit
-	 * @param string $user_type either user or lead
+	 * @param array $fields Fields to submit.
+	 * @param string $user_type (optional) Either user or lead.
 	 * @return array
 	 */
 	public function create_user( $fields, $user_type = 'user' ) {
@@ -50,9 +50,11 @@ class Mplus_Intercom_Submitter {
 			} catch ( Exception $e ) {
 				$response['success'] = 0;
 				if ( $e->getCode() == 409 ) {
-					/*there are multiple users with this email.
-					in this case we create the user using a custom user_id and save that in wp*/
-					/*but at first check if we have already done this for this email*/
+					/*
+					There are multiple users with this email.
+					in this case creates the user using a custom user_id and saves that in wp.
+					But at first checks if it has already been done this for this email.
+					*/
 					$user_id = get_option( 'intercom_' . $fields->email );
 					$user_found = $user_id;
 					if ( ! $user_found ) {
@@ -82,9 +84,11 @@ class Mplus_Intercom_Submitter {
 			} catch ( Exception $e ) {
 				$response['success'] = 0;
 				if ( $e->getCode() == 409 ) {
-					/*there are multiple users with this email.
-					in this case we create the user using a custom user_id and save that in wp*/
-					/*but at first check if we have already done this for this email*/
+					/*
+					There are multiple users with this email.
+					In this case it creates the user using a custom user_id and save that in wp.
+					But at first checks if it has already been done this for this email.
+					*/
 					$user_id = get_option( 'intercom_' . $fields->email );
 					$user_found = $user_id;
 					if ( ! $user_found ) {
@@ -109,7 +113,7 @@ class Mplus_Intercom_Submitter {
 	/**
 	 * Gets fields.
 	 *
-	 * @param object $fields fields to submit
+	 * @param object $fields Fields to submit.
 	 * @return array
 	 */
 	public function get_fields( $fields ) {

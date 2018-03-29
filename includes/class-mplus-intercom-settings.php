@@ -141,6 +141,7 @@ class Mplus_Intercom_Settings {
 	 * Returns Help page content.
 	 *
 	 * @since 1.0
+	 *
 	 * @return string
 	 */
 	public static function mplus_intercom_settings_connect() {
@@ -163,6 +164,8 @@ class Mplus_Intercom_Settings {
 	 * Displays admin notice - Facebook application settings.
 	 *
 	 * @since 1.0
+	 *
+	 * @return void
 	 */
 	function mplus_admin_notices() {
 

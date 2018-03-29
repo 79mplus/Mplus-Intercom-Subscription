@@ -28,9 +28,10 @@ class Mplus_Intercom_Core_Admin {
 	private $version;
 
 	/**
-	 * Initialize the class and set its properties.
+	 * Initializes the class and sets its properties.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @param string $plugin_name The name of this plugin.
 	 * @param string $version The version of this plugin.
 	 * @return void
@@ -42,9 +43,10 @@ class Mplus_Intercom_Core_Admin {
 	}
 
 	/**
-	 * Register the stylesheets for the admin area.
+	 * Registers the stylesheets for the admin area.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function mplus_enqueue_styles() {
@@ -53,9 +55,10 @@ class Mplus_Intercom_Core_Admin {
 	}
 
 	/**
-	 * Register the JavaScript for the admin area.
+	 * Registers the JavaScript for the admin area.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function mplus_enqueue_scripts() {
@@ -64,8 +67,13 @@ class Mplus_Intercom_Core_Admin {
 	}
 
 	/**
-	 * Plugin row meta
+	 * Prepares plugin row meta.
+	 *
 	 * @since 1.0
+	 *
+	 * @param array $links Links sent to function.
+	 * @param string $file Filename sent to function.
+	 * @return array
 	 */
 	public function mplus_plugin_row_meta( $links, $file ) {
 
@@ -78,9 +86,13 @@ class Mplus_Intercom_Core_Admin {
 	}
 
 	/**
-	 * Plugin action links
+	 * Prepares plugin action links.
 	 *
 	 * @since 1.0
+	 *
+	 * @param array $actions Actions sent to function.
+	 * @param string $plugin_file Plugin filename sent to function.
+	 * @return array
 	 */
 	public function mplus_add_action_links( $actions, $plugin_file ) {
 

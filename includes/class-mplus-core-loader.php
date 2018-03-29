@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register all actions and filters for the plugin
+ * Registers all actions and filters for the plugin
  *
  * @link https://www.79mplus.com/
  * @since 1.0.0
@@ -39,9 +39,10 @@ class Mplus_Intercom_Core_Loader {
 	protected $shortcodes;
 
 	/**
-	 * Initialize the collections used to maintain the actions and filters.
+	 * Initializes the collections used to maintain the actions and filters.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function __construct() {
@@ -52,9 +53,10 @@ class Mplus_Intercom_Core_Loader {
 	}
 
 	/**
-	 * Add a new action to the collection to be registered with WordPress.
+	 * Adds a new action to the collection to be registered with WordPress.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @param string $hook The name of the WordPress action that is being registered.
 	 * @param object $component A reference to the instance of the object on which the action is defined.
 	 * @param string $callback The name of the function definition on the $component.
@@ -67,9 +69,10 @@ class Mplus_Intercom_Core_Loader {
 	}
 
 	/**
-	 * Add a new filter to the collection to be registered with WordPress.
+	 * Adds a new filter to the collection to be registered with WordPress.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @param string $hook The name of the WordPress filter that is being registered.
 	 * @param object $component A reference to the instance of the object on which the filter is defined.
 	 * @param string $callback The name of the function definition on the $component.
@@ -82,14 +85,15 @@ class Mplus_Intercom_Core_Loader {
 	}
 
 	/**
-	 * Add a new shortcode to the collection to be registered with WordPress
+	 * Adds a new shortcode to the collection to be registered with WordPress
 	 *
 	 * @since 1.0.0
+	 *
 	 * @param string $tag The name of the new shortcode.
 	 * @param object $component A reference to the instance of the object on which the shortcode is defined.
 	 * @param string $callback The name of the function that defines the shortcode.
-	 * @param int $priority Priority for the shortcode hook.
-	 * @param int $accepted_args Number of arguments for the shortcode hook.
+	 * @param int $priority (optional) Priority for the shortcode hook.
+	 * @param int $accepted_args (optional) Number of arguments for the shortcode hook.
 	 */
 	public function add_shortcode( $tag, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 
@@ -97,17 +101,18 @@ class Mplus_Intercom_Core_Loader {
 	}
 
 	/**
-	 * A utility function that is used to register the actions and hooks into a single
+	 * An utility function that is used to register the actions and hooks into a single
 	 * collection.
 	 *
 	 * @since 1.0.0
 	 * @access private
+	 *
 	 * @param array $hooks The collection of hooks that is being registered (that is, actions or filters).
 	 * @param string $hook The name of the WordPress filter that is being registered.
 	 * @param object $component A reference to the instance of the object on which the filter is defined.
 	 * @param string $callback The name of the function definition on the $component.
-	 * @param int $priority (optional) The priority at which the function should be fired.
-	 * @param int $accepted_args (optional) The number of arguments that should be passed to the $callback.
+	 * @param int $priority The priority at which the function should be fired.
+	 * @param int $accepted_args The number of arguments that should be passed to the $callback.
 	 * @return array The collection of actions and filters registered with WordPress.
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
@@ -127,6 +132,7 @@ class Mplus_Intercom_Core_Loader {
 	 * Registers the filters and actions with WordPress.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function run() {

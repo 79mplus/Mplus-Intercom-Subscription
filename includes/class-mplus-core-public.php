@@ -31,6 +31,7 @@ class Mplus_Intercom_Core_Public {
 	 * Initializes the class and set its properties.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @param string $plugin_name The name of the plugin.
 	 * @param string $version The version of this plugin.
 	 * @return void
@@ -45,6 +46,7 @@ class Mplus_Intercom_Core_Public {
 	 * Registers the stylesheets for the public-facing side of the site.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function mplus_enqueue_styles() {
@@ -57,6 +59,7 @@ class Mplus_Intercom_Core_Public {
 	 * Registers the stylesheets for the public-facing side of the site.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function mplus_enqueue_scripts() {

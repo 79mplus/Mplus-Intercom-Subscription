@@ -48,11 +48,13 @@ class Mplus_Intercom_Core {
 	/**
 	 * Defines the core functionality of the plugin.
 	 *
-	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the admin area and
-	 * the public-facing side of the site.
+	 * Sets the plugin name and the plugin version that can be used throughout
+	 * the plugin.
+	 * Loads the dependencies, defines the locale, and sets the hooks for the
+	 * admin area and the public-facing side of the site.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function __construct() {
@@ -84,6 +86,7 @@ class Mplus_Intercom_Core {
 	 *
 	 * @since 1.0.0
 	 * @access private
+	 *
 	 * @return void
 	 */
 	private function mplus_load_dependencies() {
@@ -136,13 +139,14 @@ class Mplus_Intercom_Core {
 	}
 
 	/**
-	 * Define the locale for this plugin for internationalization.
+	 * Defines the locale for this plugin for internationalization.
 	 *
-	 * Uses the Mplus_Intercom_Core_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
+	 * Uses the Mplus_Intercom_Core_i18n class in order to set the domain and
+	 * to register the hook with WordPress.
 	 *
 	 * @since 1.0.0
 	 * @access private
+	 *
 	 * @return void
 	 */
 	private function mplus_set_locale() {
@@ -154,11 +158,12 @@ class Mplus_Intercom_Core {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Registers all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
 	 * @since 1.0.0
 	 * @access private
+	 *
 	 * @return void
 	 */
 	private function mplus_admin_hooks_define() {
@@ -183,11 +188,12 @@ class Mplus_Intercom_Core {
 	}
 
 	/**
-	 * Register all of the hooks related to the public-facing functionality
+	 * Registers all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
 	 * @since 1.0.0
 	 * @access private
+	 *
 	 * @return void
 	 */
 	private function mplus_public_hooks_define(){
@@ -202,9 +208,10 @@ class Mplus_Intercom_Core {
 	}
 
 	/**
-	 * Autoload class files on demand.
+	 * Autoloads class files on demand.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @param string $class Requested class name.
 	 * @return void
 	 */
@@ -219,9 +226,10 @@ class Mplus_Intercom_Core {
 	}
 
 	/**
-	 * Run the loader to execute all of the hooks with WordPress.
+	 * Runs the loader to execute all of the hooks with WordPress.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return void
 	 */
 	public function run() {
@@ -230,10 +238,11 @@ class Mplus_Intercom_Core {
 	}
 
 	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
+	 * The name of the plugin used to uniquely identify it within the context
+	 * of WordPress and to define internationalization functionality.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return string The name of the plugin.
 	 */
 	public function get_plugin_name() {
@@ -245,6 +254,7 @@ class Mplus_Intercom_Core {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return \Mplus_Intercom_Core_Loader Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
@@ -253,9 +263,10 @@ class Mplus_Intercom_Core {
 	}
 
 	/**
-	 * Retrieve the version number of the plugin.
+	 * Retrieves the version number of the plugin.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @return string The version number of the plugin.
 	 */
 	public function get_version() {

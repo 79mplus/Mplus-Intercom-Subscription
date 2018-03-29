@@ -114,12 +114,12 @@ class Mplus_Intercom_Subscription_Form{
 		endswitch;
 
 		$html ='';
-		$html .= '<div class="input-group">';
+		$html .= '<p class="input-group">';
 			if ( $label != '' && $type != 'button' && $type != 'submit' ) :
 				$html .= '<label for="' . esc_attr( $name ) . '">' . esc_attr( $label ) . '</label>';
 			endif;
 			$html .= $input;
-		$html .= '</div>';
+		$html .= '</p>';
 
 		return $html;
 	}
@@ -139,7 +139,6 @@ class Mplus_Intercom_Subscription_Form{
 				if ( $f['name'] == $field['name'] ) :
 
 					$field['value'] = array_key_exists('sanitize', $field ) ? self::field_value_sanitize( $f['value'], $field['sanitize'] ) : $f['value'];
-					//$field['value'] = $f['value'];
 					$submitted_fields[] = $field;
 				endif;
 			}
@@ -160,7 +159,9 @@ class Mplus_Intercom_Subscription_Form{
 	/**
 	 * Handles Sanitizing: Cleaning User Input when form submited.
 	 *
-	 * @return string
+	 * @param string $field_value Value of the field.
+	 * @param string $sanitize_type (optional) Type of the sanitization.
+	 * @return void
 	 */
 	public static function field_value_sanitize( $field_value, $sanitize_type = '' ) {
 
@@ -178,7 +179,6 @@ class Mplus_Intercom_Subscription_Form{
 				$field_value = esc_textarea( $field_value );
 				break;
 			default:
-				# code...
 				break;
 		endswitch;
 
