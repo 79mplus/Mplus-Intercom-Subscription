@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mplus Intercom Subscription Plugin\n"
-"POT-Creation-Date: 2018-03-29 16:23+0600\n"
+"POT-Creation-Date: 2018-03-30 17:07+0600\n"
 "PO-Revision-Date: 2018-03-09 13:18+0600\n"
 "Last-Translator: \n"
 "Language-Team: 79mplus\n"
@@ -48,6 +48,10 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+#: includes/class-mplus-core-admin.php:100
+msgid "Documentation"
+msgstr ""
+
 #: includes/class-mplus-intercom-settings.php:120
 msgid "Overview"
 msgstr ""
@@ -69,170 +73,4 @@ msgstr ""
 msgid ""
 "<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd "
 "Access Token%s to use the plugin.</p>"
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_Base.php:422
-#, php-format
-msgid ""
-"The \"%1$s\" field parameter has been deprecated in favor of the \"%1$s\" "
-"parameter."
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_Base.php:426
-#, php-format
-msgid ""
-"Using the \"%1$s\" field parameter as a callback has been deprecated in "
-"favor of the \"%1$s\" parameter."
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_Base.php:456
-#, php-format
-msgid ""
-"%1$s was called with a parameter that is <strong>deprecated</strong> since "
-"version %2$s! %3$s"
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_Base.php:458
-#, php-format
-msgid ""
-"%1$s was called with a parameter that is <strong>deprecated</strong> since "
-"version %2$s with no alternative available."
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_Options_Hookup.php:126
-msgid "Nothing to update."
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_Options_Hookup.php:130
-msgid "Settings updated."
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_Types.php:231
-msgid "Custom CMB2 field type classes must extend CMB2_Type_Base."
-msgstr ""
-
-#: vendor/cmb2/includes/CMB2_hookup.php:458
-#, php-format
-msgid "Toggle panel: %s"
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller.php:257
-msgid "This box does not have read permissions."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller.php:277
-msgid "This box does not have write permissions."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller.php:300
-msgid ""
-"No box found by that id. A box needs to be registered with the \"show_in_rest"
-"\" parameter configured."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller.php:378
-msgid "A human-readable description of the object."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller.php:385
-msgid "The id for the object."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller.php:392
-msgid "The title for the object."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:51
-msgid "Includes the registered fields for the box in the response."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:72
-msgid ""
-"Includes the fully rendered attributes, 'form_open', 'form_close', as well "
-"as the enqueued 'js_dependencies' script handles, and 'css_dependencies' "
-"stylesheet handles."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:122
-msgid "No boxes found."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:27
-msgid ""
-"Includes the box object which the fields are registered to in the response."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:30
-msgid ""
-"When the '_rendered' argument is passed, the renderable field attributes "
-"will be returned fully rendered. By default, the names of the callback "
-"handers for the renderable attributes will be returned."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:33
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:36
-msgid ""
-"To view or modify the field's value, the 'object_id' and 'object_type' "
-"arguments are required."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:236
-#: vendor/cmb2/tests/test-cmb-rest-controllers.php:247
-msgid ""
-"CMB2 Field value cannot be updated without the value parameter specified."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:297
-#: vendor/cmb2/tests/test-cmb-rest-controllers.php:258
-#: vendor/cmb2/tests/test-cmb-rest-controllers.php:269
-msgid ""
-"CMB2 Field value cannot be modified without the object_id and object_type "
-"parameters specified."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:312
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:341
-msgid "No field found by that id."
-msgstr ""
-
-#: vendor/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:415
-#, php-format
-msgid "Value Error for %s"
-msgstr ""
-
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:24
-msgid "The register_routes() method must be overridden"
-msgstr ""
-
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:34
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:46
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:58
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:70
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:82
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:94
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:106
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:118
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:130
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:142
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:154
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:167
-#, php-format
-msgid "Method '%s' not implemented. Must be overridden in subclass."
-msgstr ""
-
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:272
-msgid "Current page of the collection."
-msgstr ""
-
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:280
-msgid "Maximum number of items to be returned in result set."
-msgstr ""
-
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:289
-msgid "Limit results to those matching a string."
-msgstr ""
-
-#: vendor/cmb2/includes/shim/WP_REST_Controller.php:307
-msgid ""
-"Scope under which the request is made; determines fields present in response."
 msgstr ""
