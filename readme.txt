@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Mplus Intercom Subscription Plugin ===
 Contributors: 79mplus
 Donate link: http://79mplus.com/
 Tags: email, newletter, group email, userbase, email marketing, intercom, api, grow userlist, online marketing, communication
