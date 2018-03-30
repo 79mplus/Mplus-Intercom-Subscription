@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mplus Intercom Subscription Plugin\n"
-"POT-Creation-Date: 2018-03-30 17:07+0600\n"
+"POT-Creation-Date: 2018-03-30 17:29+0600\n"
 "PO-Revision-Date: 2018-03-09 13:18+0600\n"
 "Last-Translator: \n"
 "Language-Team: 79mplus\n"
@@ -44,7 +44,7 @@ msgid "Premium support"
 msgstr ""
 
 #: includes/class-mplus-core-admin.php:99
-#: includes/class-mplus-intercom-settings.php:128
+#: includes/class-mplus-intercom-settings.php:134
 msgid "Settings"
 msgstr ""
 
@@ -52,23 +52,34 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:120
+#: includes/class-mplus-intercom-settings.php:88
+msgid "Input Intercom API Access Token."
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:92
+#, php-format
+msgid ""
+"To create your Access Token, go to %1$s and then click &quot;Get an "
+"Access Token&quot;. %2$s"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:126
 msgid "Overview"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:134
+#: includes/class-mplus-intercom-settings.php:140
 msgid "For more information:"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:135
+#: includes/class-mplus-intercom-settings.php:141
 msgid "FAQ"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:136
+#: includes/class-mplus-intercom-settings.php:142
 msgid "Support Forum"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:179
+#: includes/class-mplus-intercom-settings.php:185
 #, php-format
 msgid ""
 "<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd "

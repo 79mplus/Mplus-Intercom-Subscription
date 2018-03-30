@@ -71,8 +71,8 @@ class Mplus_Intercom_Settings {
 	 */
 	public function mplus_intercom_settings_fields() {
 		add_settings_section( 'mplusi-section', 'Mplus Intercom General Settings', null, 'mplusi-options' );
-		add_settings_field( 'mplus_ic_api_key', 'Access Token', array( $this, 'mplus_display_ic_api_key' ), 'mplusi-options', 'mplusi-section' );
-		add_settings_field( 'mplus_ic_sub_type', 'Subscription Type', array( $this, 'mplus_display_ic_sub_type' ), 'mplusi-options', 'mplusi-section' );
+		add_settings_field( 'mplus_ic_api_key', __( 'Access Token', 'mplus-intercom-core' ), array( $this, 'mplus_display_ic_api_key' ), 'mplusi-options', 'mplusi-section' );
+		add_settings_field( 'mplus_ic_sub_type', __( 'Subscription Type', 'mplus-intercom-core' ), array( $this, 'mplus_display_ic_sub_type' ), 'mplusi-options', 'mplusi-section' );
 
 		register_setting( 'mplusi-section', 'mplus_ic_api_key' );
 		register_setting( 'mplusi-section', 'mplus_ic_sub_type' );
@@ -85,8 +85,15 @@ class Mplus_Intercom_Settings {
 	 */
 	public function mplus_display_ic_api_key() {
 		echo '<textarea name="mplus_ic_api_key" id="mplus_ic_api_key" class="regular-text mpss-settings-apikey" style="height:70px">' . get_option( 'mplus_ic_api_key' ) . '</textarea>';
-		echo '<p class="description">Input Intercom API Access Token.</p>';
-		echo '<p class="description">To create your Access Token, go to <a href="https://app.intercom.com/developers/_" target="_blank">https://app.intercom.com/developers/_</a> and then click &quot;Get an Access Token&quot;. <a href="https://developers.intercom.com/docs/personal-access-tokens#section-creating-your-access-token" target="_blank">more info</a></p>';
+		echo sprintf( '<p class="description">%s</p>', __( 'Input Intercom API Access Token.', 'mplus-intercom-core' ) );
+		echo sprintf(
+				'<p class="description">%s</p>',
+				sprintf(
+					__( 'To create your Access Token, go to %1$s and then click &quot;Get an Access Token&quot;. %2$s', 'mplus-intercom-core' ),
+					'<a href="https://app.intercom.com/developers/_" target="_blank">https://app.intercom.com/developers/_</a>',
+					sprintf( '<a href="https://developers.intercom.com/docs/personal-access-tokens#section-creating-your-access-token" target="_blank">%s</a>', __( 'more info', 'mplus-intercom-core' ) )
+				)
+			);
 	}
 
 	/**
@@ -96,10 +103,10 @@ class Mplus_Intercom_Settings {
 	 */
 	public function mplus_display_ic_sub_type() {
 		echo '<select name="mplus_ic_sub_type">';
-			echo '<option value="user" ' . selected( get_option( 'mplus_ic_sub_type' ), "user" ) .'>User</option>';
-			echo '<option value="lead" ' . selected( get_option( 'mplus_ic_sub_type' ), "lead" ) .'>Lead</option>';
+			echo '<option value="user" ' . selected( get_option( 'mplus_ic_sub_type' ), "user" ) .'>' . __( 'User', 'mplus-intercom-core' ) . '</option>';
+			echo '<option value="lead" ' . selected( get_option( 'mplus_ic_sub_type' ), "lead" ) .'>' . __( 'Lead', 'mplus-intercom-core' ) . '</option>';
 		echo '</select>';
-		echo '<p class="description">Select Intercom Subscription Type.</p>';
+		echo sprintf( '<p class="description">%s</p>', __( 'Select Intercom Subscription Type.', 'mplus-intercom-core' ) );
 	}
 
 	/**
