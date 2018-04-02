@@ -70,7 +70,7 @@ class Mplus_Intercom_Settings {
 	 * @return void
 	 */
 	public function mplus_intercom_settings_fields() {
-		add_settings_section( 'mplusi-section', 'Mplus Intercom General Settings', null, 'mplusi-options' );
+		add_settings_section( 'mplusi-section', __( 'Mplus Intercom General Settings', 'mplus-intercom-core' ), null, 'mplusi-options' );
 		add_settings_field( 'mplus_ic_api_key', __( 'Access Token', 'mplus-intercom-core' ), array( $this, 'mplus_display_ic_api_key' ), 'mplusi-options', 'mplusi-section' );
 		add_settings_field( 'mplus_ic_sub_type', __( 'Subscription Type', 'mplus-intercom-core' ), array( $this, 'mplus_display_ic_sub_type' ), 'mplusi-options', 'mplusi-section' );
 
@@ -125,21 +125,20 @@ class Mplus_Intercom_Settings {
 		$screen->add_help_tab( array(
 			'id'      => 'mplus_intercom_settings_overview',
 			'title'   => __( 'Overview', 'mplus-intercom-core' ),
-			'content' => __( sprintf( "<h3>Mplus Intercom Subscription Plugin</h3><p>Modern messaging for sales, marketing and support – all on the first platform made with customers in mind.
-				Please <a target='_blank' href='%s'>click here</a> to get more information.</p>",
-				esc_url( 'http://www.79mplus.com/' ) ) , 'mplus-intercom-core' ),
+			'content' => sprintf( __( "<h3>Mplus Intercom Subscription Plugin</h3><p>Modern messaging for sales, marketing and support – all on the first platform made with customers in mind.<br/>Please <a target='_blank' href='%s'>click here</a> to get more information.</p>", 'mplus-intercom-core' ),
+				esc_url( 'http://www.79mplus.com/' ) ),
 		));
 
 		$screen->add_help_tab( array(
 			'id'      => 'mplus_intercom_settings_info',
 			'title'   => __( 'Settings', 'mplus-intercom-core' ),
-			'content' => __( self::mplus_intercom_settings_connect(), 'mplus-intercom-core' ),
+			'content' => self::mplus_intercom_settings_connect(),
 		));
 
 		/* Set Help Sidebar */
 		$screen->set_help_sidebar(
 			'<p><strong>' . __( 'For more information:', 'mplus-intercom-core' ) . '</strong></p>' .
-			'<p><a href="#" target="_blank">'     . __( 'FAQ',     'mplus-intercom-core' ) . '</a></p>' .
+			'<p><a href="#" target="_blank">' . __( 'FAQ', 'mplus-intercom-core' ) . '</a></p>' .
 			'<p><a href="#" target="_blank">' . __( 'Support Forum', 'mplus-intercom-core' ) . '</a></p>'
 		);
 	}
@@ -152,19 +151,19 @@ class Mplus_Intercom_Settings {
 	 * @return string
 	 */
 	public static function mplus_intercom_settings_connect() {
-		return sprintf( "
+		return sprintf( __( '
 		<p><strong>Where is Intercom Access Token?</strong></p>
 		<ol>
-			<li>Please visit <a target='_blank' href='https://developers.intercom.com/docs/personal-access-tokens'>Intercom Application</a> to get more about Intercom Access Token.</li>
+			<li>Please visit <a target="_blank" href="%1$s">Intercom Application</a> to get more about Intercom Access Token.</li>
 		</ol>
 
 		<p><strong>I am new. How do I get access token?</strong> Please follow the instruction below to create a Intercom Access Token:</p>
 		<ol>
-			<li>To create your Access Token, go to the dashboard in the Intercom Developer Hub by <a target='_blank' href='https://app.intercom.com/developers/_'>clicking here</a> or by clicking on Dashboard at the top of the page and click <strong>'Get an Access Token'</strong></li>
+			<li>To create your Access Token, go to the dashboard in the Intercom Developer Hub by <a target="_blank" href="%2$s">clicking here</a> or by clicking on Dashboard at the top of the page and click <strong>"Get an Access Token"</strong></li>
 			<li>When you setup your Token, you will be asked to choose between two levels of scopes. Select Your Scopes.</li>
-			<li>Once you have created your Access Token you will see it in the same section in your Dashboard. You can edit or delete the token from here..</li>
+			<li>Once you have created your Access Token you will see it in the same section in your Dashboard. You can edit or delete the token from <a target="_blank" href="%3$s">here</a>.</li>
 		</ol>
-		", home_url( '/' ) );
+		', 'mplus-intercom-core' ), 'https://developers.intercom.com/docs/personal-access-tokens', 'https://app.intercom.com/developers/_', 'https://app.intercom.com/developers/_' );
 	}
 
 	/**
@@ -183,7 +182,7 @@ class Mplus_Intercom_Settings {
 
 		if ( empty( $access_token ) && $page != 'mi-settings' && current_user_can( 'manage_options' ) ) :
 			echo '<div class="error fade">';
-				echo sprintf( __( '<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd Access Token%s to use the plugin.</p>', 'mplus-intercom-core' ), '<a href="admin.php?page=mi-settings">', '</a>' );
+				echo sprintf( __( '<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %1$sAdd Access Token%2$s to use the plugin.</p>', 'mplus-intercom-core' ), '<a href="admin.php?page=mi-settings">', '</a>' );
 			echo '</div>';
 		endif;
 	}

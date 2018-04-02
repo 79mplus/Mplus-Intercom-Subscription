@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mplus Intercom Subscription Plugin\n"
-"POT-Creation-Date: 2018-03-30 17:29+0600\n"
+"POT-Creation-Date: 2018-04-02 11:32+0600\n"
 "PO-Revision-Date: 2018-03-09 13:18+0600\n"
 "Last-Translator: \n"
 "Language-Team: 79mplus\n"
@@ -52,6 +52,18 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
+#: includes/class-mplus-intercom-settings.php:73
+msgid "Mplus Intercom General Settings"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:74
+msgid "Access Token"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:75
+msgid "Subscription Type"
+msgstr ""
+
 #: includes/class-mplus-intercom-settings.php:88
 msgid "Input Intercom API Access Token."
 msgstr ""
@@ -63,8 +75,33 @@ msgid ""
 "Access Token&quot;. %2$s"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:126
+#: includes/class-mplus-intercom-settings.php:94
+msgid "more info"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:106
+msgid "User"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:107
+msgid "Lead"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:109
+msgid "Select Intercom Subscription Type."
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:127
 msgid "Overview"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:128
+#, php-format
+msgid ""
+"<h3>Mplus Intercom Subscription Plugin</h3><p>Modern messaging for "
+"sales, marketing and support – all on the first platform made with "
+"customers in mind.<br/>Please <a target='_blank' href='%s'>click here</"
+"a> to get more information.</p>"
 msgstr ""
 
 #: includes/class-mplus-intercom-settings.php:140
@@ -77,6 +114,32 @@ msgstr ""
 
 #: includes/class-mplus-intercom-settings.php:142
 msgid "Support Forum"
+msgstr ""
+
+#: includes/class-mplus-intercom-settings.php:154
+#, php-format
+msgid ""
+"\n"
+"\t\t<p><strong>Where is Intercom Access Token?</strong></p>\n"
+"\t\t<ol>\n"
+"\t\t\t<li>Please visit <a target=\"_blank\" href=\"%1$s\">Intercom "
+"Application</a> to get more about Intercom Access Token.</li>\n"
+"\t\t</ol>\n"
+"\n"
+"\t\t<p><strong>I am new. How do I get access token?</strong> Please "
+"follow the instruction below to create a Intercom Access Token:</p>\n"
+"\t\t<ol>\n"
+"\t\t\t<li>To create your Access Token, go to the dashboard in the "
+"Intercom Developer Hub by <a target=\"_blank\" href=\"%2$s\">clicking "
+"here</a> or by clicking on Dashboard at the top of the page and click "
+"<strong>\"Get an Access Token\"</strong></li>\n"
+"\t\t\t<li>When you setup your Token, you will be asked to choose "
+"between two levels of scopes. Select Your Scopes.</li>\n"
+"\t\t\t<li>Once you have created your Access Token you will see it in "
+"the same section in your Dashboard. You can edit or delete the token "
+"from <a target=\"_blank\" href=\"%3$s\">here</a>.</li>\n"
+"\t\t</ol>\n"
+"\t\t"
 msgstr ""
 
 #: includes/class-mplus-intercom-settings.php:185
