@@ -97,7 +97,6 @@ class Mplus_Intercom_Core_Admin {
 		if ( strpos( $plugin_file, $this->plugin_name . '.php' ) !== false  ) :
 
 			$actions['settings'] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( "admin.php?page=mi-settings" ) ), __( 'Settings', 'mplus-intercom-core' )  );
-			$actions['documentation'] = sprintf( '<a href="%s">%s</a>', esc_url( 'http://docs.79mplus.com/intercom-subscription-base-plugin/' ), __( 'Documentation', 'mplus-intercom-core' )  );
 		endif;
 
 		return $actions;
