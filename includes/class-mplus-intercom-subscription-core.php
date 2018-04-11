@@ -15,7 +15,7 @@
  * @package Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/includes
  */
-class Mplus_Intercom_Core {
+class Mplus_Intercom_Subscription_Core {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks
@@ -104,38 +104,38 @@ class Mplus_Intercom_Core {
 		/**
 		 * Intercom Settings.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-settings.php';
+		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-settings.php';
 
 		/**
 		 * The is class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-loader.php';
+		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-core-loader.php';
 
 		/**
 		 * The is class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-i18n.php';
+		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-i18n.php';
 
 		/**
 		 * The is class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-admin.php';
+		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-admin.php';
 
 		/**
 		 * The is class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-public.php';
+		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-public.php';
 
 		/**
 		 * The is class responsible for defining shortcode functionality
 		 * of the plugin.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-shortcode.php';
+		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-shortcode.php';
 
-		$this->loader = new Mplus_Intercom_Core_Loader();
+		$this->loader = new Mplus_Intercom_Subscription_Core_Loader();
 	}
 
 	/**
@@ -151,7 +151,7 @@ class Mplus_Intercom_Core {
 	 */
 	private function mplus_set_locale() {
 
-		$plugin_i18n = new Mplus_Intercom_Core_i18n();
+		$plugin_i18n = new Mplus_Intercom_Subscription_i18n();
 		$plugin_i18n->set_domain( $this->get_plugin_name() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'mplus_load_plugin_textdomain' );
@@ -168,18 +168,18 @@ class Mplus_Intercom_Core {
 	 */
 	private function mplus_admin_hooks_define() {
 
-		$plugin_admin = new Mplus_Intercom_Core_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Mplus_Intercom_Subscription_Admin( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_scripts' );
 
-		$mplus_intercom_settings = new Mplus_Intercom_Settings();
+		$mplus_intercom_settings = new Mplus_Intercom_Subscription_Settings();
 		$this->loader->add_action( 'admin_menu', $mplus_intercom_settings, 'admin_menu', 999 );
 		$this->loader->add_action( 'admin_init', $mplus_intercom_settings, 'mplus_intercom_settings_fields' );
 		$this->loader->add_action( 'admin_notices', $mplus_intercom_settings, 'mplus_admin_notices' );
 		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin ,'mplus_plugin_row_meta', 10, 2 );
 		$this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'mplus_add_action_links', 10, 5 );
 
-		$mplus_intercom_shortcode = new Mplus_Intercom_Shortcode();
+		$mplus_intercom_shortcode = new Mplus_Intercom_Subscription_Shortcode();
 		$this->loader->add_shortcode( 'mplus_intercom_subscription', $mplus_intercom_shortcode, 'mplus_intercom_subscription' );
 
 		$subscription_form = new Mplus_intercom_Subscription_Form();
@@ -198,7 +198,7 @@ class Mplus_Intercom_Core {
 	 */
 	private function mplus_public_hooks_define(){
 
-		$plugin_public = new Mplus_Intercom_Core_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Mplus_Intercom_Subscription_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts' );

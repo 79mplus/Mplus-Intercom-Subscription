@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @author 79mplus
  */
-class Mplus_Intercom_Shortcode {
+class Mplus_Intercom_Subscription_Shortcode {
 
 	/**
 	 * Constructs the class.

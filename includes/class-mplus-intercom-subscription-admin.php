@@ -7,7 +7,7 @@
  * @subpackage Mplus_Intercom_Core/admin
  * @author 79mplus
  */
-class Mplus_Intercom_Core_Admin {
+class Mplus_Intercom_Subscription_Admin {
 
 	/**
 	 * The ID of this plugin.

@@ -7,7 +7,7 @@
  * @subpackage Mplus_Intercom_Core/public
  * @author 79mplus
  */
-class Mplus_Intercom_Core_Public {
+class Mplus_Intercom_Subscription_Public {
 
 	/**
 	 * The ID of this plugin.

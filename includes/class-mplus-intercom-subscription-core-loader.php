@@ -9,7 +9,7 @@
  * @package Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/includes
  */
-class Mplus_Intercom_Core_Loader {
+class Mplus_Intercom_Subscription_Core_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

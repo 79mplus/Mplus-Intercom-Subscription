@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Mplus Intercom Subscription Plugin
+ * Plugin Name:       Mplus Intercom Subscription
  * Plugin URI:        https://www.79mplus.com/
  * Description:       Intercom integration with WordPress by 79mplus
  * Version:           1.0.0
@@ -38,34 +38,12 @@ define( 'MPLUSI_PLUGINS_DIR', trailingslashit( plugin_dir_path( MPLUSI ) ) );
  */
 define( 'MPLUSI_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSI ) ) );
 
-/**
- * Function that runs during plugin activation.
- *
- * @return void
- */
-function mplus_core_activate() {
-	require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-activator.php';
-	Mplus_Intercom_Core_Activator::activate();
-}
-
-/**
- * Function that runs during plugin deactivation.
- *
- * @return void
- */
-function mplus_core_deactivate() {
-	require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-core-deactivator.php';
-	Mplus_Intercom_Core_Deactivator::deactivate();
-}
-
-register_activation_hook( MPLUSI , 'mplus_core_activate' );
-register_deactivation_hook( MPLUSI , 'mplus_core_deactivate' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-core.php';
+require MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-core.php';
 
 /**
  * Begins execution of the plugin.
@@ -73,11 +51,11 @@ require MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-core.php';
  * @since 1.0.0
  * @return void
  */
-function run_Mplus_Intercom_Core() {
+function run_Mplus_Intercom_Subscription_Core() {
 
-	$plugin = new Mplus_Intercom_Core();
+	$plugin = new Mplus_Intercom_Subscription_Core();
 	$plugin->run();
 	do_action( MPLUSI_NAME . '_loaded' );
 
 }
-run_Mplus_Intercom_Core();
+run_Mplus_Intercom_Subscription_Core();

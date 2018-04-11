@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @author 79mplus
  */
-class Mplus_Intercom_Settings {
+class Mplus_Intercom_Subscription_Settings {
 
 	/**
 	 * To hold manu page ID.

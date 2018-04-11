@@ -12,7 +12,7 @@
  * @package Mplus_Intercom_Core
  * @subpackage Mplus_Intercom_Core/includes
  */
-class Mplus_Intercom_Core_i18n {
+class Mplus_Intercom_Subscription_i18n {
 
 	/**
 	 * The domain specified for this plugin.
