@@ -169,8 +169,6 @@ class Mplus_Intercom_Subscription_Core {
 	private function mplus_admin_hooks_define() {
 
 		$plugin_admin = new Mplus_Intercom_Subscription_Admin( $this->get_plugin_name(), $this->get_version() );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'mplus_enqueue_scripts' );
 
 		$mplus_intercom_settings = new Mplus_Intercom_Subscription_Settings();
 		$this->loader->add_action( 'admin_menu', $mplus_intercom_settings, 'admin_menu', 999 );
