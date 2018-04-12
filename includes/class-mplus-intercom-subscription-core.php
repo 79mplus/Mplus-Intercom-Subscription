@@ -178,7 +178,7 @@ class Mplus_Intercom_Subscription_Core {
 		$mplus_intercom_shortcode = new Mplus_Intercom_Subscription_Shortcode();
 		$this->loader->add_shortcode( 'mplus_intercom_subscription', $mplus_intercom_shortcode, 'mplus_intercom_subscription' );
 
-		$subscription_form = new Mplus_intercom_Subscription_Form();
+		$subscription_form = new Mplus_Intercom_Subscription_Form();
 		$this->loader->add_action( 'wp_ajax_intercom_form_submit', $subscription_form, 'submit_handler' );
 
 	}
