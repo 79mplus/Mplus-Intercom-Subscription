@@ -35,14 +35,14 @@ Gives you a Subscription form. You get a standard subscription form to get users
 = Extensions available =
 Extra Add On plugins are available so that you can extend the functionality with different plugins. We currently offer add ons for:
 
-WooCommerce, Contact Form 7, Dokan, WeForms, Ninja Forms, Caldera Forms, Easy Digital Downloads and Gravity Forms
+[WooCommerce](https://www.79mplus.com/product/mplus-intercom-wc/), [Contact Form 7](https://www.79mplus.com/product/mplus-intercom-cf7/), [Dokan](https://www.79mplus.com/product/mplus-intercom-dokan/), [WeForms](https://www.79mplus.com/product/mplus-intercom-weforms/), [Ninja Forms](https://www.79mplus.com/product/mplus-intercom-nf/), [Caldera Forms](https://www.79mplus.com/product/mplus-intercom-cf/), [Easy Digital Downloads](https://www.79mplus.com/product/mplus-intercom-edd/) and [Gravity Forms](https://www.79mplus.com/product/mplus-intercom-gf/)
 
 They are similarly easy to use and we make sure instructions are provided for all.
 Details here: [https://www.79mplus.com/intercom-subscription/](https://www.79mplus.com/intercom-subscription/)
 
 = Demo Site =
 Interested? Check out the plugin in action with our demo site:
-[http://intercom.demo.79mplus.com/subscribe](http://intercom.demo.79mplus.com/subscribe)
+[http://intercom.demo.79mplus.com/demo/](http://intercom.demo.79mplus.com/demo/)
 
 == Installation ==
 
