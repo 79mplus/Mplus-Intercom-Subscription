@@ -181,6 +181,8 @@ class Mplus_Intercom_Subscription_Form{
 			default:
 				break;
 		endswitch;
+		
+		return $field_value;
 
 	}
 
