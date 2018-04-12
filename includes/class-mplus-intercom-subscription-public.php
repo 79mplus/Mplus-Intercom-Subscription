@@ -51,7 +51,7 @@ class Mplus_Intercom_Subscription_Public {
 	 */
 	public function mplus_enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/css/mplus-core-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, MPLUSIS_PLUGINS_DIR_URI . 'assets/css/mplus-intercom-subscription-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -64,7 +64,7 @@ class Mplus_Intercom_Subscription_Public {
 	 */
 	public function mplus_enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, MPLUSI_PLUGINS_DIR_URI . 'assets/js/mplus-core-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, MPLUSIS_PLUGINS_DIR_URI . 'assets/js/mplus-intercom-subscription-public.js', array( 'jquery' ), $this->version, false );
 
 		wp_localize_script( $this->plugin_name, 'wp', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ) ,

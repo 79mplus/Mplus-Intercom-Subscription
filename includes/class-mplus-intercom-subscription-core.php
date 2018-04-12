@@ -216,7 +216,7 @@ class Mplus_Intercom_Subscription_Core {
 	public function autoload( $class ) {
 		if ( stripos( $class, 'Mplus_Intercom_' ) !== false ) :
 			$class_name = str_replace( '_', '-', $class );
-			$file_path = MPLUSI_PLUGINS_DIR . 'classes/' . strtolower( $class_name ) . '.php';
+			$file_path = MPLUSIS_PLUGINS_DIR . 'classes/' . strtolower( $class_name ) . '.php';
 			if ( file_exists( $file_path ) ) :
 				require_once $file_path;
 			endif;

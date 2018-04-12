@@ -3,7 +3,7 @@
 /**
  * class to submit data to intercom
  */
-class Mplus_Intercom_Submitter {
+class Mplus_Intercom_Subscription_Handler {
 	/**
 	 * @var \Intercom\IntercomClient $client Holds the Intercom client instance.
 	 */

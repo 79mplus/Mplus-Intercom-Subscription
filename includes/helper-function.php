@@ -23,11 +23,11 @@ endif;
 function mplus_intercom_locate_template( $template_name, $template_path = '', $default_path = '' ) {
 	// Set variable to search in templates folder of theme.
 	if ( ! $template_path ) :
-		$template_path = get_template_directory() . '/' . MPLUSI_NAME . '/templates/';
+		$template_path = get_template_directory() . '/' . MPLUSIS_NAME . '/templates/';
 	endif;
 	// Set default plugin templates path.
 	if ( ! $default_path ) :
-		$default_path = MPLUSI_PLUGINS_DIR . 'templates/';
+		$default_path = MPLUSIS_PLUGINS_DIR . 'templates/';
 	endif;
 	// Search template file in theme folder.
 	$template = locate_template( array(

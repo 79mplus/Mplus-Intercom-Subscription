@@ -7,7 +7,7 @@
  * Author:            79mplus
  * Author URI:        https://www.79mplus.com/
  * License:           GNU General Public License v2 or later
- * Text Domain:       mplus-intercom-core
+ * Text Domain:       mplus-intercom-subscription
  * Domain Path:       /languages
  */
 
@@ -20,30 +20,30 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Stores plugin file path.
  */
-define( 'MPLUSI', __FILE__ );
+define( 'MPLUSIS', __FILE__ );
 /**
  * Plugin name in slug.
  */
-define( 'MPLUSI_NAME', 'mplus-intercom-core' );
+define( 'MPLUSIS_NAME', 'mplus-intercom-subscription' );
 /**
  * Plugin version.
  */
-define( 'MPLUSIVERSION', '1.0.0' );
+define( 'MPLUSISVERSION', '1.0.0' );
 /**
  * Plugin directory.
  */
-define( 'MPLUSI_PLUGINS_DIR', trailingslashit( plugin_dir_path( MPLUSI ) ) );
+define( 'MPLUSIS_PLUGINS_DIR', trailingslashit( plugin_dir_path( MPLUSIS ) ) );
 /**
  * Plugin directory url.
  */
-define( 'MPLUSI_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSI ) ) );
+define( 'MPLUSIS_PLUGINS_DIR_URI', trailingslashit( plugin_dir_url( MPLUSIS ) ) );
 
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-core.php';
+require MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-core.php';
 
 /**
  * Begins execution of the plugin.
@@ -55,7 +55,7 @@ function run_Mplus_Intercom_Subscription_Core() {
 
 	$plugin = new Mplus_Intercom_Subscription_Core();
 	$plugin->run();
-	do_action( MPLUSI_NAME . '_loaded' );
+	do_action( MPLUSIS_NAME . '_loaded' );
 
 }
 run_Mplus_Intercom_Subscription_Core();

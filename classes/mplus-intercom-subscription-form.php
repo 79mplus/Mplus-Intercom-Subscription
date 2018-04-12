@@ -146,7 +146,7 @@ class Mplus_Intercom_Subscription_Form{
 
 		$sub_type = get_option( 'mplus_ic_sub_type' );
 
-		$intercom_submitter = new Mplus_Intercom_Submitter();
+		$intercom_submitter = new Mplus_Intercom_Subscription_Handler();
 
 		$intercom_res = $intercom_submitter->create_user( $submitted_fields, $sub_type );
 
