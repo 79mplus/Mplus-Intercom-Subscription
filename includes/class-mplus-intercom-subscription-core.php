@@ -62,6 +62,8 @@ class Mplus_Intercom_Subscription_Core {
 		$this->plugin_name = MPLUSIS_NAME;
 		$this->version = MPLUSISVERSION;
 
+		spl_autoload_register( array( $this, 'autoload' ) );
+
 		$this->mplus_load_dependencies();
 		$this->mplus_set_locale();
 		$this->mplus_admin_hooks_define();
@@ -203,6 +205,23 @@ class Mplus_Intercom_Subscription_Core {
 		$this->loader->add_action( 'wp_ajax_nopriv_intercom_form_submit', $subscription_form, 'submit_handler' );
 	}
 
+	/**
+	 * Autoloads class files on demand.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $class Requested class name.
+	 * @return void
+	 */
+	public function autoload( $class ) {
+		if ( stripos( $class, 'Mplus_Intercom_' ) !== false ) :
+			$class_name = str_replace( '_', '-', $class );
+			$file_path = MPLUSIS_PLUGINS_DIR . 'classes/' . strtolower( $class_name ) . '.php';
+			if ( file_exists( $file_path ) ) :
+				require_once $file_path;
+			endif;
+		endif;
+	}
 
 	/**
 	 * Runs the loader to execute all of the hooks with WordPress.
