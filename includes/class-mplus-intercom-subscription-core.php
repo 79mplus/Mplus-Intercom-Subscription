@@ -59,10 +59,8 @@ class Mplus_Intercom_Subscription_Core {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = MPLUSI_NAME;
-		$this->version = MPLUSIVERSION;
-
-		spl_autoload_register( array( $this, 'autoload' ) );
+		$this->plugin_name = MPLUSIS_NAME;
+		$this->version = MPLUSISVERSION;
 
 		$this->mplus_load_dependencies();
 		$this->mplus_set_locale();
@@ -94,46 +92,46 @@ class Mplus_Intercom_Subscription_Core {
 		/**
 		 * Autoload.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'vendor/autoload.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'vendor/autoload.php';
 
 		/**
 		 * Helper functions.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/helper-function.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'includes/helper-function.php';
 
 		/**
 		 * Intercom Settings.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-settings.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-settings.php';
 
 		/**
 		 * The is class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-core-loader.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-core-loader.php';
 
 		/**
 		 * The is class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-i18n.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-i18n.php';
 
 		/**
 		 * The is class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-admin.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-admin.php';
 
 		/**
 		 * The is class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-public.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-public.php';
 
 		/**
 		 * The is class responsible for defining shortcode functionality
 		 * of the plugin.
 		 */
-		require_once MPLUSI_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-shortcode.php';
+		require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-shortcode.php';
 
 		$this->loader = new Mplus_Intercom_Subscription_Core_Loader();
 	}
@@ -205,23 +203,6 @@ class Mplus_Intercom_Subscription_Core {
 		$this->loader->add_action( 'wp_ajax_nopriv_intercom_form_submit', $subscription_form, 'submit_handler' );
 	}
 
-	/**
-	 * Autoloads class files on demand.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param string $class Requested class name.
-	 * @return void
-	 */
-	public function autoload( $class ) {
-		if ( stripos( $class, 'Mplus_Intercom_' ) !== false ) :
-			$class_name = str_replace( '_', '-', $class );
-			$file_path = MPLUSIS_PLUGINS_DIR . 'classes/' . strtolower( $class_name ) . '.php';
-			if ( file_exists( $file_path ) ) :
-				require_once $file_path;
-			endif;
-		endif;
-	}
 
 	/**
 	 * Runs the loader to execute all of the hooks with WordPress.
