@@ -37,7 +37,7 @@ class Mplus_Intercom_Subscription_Form{
 			),
 			array(
 				'type' => 'checkbox',
-				'label' => 'Unsubscribed from Emails',
+				'label' => 'Subscribe to email',
 				'name' => 'unsubscribed_from_emails',
 				'intercom_attribute' => 'unsubscribed_from_emails',
 				'attribute_type' => 'basic'
