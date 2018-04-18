@@ -119,6 +119,8 @@ class Mplus_Intercom_Subscription_Handler {
 	public function get_fields( $fields ) {
 		$basic = array();
 		$custom = array();
+		/*default value for unsubscribed_from_emails*/
+		$basic[ 'unsubscribed_from_emails' ] = false;
 		foreach ( $fields as $field ) {
 			if( $field['intercom_attribute'] == 'unsubscribed_from_emails' ){
 				$field['value'] = true;
