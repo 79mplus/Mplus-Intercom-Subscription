@@ -36,6 +36,13 @@ class Mplus_Intercom_Subscription_Form{
 				'sanitize' => 'sanitize_email',
 			),
 			array(
+				'type' => 'checkbox',
+				'label' => 'Unsubscribed from Emails',
+				'name' => 'unsubscribed_from_emails',
+				'intercom_attribute' => 'unsubscribed_from_emails',
+				'attribute_type' => 'basic'
+			),
+			array(
 				'type' => 'submit',
 				'label' => 'Submit',
 				'name' => 'submit',
@@ -104,6 +111,9 @@ class Mplus_Intercom_Subscription_Form{
 				break;
 			case 'textarea' :
 				$input = '<textarea name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" ' . $required .' /></textarea>';
+				break;
+			case 'checkbox':
+				$input = '<input type="checkbox" name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" value="true"> ';
 				break;
 			case 'button' :
 			case 'submit' :
