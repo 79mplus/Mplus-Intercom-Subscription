@@ -29,9 +29,14 @@ class Mplus_Intercom_Subscription_Shortcode {
 	 * @return string Returns html for the ouput.
 	 */
 	public function mplus_intercom_subscription( $atts ) {
-		// Generates shortcode output.
-		$html = mplus_intercom_get_template( 'mplus-shortcode.php' );
 
-		return $html;
+		if ( ! is_admin() ) {
+			// Generates shortcode output.
+			$html = mplus_intercom_get_template( 'mplus-shortcode.php' );
+			return $html;
+		} else {
+			return '';
+		}
+
 	}
 }

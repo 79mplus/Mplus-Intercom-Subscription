@@ -66,5 +66,10 @@ function mplus_intercom_get_template( $template_name, $args = array(), $tempate_
 		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $template_file ), '1.0.0' );
 		return;
 	endif;
-	include $template_file;
+	// Gets the content from the template.
+	ob_start();
+	require_once $template_file;
+	$html = ob_get_clean();
+	ob_end_flush();
+	return $html;
 }
