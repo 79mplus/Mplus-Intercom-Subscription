@@ -124,7 +124,9 @@ class Mplus_Intercom_Subscription_Form{
 		endswitch;
 
 		$html ='';
-		$html .= '<p class="input-group">';
+		$htmlclass = 'input-group';
+		$htmlclass .= ' type-' . $type;
+		$html .= '<p class="' . $htmlclass . '">';
 			if ( $label != '' && $type != 'button' && $type != 'submit' ) :
 				$html .= '<label for="' . esc_attr( $name ) . '">' . esc_attr( $label ) . '</label>';
 			endif;
