@@ -77,7 +77,6 @@ class Mplus_Intercom_Subscription_Admin {
 
 		if ( strpos( $file, $this->plugin_name . '.php' ) !== false  ) :
 			$links[] = sprintf( '<a href="%s" target="_blank">%s</a>', esc_url( 'http://docs.79mplus.com/intercom-subscription-base-plugin/' ), __( 'Docs', 'mplus-intercom-core' )  );
-			$links[] = sprintf( '<a href="%s" target="_blank">%s</a>', esc_url( '#' ), __( 'Premium support', 'mplus-intercom-core' )  );
 		endif;
 
 		return $links;
