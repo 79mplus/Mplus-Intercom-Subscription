@@ -3,7 +3,7 @@
  * Plugin Name:       Mplus Intercom Subscription
  * Plugin URI:        https://www.79mplus.com/intercom-subscription/
  * Description:       The easiest and most extendable WordPress plugin for Intercom. This lets you offer a subscription form for Intercom and offers a wide range of extensions to grow your user base with the power of Intercom.
- * Version:           1.0.1
+ * Version:           1.0.18
  * Author:            79mplus
  * Author URI:        https://www.79mplus.com/
  * License:           GNU General Public License v2 or later
@@ -11,11 +11,10 @@
  * Domain Path:       /languages
  */
 
-// If this file is called directly, aborts execution.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
+// File Security Check
+if ( ! defined( 'ABSPATH' ) ) :
+	exit;
+endif;
 
 /**
  * Stores plugin file path.
@@ -28,7 +27,7 @@ define( 'MPLUSIS_NAME', 'mplus-intercom-subscription' );
 /**
  * Plugin version.
  */
-define( 'MPLUSISVERSION', '1.0.1' );
+define( 'MPLUSISVERSION', '1.0.18' );
 /**
  * Plugin directory.
  */
@@ -51,11 +50,11 @@ require MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-core.p
  * @since 1.0.0
  * @return void
  */
-function run_Mplus_Intercom_Subscription_Core() {
+function run_mplus_intercom_subscription_core() {
 
-	$plugin = new Mplus_Intercom_Subscription_Core();
-	$plugin->run();
+	$mplusis_plugin = new Mplus_Intercom_Subscription_Core();
+	$mplusis_plugin->run();
 	do_action( MPLUSIS_NAME . '_loaded' );
 
 }
-run_Mplus_Intercom_Subscription_Core();
+run_mplus_intercom_subscription_core();

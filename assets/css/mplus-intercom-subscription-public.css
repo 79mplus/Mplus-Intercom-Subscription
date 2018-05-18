@@ -2,6 +2,87 @@
  * All of the CSS for public-facing functionality should be
  * included in this file.
  */
-.mplus-intercom-form .message {
+
+.mplus-intercom-subscription-form .message {
 	display: none;
+}
+
+label {
+	color: #333333;
+	display: inline-block;
+	font-weight: 700;
+	margin-bottom: 0.5em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #BBBBBB;
+	border-radius: 3px;
+	color: #666666;
+	display: block;
+	padding: 0.7em;
+	width: 100%;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+	background-color: #222222;
+	border: 0 none;
+	border-radius: 2px;
+	box-shadow: none;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 0.875rem;
+	font-weight: 800;
+	line-height: 1;
+	padding: 1em 2em;
+	text-shadow: none;
+	transition: background 0.2s ease 0s;
+}
+
+input.text:focus,
+input.title:focus,
+input[type="text"]:focus,
+select:focus,
+textarea:focus,
+input:focus {
+	border-color: #2D3940;
+	color: #3E3E3E;
+}
+
+.input-group {
+	padding-bottom: 20px;
+}
+
+.type-checkbox input[type="checkbox"] {
+	float: left;
+	margin: 5px 11px 0 0;
+}
+
+.mplus-intercom-subscription-form .message {
+	color: #138C4D;
+	font-size: 16px;
+	text-align: center;
+}
+
+.type-checkbox label {
+	display: inline-block;
+	margin-top: 2px;
 }

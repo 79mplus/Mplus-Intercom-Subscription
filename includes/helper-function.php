@@ -10,8 +10,8 @@ endif;
  *
  * Locate the called template.
  * Search Order:
- * 1. /themes/theme/mplus-intercom-core/templates/$template_name
- * 2. /plugins/mplus-intercom-core/templates/$template_name.
+ * 1. /themes/theme/mplus-intercom-subscription/templates/$template_name
+ * 2. /plugins/mplus-intercom-subscription/templates/$template_name.
  *
  * @since 1.0.0
  *
@@ -20,7 +20,8 @@ endif;
  * @param string $default_path (optional) Default path to template files.
  * @return string Path to the template file.
  */
-function mplus_intercom_locate_template( $template_name, $template_path = '', $default_path = '' ) {
+function mplus_intercom_subscription_locate_template( $template_name, $template_path = '', $default_path = '' ) {
+
 	// Set variable to search in templates folder of theme.
 	if ( ! $template_path ) :
 		$template_path = get_template_directory() . '/' . MPLUSIS_NAME . '/templates/';
@@ -38,7 +39,8 @@ function mplus_intercom_locate_template( $template_name, $template_path = '', $d
 	if ( ! $template ) :
 		$template = $default_path . $template_name;
 	endif;
-	return apply_filters( 'mplus_intercom_locate_template', $template, $template_name, $template_path, $default_path );
+	return apply_filters( 'mplus_intercom_subscription_locate_template', $template, $template_name, $template_path, $default_path );
+
 }
 
 
@@ -49,7 +51,7 @@ function mplus_intercom_locate_template( $template_name, $template_path = '', $d
  *
  * @since 1.0.0
  *
- * @see mplus_intercom_locate_template()
+ * @see mplus_intercom_subscription_locate_template()
  *
  * @param string $template_name Template to load.
  * @param array $args Args passed for the template file.
@@ -57,11 +59,12 @@ function mplus_intercom_locate_template( $template_name, $template_path = '', $d
  * @param string $default_path (optional) Default path to template files.
  * @return null|void
  */
-function mplus_intercom_get_template( $template_name, $args = array(), $tempate_path = '', $default_path = '' ) {
+function mplus_intercom_subscription_get_template( $template_name, $args = array(), $tempate_path = '', $default_path = '' ) {
+
 	if ( is_array( $args ) && isset( $args ) ) :
 		extract( $args );
 	endif;
-	$template_file = mplus_intercom_locate_template( $template_name, $tempate_path, $default_path );
+	$template_file = mplus_intercom_subscription_locate_template( $template_name, $tempate_path, $default_path );
 	if ( ! file_exists( $template_file ) ) :
 		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $template_file ), '1.0.0' );
 		return;
@@ -70,6 +73,6 @@ function mplus_intercom_get_template( $template_name, $args = array(), $tempate_
 	ob_start();
 	require_once $template_file;
 	$html = ob_get_clean();
-	ob_end_flush();
 	return $html;
+
 }

@@ -1,20 +1,19 @@
 ( function( $ ) {
 	'use strict';
 	jQuery( document ).on( 'ready', function() {
-		$( 'form.mpss_intercom' ).submit( function( e ) {
+		$( 'form.mplus_intercom_subscription' ).submit( function( e ) {
 			e.preventDefault();
 			$.ajax( {
 				url: wp.ajaxurl,
 				type: 'POST',
 				data: {
-					action: 'intercom_form_submit',
-					fields: $( 'form.mpss_intercom' ).serializeArray()
+					action: 'mplus_intercom_subscription_form_submit',
+					fields: $( 'form.mplus_intercom_subscription' ).serializeArray()
 				},
 				beforeSend: function() {},
 				success: function( data, textStatus, jqXHR ) {
-					console.log( data );
 					if ( data.success == 1 ) {
-						$( "form.mpss_intercom" ).remove();
+						$( "form.mplus_intercom_subscription" ).remove();
 						$( '.message' ).show();
 					} else {
 						$( '.message' ).html( data.message ).show();

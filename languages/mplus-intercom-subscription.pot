@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Mplus Intercom Subscription Plugin\n"
-"POT-Creation-Date: 2018-04-02 11:32+0600\n"
+"Project-Id-Version: Mplus Intercom Subscription\n"
+"POT-Creation-Date: 2018-05-18 14:42+0600\n"
 "PO-Revision-Date: 2018-03-09 13:18+0600\n"
 "Last-Translator: \n"
 "Language-Team: 79mplus\n"
@@ -10,141 +10,162 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/mplus-intercom-submitter.php:44
-#: classes/mplus-intercom-submitter.php:78
-msgid "Added New User."
+#: classes/mplus-intercom-subscription-form.php:34
+msgid "Name"
 msgstr ""
 
-#: classes/mplus-intercom-submitter.php:47
-#: classes/mplus-intercom-submitter.php:81
-msgid "Something Wrong."
+#: classes/mplus-intercom-subscription-form.php:43
+msgid "Email"
 msgstr ""
 
-#: classes/mplus-intercom-submitter.php:70
-#: classes/mplus-intercom-submitter.php:104
-msgid "An error occurred while registering the user."
+#: classes/mplus-intercom-subscription-form.php:60
+msgid "Subscribe to email"
 msgstr ""
 
-#: classes/mplus-intercom-subscription-form.php:62
+#: classes/mplus-intercom-subscription-form.php:71
+msgid "Submit"
+msgstr ""
+
+#: classes/mplus-intercom-subscription-form.php:93
 msgid "Thank You!"
 msgstr ""
 
-#: includes/class-mplus-core-admin.php:79
+#: classes/mplus-intercom-subscription-handler.php:60
+#: classes/mplus-intercom-subscription-handler.php:95
+msgid "Added New User."
+msgstr ""
+
+#: classes/mplus-intercom-subscription-handler.php:64
+#: classes/mplus-intercom-subscription-handler.php:99
+msgid "Something Wrong."
+msgstr ""
+
+#: classes/mplus-intercom-subscription-handler.php:87
+#: classes/mplus-intercom-subscription-handler.php:122
+msgid "An error occurred while registering the user."
+msgstr ""
+
+#: includes/class-mplus-intercom-subscription-admin.php:87
 msgid "Docs"
 msgstr ""
 
-#: includes/class-mplus-core-admin.php:80
-msgid "Premium support"
+#: includes/class-mplus-intercom-subscription-admin.php:88
+msgid "Premium Addons"
 msgstr ""
 
-#: includes/class-mplus-core-admin.php:99
-#: includes/class-mplus-intercom-settings.php:134
+#: includes/class-mplus-intercom-subscription-admin.php:108
+#: includes/class-mplus-intercom-subscription-settings.php:163
 msgid "Settings"
 msgstr ""
 
-#: includes/class-mplus-core-admin.php:100
-msgid "Documentation"
+#: includes/class-mplus-intercom-subscription-settings.php:79
+msgid "Intercom Subscription General Settings"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:73
-msgid "Mplus Intercom General Settings"
-msgstr ""
-
-#: includes/class-mplus-intercom-settings.php:74
+#: includes/class-mplus-intercom-subscription-settings.php:80
 msgid "Access Token"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:75
+#: includes/class-mplus-intercom-subscription-settings.php:81
 msgid "Subscription Type"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:88
-msgid "Input Intercom API Access Token."
+#: includes/class-mplus-intercom-subscription-settings.php:98
+msgid "Please enter Intercom API Access Token."
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:92
+#: includes/class-mplus-intercom-subscription-settings.php:102
 #, php-format
 msgid ""
 "To create your Access Token, go to %1$s and then click &quot;Get an "
 "Access Token&quot;. %2$s"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:94
+#: includes/class-mplus-intercom-subscription-settings.php:104
 msgid "more info"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:106
+#: includes/class-mplus-intercom-subscription-settings.php:118
 msgid "User"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:107
+#: includes/class-mplus-intercom-subscription-settings.php:119
 msgid "Lead"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:109
-msgid "Select Intercom Subscription Type."
+#: includes/class-mplus-intercom-subscription-settings.php:121
+msgid "Please select Intercom Subscription Type."
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:127
+#: includes/class-mplus-intercom-subscription-settings.php:135
+msgid "Check to show a consent checkbox on the form"
+msgstr ""
+
+#: includes/class-mplus-intercom-subscription-settings.php:156
 msgid "Overview"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:128
+#: includes/class-mplus-intercom-subscription-settings.php:157
 #, php-format
 msgid ""
-"<h3>Mplus Intercom Subscription Plugin</h3><p>Modern messaging for "
-"sales, marketing and support – all on the first platform made with "
-"customers in mind.<br/>Please <a target='_blank' href='%s'>click here</"
-"a> to get more information.</p>"
+"<h3>Intercom Subscription Plugin</h3><p>The easiest and most "
+"extendable WordPress plugin for Intercom. This lets you offer a "
+"subscription form for Intercom and offers a wide range of extensions "
+"to grow your user base with the power of Intercom.<br/>Please <a "
+"target='_blank' href='%s'>click here</a> to get more information.</p>"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:140
+#: includes/class-mplus-intercom-subscription-settings.php:169
 msgid "For more information:"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:141
+#: includes/class-mplus-intercom-subscription-settings.php:170
 msgid "FAQ"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:142
+#: includes/class-mplus-intercom-subscription-settings.php:171
 msgid "Support Forum"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:154
+#: includes/class-mplus-intercom-subscription-settings.php:185
 #, php-format
 msgid ""
 "\n"
-"\t\t<p><strong>Where is Intercom Access Token?</strong></p>\n"
-"\t\t<ol>\n"
-"\t\t\t<li>Please visit <a target=\"_blank\" href=\"%1$s\">Intercom "
+"\t\t\t<p><strong>Where is Intercom Access Token?</strong></p>\n"
+"\t\t\t<ol>\n"
+"\t\t\t\t<li>Please visit <a target=\"_blank\" href=\"%1$s\">Intercom "
 "Application</a> to get more about Intercom Access Token.</li>\n"
-"\t\t</ol>\n"
+"\t\t\t</ol>\n"
 "\n"
-"\t\t<p><strong>I am new. How do I get access token?</strong> Please "
+"\t\t\t<p><strong>I am new. How do I get access token?</strong> Please "
 "follow the instruction below to create a Intercom Access Token:</p>\n"
-"\t\t<ol>\n"
-"\t\t\t<li>To create your Access Token, go to the dashboard in the "
+"\t\t\t<ol>\n"
+"\t\t\t\t<li>To create your Access Token, go to the dashboard in the "
 "Intercom Developer Hub by <a target=\"_blank\" href=\"%2$s\">clicking "
 "here</a> or by clicking on Dashboard at the top of the page and click "
 "<strong>\"Get an Access Token\"</strong></li>\n"
-"\t\t\t<li>When you setup your Token, you will be asked to choose "
+"\t\t\t\t<li>When you setup your Token, you will be asked to choose "
 "between two levels of scopes. Select Your Scopes.</li>\n"
-"\t\t\t<li>Once you have created your Access Token you will see it in "
+"\t\t\t\t<li>Once you have created your Access Token you will see it in "
 "the same section in your Dashboard. You can edit or delete the token "
 "from <a target=\"_blank\" href=\"%3$s\">here</a>.</li>\n"
-"\t\t</ol>\n"
-"\t\t"
+"\t\t\t</ol>\n"
+"\t\t\t"
 msgstr ""
 
-#: includes/class-mplus-intercom-settings.php:185
+#: includes/class-mplus-intercom-subscription-settings.php:217
 #, php-format
 msgid ""
-"<p><strong>Mplus Intercom Plugin is almost ready.</strong> Please %sAdd "
-"Access Token%s to use the plugin.</p>"
+"<p><strong>Intercom Subscription Plugin is almost ready.</strong> "
+"Please %1$sAdd Access Token%2$s to use the plugin.</p>"
+msgstr ""
+
+#: includes/class-mplus-intercom-subscription-settings.php:251
+msgid "No Premium Addon Found"
 msgstr ""

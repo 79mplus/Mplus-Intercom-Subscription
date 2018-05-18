@@ -3,72 +3,81 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @package Mplus_Intercom_Core
- * @subpackage Mplus_Intercom_Core/public
+ * @package Mplus_Intercom_Subscription
+ * @subpackage Mplus_Intercom_Subscription/includes
  * @author 79mplus
  */
-class Mplus_Intercom_Subscription_Public {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 * @var string $plugin_name The ID of this plugin.
-	 */
-	private $plugin_name;
+// File Security Check
+if ( ! defined( 'ABSPATH' ) ) :
+	exit;
+endif;
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 * @var string $version The current version of this plugin.
-	 */
-	private $version;
+if ( ! class_exists( 'Mplus_Intercom_Subscription_Public' ) ) {
+	class Mplus_Intercom_Subscription_Public {
 
-	/**
-	 * Initializes the class and set its properties.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param string $plugin_name The name of the plugin.
-	 * @param string $version The version of this plugin.
-	 * @return void
-	 */
-	public function __construct( $plugin_name, $version ) {
+		/**
+		 * The ID of this plugin.
+		 *
+		 * @since 1.0.0
+		 * @access private
+		 * @var string $plugin_name The ID of this plugin.
+		 */
+		private $plugin_name;
 
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		/**
+		 * The version of this plugin.
+		 *
+		 * @since 1.0.0
+		 * @access private
+		 * @var string $version The current version of this plugin.
+		 */
+		private $version;
+
+		/**
+		 * Initializes the class and set its properties.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $plugin_name The name of the plugin.
+		 * @param string $version The version of this plugin.
+		 * @return void
+		 */
+		public function __construct( $plugin_name, $version ) {
+
+			$this->plugin_name = $plugin_name;
+			$this->version = $version;
+
+		}
+
+		/**
+		 * Registers the stylesheets for the public-facing side of the site.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return void
+		 */
+		public function mplus_enqueue_styles() {
+
+			wp_enqueue_style( $this->plugin_name, MPLUSIS_PLUGINS_DIR_URI . 'assets/css/mplus-intercom-subscription-public.css', array(), $this->version, 'all' );
+
+		}
+
+		/**
+		 * Registers the stylesheets for the public-facing side of the site.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return void
+		 */
+		public function mplus_enqueue_scripts() {
+
+			wp_enqueue_script( $this->plugin_name, MPLUSIS_PLUGINS_DIR_URI . 'assets/js/mplus-intercom-subscription-public.js', array( 'jquery' ), $this->version, false );
+
+			wp_localize_script( $this->plugin_name, 'wp', array(
+				'ajaxurl' => admin_url( 'admin-ajax.php' ) ,
+			) );
+
+		}
 	}
-
-	/**
-	 * Registers the stylesheets for the public-facing side of the site.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	public function mplus_enqueue_styles() {
-
-		wp_enqueue_style( $this->plugin_name, MPLUSIS_PLUGINS_DIR_URI . 'assets/css/mplus-intercom-subscription-public.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Registers the stylesheets for the public-facing side of the site.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	public function mplus_enqueue_scripts() {
-
-		wp_enqueue_script( $this->plugin_name, MPLUSIS_PLUGINS_DIR_URI . 'assets/js/mplus-intercom-subscription-public.js', array( 'jquery' ), $this->version, false );
-
-		wp_localize_script( $this->plugin_name, 'wp', array(
-			'ajaxurl' => admin_url( 'admin-ajax.php' ) ,
-		) );
-	}
-
 }
