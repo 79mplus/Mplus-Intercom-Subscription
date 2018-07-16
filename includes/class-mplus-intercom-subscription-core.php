@@ -198,9 +198,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 
 			$mplusis_shortcode = new Mplus_Intercom_Subscription_Shortcode();
 			$this->loader->add_shortcode( 'mplus_intercom_subscription', $mplusis_shortcode, 'mplus_intercom_subscription' );
-
-			$mplusis_subscription_form = new Mplus_Intercom_Subscription_Form();
-			$this->loader->add_action( 'wp_ajax_mplus_intercom_subscription_form_submit', $mplusis_subscription_form, 'submit_handler' );
+			$this->loader->add_shortcode( 'mplus_intercom_subscription_company', $mplusis_shortcode, 'mplus_intercom_subscription_company' );
 
 		}
 
@@ -215,13 +213,17 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 		 */
 		private function mplus_public_hooks_define() {
 
+			$mplusis_subscription_form = new Mplus_intercom_Subscription_Form();
+			$this->loader->add_action( 'wp_ajax_mplus_intercom_subscription_form_submit', $mplusis_subscription_form, 'submit_handler' );
+			$this->loader->add_action( 'wp_ajax_nopriv_mplus_intercom_subscription_form_submit', $mplusis_subscription_form, 'submit_handler' );
+
 			$plugin_public = new Mplus_Intercom_Subscription_Public( $this->get_plugin_name(), $this->get_version() );
 
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_styles' );
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts' );
-
-			$mplusis_subscription_form = new Mplus_intercom_Subscription_Form();
-			$this->loader->add_action( 'wp_ajax_nopriv_mplus_intercom_subscription_form_submit', $mplusis_subscription_form, 'submit_handler' );
+			$this->loader->add_action( 'wp_ajax_mplus_intercom_subscription_company_form_submit', $plugin_public, 'company_submit_handler' );
+			$this->loader->add_action( 'wp_ajax_nopriv_mplus_intercom_subscription_company_form_submit', $plugin_public, 'company_submit_handler' );
+			$this->loader->add_action( 'mplus_intercom_subscription_user_created_after', $plugin_public, 'user_assign_to_company_handler', 10, 2 );
 
 		}
 
@@ -304,8 +306,8 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 		 */
 		public static function get_client(){
 
-			if( is_null( self::$_client ) && class_exists( 'Intercom\IntercomClient' ) ){
-				/*access token*/
+			if ( is_null( self::$_client ) && class_exists( 'Intercom\IntercomClient' ) ) {
+				// Access token
 				$access_token = get_option( 'mplusis_api_key' );
 				self::$_client = new Intercom\IntercomClient( $access_token, null );
 			}

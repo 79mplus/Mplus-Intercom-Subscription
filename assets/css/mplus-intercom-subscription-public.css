@@ -6,7 +6,9 @@
 .mplus-intercom-subscription-form .message {
 	display: none;
 }
-
+.mplus-intercom-subscription-company-form .message {
+	display: none;
+}
 label {
 	color: #333333;
 	display: inline-block;
@@ -29,7 +31,8 @@ input[type="time"],
 input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
-textarea {
+textarea,
+.input-group.type-select select {
 	background: none repeat scroll 0 0 #FFFFFF;
 	border: 1px solid #BBBBBB;
 	border-radius: 3px;

@@ -19,7 +19,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Handler' ) ) {
 		/**
 		 * @var \Intercom\IntercomClient $client Holds the Intercom client instance.
 		 */
-		private $client;
+		public $client;
 
 		/**
 		 * Constructor for the class.
@@ -40,15 +40,15 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Handler' ) ) {
 		/**
 		 * Creates user with the given info.
 		 *
-		 * @param array $fields Fields to submit.
+		 * @param array $submitted_fields Fields to submit.
 		 * @param string $user_type (optional) Either user or lead.
 		 * @return array
 		 */
-		public function create_user( $fields, $user_type = 'user' ) {
+		public function create_user( $submitted_fields, $user_type = 'user' ) {
 
 			$client = $this->client;
 
-			$fields = self::get_fields( $fields );
+			$fields = self::get_fields( $submitted_fields );
 
 			do_action( 'mplus_intercom_subscription_user_created_before', $fields, $user_type );
 
@@ -124,7 +124,8 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Handler' ) ) {
 					}
 				}
 			}
-			do_action( 'mplus_intercom_subscription_user_created_after', $new_user );
+			
+			do_action( 'mplus_intercom_subscription_user_created_after', $new_user, $submitted_fields );
 
 			return $response;
 
@@ -141,15 +142,17 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Handler' ) ) {
 			$basic = array();
 			$custom = array();
 			/*default value for unsubscribed_from_emails*/
-			$basic[ 'unsubscribed_from_emails' ] = true;
+			$basic['unsubscribed_from_emails'] = true;
 			foreach ( $fields as $field ) {
 				if ( $field['intercom_attribute'] == 'unsubscribed_from_emails' ) {
 					$field['value'] = false;
 				}
 				if ( $field['attribute_type'] == 'basic' ) {
 					$basic[ $field['intercom_attribute'] ] = $field['value'];
-				} else {
+				} elseif ( $field['attribute_type'] == 'custom' ) {
 					$custom[ $field['intercom_attribute'] ] = $field['value'];
+				} else {
+
 				}
 			}
 			$basic['custom_attributes'] = $custom;

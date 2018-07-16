@@ -58,9 +58,9 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 				<div class="wrap">
 					<form method="post" action="options.php">
 
-						<?php settings_fields( "mplusis-section" ); ?>
+						<?php settings_fields( 'mplusis-section' ); ?>
 
-						<?php do_settings_sections( "mplusis-options" ); ?>
+						<?php do_settings_sections( 'mplusis-options' ); ?>
 
 						<?php submit_button(); ?>
 
@@ -79,16 +79,21 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 			add_settings_section( 'mplusis-section', __( 'Intercom Subscription General Settings', 'mplus-intercom-subscription' ), null, 'mplusis-options' );
 			add_settings_field( 'mplusis_api_key', __( 'Access Token', 'mplus-intercom-subscription' ), array( $this, 'mplusis_display_api_key' ), 'mplusis-options', 'mplusis-section' );
 			add_settings_field( 'mplusis_subscription_type', __( 'Subscription Type', 'mplus-intercom-subscription' ), array( $this, 'mplusis_display_subscription_type' ), 'mplusis-options', 'mplusis-section' );
-			add_settings_field( 'mplusis_subscribe_to_intercom', 'Enable Consent Checkbox', array($this, 'mplusis_display_subscribe_to_intercom'), 'mplusis-options', 'mplusis-section' );
+			add_settings_field( 'mplusis_subscribe_to_intercom', 'Enable Consent Checkbox', array( $this, 'mplusis_display_subscribe_to_intercom' ), 'mplusis-options', 'mplusis-section' );
+			add_settings_field( 'mplusis_subscribe_company_field', 'Enable Company Field', array( $this, 'mplusis_display_company_field' ), 'mplusis-options', 'mplusis-section' );
+			add_settings_field( 'mplusis_subscribe_company_register_page', 'Company Registration Page', array( $this, 'mplusis_display_company_register_page' ), 'mplusis-options', 'mplusis-section' );
+
 
 			register_setting( 'mplusis-section', 'mplusis_api_key' );
 			register_setting( 'mplusis-section', 'mplusis_subscription_type' );
 			register_setting( 'mplusis-section', 'mplusis_subscribe_to_intercom' );
+			register_setting( 'mplusis-section', 'mplusis_subscribe_company_field' );
+			register_setting( 'mplusis-section', 'mplusis_subscribe_company_register_page' );
 
 		}
 
 		/**
-		 * Shows Intercom API Access Token fields.
+		 * Shows Intercom API Access Token field.
 		 *
 		 * @return void
 		 */
@@ -108,14 +113,14 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 		}
 
 		/**
-		 * Shows Intercom API Access Token fields.
+		 * Shows Intercom Subscriptons Type Field.
 		 *
 		 * @return void
 		 */
 		public function mplusis_display_subscription_type() {
 
 			echo '<select name="mplusis_subscription_type">';
-				echo '<option value="user" ' . selected( get_option( 'mplusis_subscription_type' ), "user" ) .'>' . __( 'User', 'mplus-intercom-subscription' ) . '</option>';
+				echo '<option value="user" ' . selected( get_option( 'mplusis_subscription_type' ), "user" ) . '>' . __( 'User', 'mplus-intercom-subscription' ) . '</option>';
 				echo '<option value="lead" ' . selected( get_option( 'mplusis_subscription_type' ), "lead" ) .'>' . __( 'Lead', 'mplus-intercom-subscription' ) . '</option>';
 			echo '</select>';
 			echo sprintf( '<p class="description">%s</p>', __( 'Please select Intercom Subscription Type.', 'mplus-intercom-subscription' ) );
@@ -123,7 +128,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 		}
 
 		/**
-		 * Shows Consent Checkbox for Subscription to Intercom fields.
+		 * Shows Consent Checkbox for Subscription to Intercom field.
 		 *
 		 * @return void
 		 */
@@ -133,6 +138,38 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 
 			$html = '<input type="checkbox" id="mplusis_subscribe_to_intercom" name="mplusis_subscribe_to_intercom" value="1"' . checked( 1, $sub_to_intercom, false ) . '/>';
 			$html .= '<label for="mplusis_subscribe_to_intercom">' . __( 'Check to show a consent checkbox on the form', 'mplus-intercom-subscription' ) . '</label>';
+
+			echo $html;
+
+		}
+
+		/**
+		 * Shows Company Select Field.
+		 *
+		 * @return void
+		 */
+		public function mplusis_display_company_field() {
+
+			$intercom_company_field = get_option( 'mplusis_subscribe_company_field' );
+
+			$html = '<input type="checkbox" id="mplusis_subscribe_company_field" name="mplusis_subscribe_company_field" value="1"' . checked( 1, $intercom_company_field, false ) . '/>';
+			$html .= '<label for="mplusis_subscribe_company_field">' . __( 'Check to show company select field on the form', 'mplus-intercom-subscription' ) . '</label>';
+
+			echo $html;
+
+		}
+
+		/**
+		 * Shows Intercom Subscriptons Type Field.
+		 *
+		 * @return void
+		 */
+		public function mplusis_display_company_register_page() {
+
+			$html = '<select name="mplusis_subscribe_company_register_page">';
+				$html .= self::mplusis_get_all_page_select_options();
+			$html .= '</select>';
+			$html .= sprintf( '<p class="description">%s</p>', __( 'Please select Intercom Company Registration Page.', 'mplus-intercom-subscription' ) );
 
 			echo $html;
 
@@ -162,7 +199,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 				'id'      => 'mplusis_settings_info',
 				'title'   => __( 'Settings', 'mplus-intercom-subscription' ),
 				'content' => self::mplusis_settings_connect(),
-			));
+			) );
 
 			/* Set Help Sidebar */
 			$screen->set_help_sidebar(
@@ -232,13 +269,13 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 			$page = $_GET['page'];
 			$addons = apply_filters( 'mplus_intercom_subscription_addon_license_tabs', array() );
 			if ( ! empty( $addons ) ) {
-				$active_addon = isset( $_GET['addon'] ) ? $_GET['addon'] : key(  $addons  );
+				$active_addon = isset( $_GET['addon'] ) ? $_GET['addon'] : key( $addons );
 				?>
 				<h2 class="nav-tab-wrapper">
 				<?php
 				foreach ( $addons as $addon => $label ) {
 					?>
-					<a href="?page=<?php echo $page;?>&addon=<?php echo $addon;?>" class="nav-tab <?php echo $active_addon == $addon ? 'nav-tab-active' : ''; ?>"><?php echo $label; ?></a>
+					<a href="?page=<?php echo $page; ?>&addon=<?php echo $addon; ?>" class="nav-tab <?php echo $active_addon == $addon ? 'nav-tab-active' : ''; ?>"><?php echo $label; ?></a>
 					<?php
 				}
 				?>
@@ -248,8 +285,32 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 				?>
 				<?php
 			} else {
-				echo '<h2>' . __( 'No Premium Addon Found', 'mplus-intercom-subscription') . '</h2>';
+				echo '<h2>' . __( 'No Premium Addon Found', 'mplus-intercom-subscription' ) . '</h2>';
 			}
+		}
+
+		/**
+		 * Gets all page select options
+		 *
+		 * @since 1.0
+		 *
+		 * @return string
+		 */
+		static public function mplusis_get_all_page_select_options() {
+
+			$pages = get_pages();
+			$pages_options = '<option value="">' . __( 'Select Page', 'mplus-intercom-subscription' ) . '</option>';
+
+			foreach ( $pages as $page ) :
+				if ( get_page_link( $page->ID ) == get_option( 'mplusis_subscribe_company_register_page' ) ) :
+					$selected = 'selected="selected"';
+				else :
+					$selected = '';
+				endif;
+				$pages_options .= '<option value="' . get_page_link( $page->ID ) . '" ' . $selected . '>' . __( ucwords( $page->post_title ), 'mplus-intercom-subscription' ) . '</option>';
+			endforeach;
+
+			return $pages_options;
 		}
 	}
 }

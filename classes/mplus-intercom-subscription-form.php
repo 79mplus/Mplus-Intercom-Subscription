@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) :
 endif;
 
 if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
-	class Mplus_Intercom_Subscription_Form{
+	class Mplus_Intercom_Subscription_Form {
 
 		/**
 		 * @var array $fields Contains the form fields.
@@ -30,46 +30,71 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
 
 			$fields = array(
 				array(
-					'type' => 'text',
-					'label' => __( 'Name', 'mplus-intercom-subscription' ),
-					'name' => 'name',
+					'type'               => 'text',
+					'label'              => __( 'Name', 'mplus-intercom-subscription' ),
+					'name'               => 'name',
 					'intercom_attribute' => 'name',
-					'attribute_type' => 'basic',
-					'required' => true,
-					'sanitize' => 'sanitize_text',
+					'attribute_type'     => 'basic',
+					'required'           => true,
+					'sanitize'           => 'sanitize_text',
 				),
 				array(
-					'type' => 'email',
-					'label' => __( 'Email', 'mplus-intercom-subscription' ),
-					'name' => 'email',
+					'type'               => 'email',
+					'label'              => __( 'Email', 'mplus-intercom-subscription' ),
+					'name'               => 'email',
 					'intercom_attribute' => 'email',
-					'attribute_type' => 'basic',
-					'required' => true,
-					'sanitize' => 'sanitize_email',
+					'attribute_type'     => 'basic',
+					'required'           => true,
+					'sanitize'           => 'sanitize_email',
 				),
 			);
+
+			$intercom_company = get_option( 'mplusis_subscribe_company_field' );
+			$page_link = get_option( 'mplusis_subscribe_company_register_page' );
+			if ( ! empty( $page_link ) ) :
+				$description = sprintf(
+					__( 'Your company not listed? %sCreate it%s.', 'mplus-intercom-subscription' ),
+					'<a href="' . $page_link . '" target="_blank" >',
+					'</a>' );
+				$description = '<span class="mpis-company-create-text">' . $description . '</span>';
+			else :
+				$description = '';
+			endif;
+
+			if ( ! empty( $intercom_company ) && $intercom_company == 1 ) :
+				$fields [] = apply_filters( 'mplus_intercom_subscription_form_fields_company', array(
+						'type'               => 'select',
+						'label'              => __( 'Company', 'mplus-intercom-subscription' ),
+						'name'               => 'company_id',
+						'intercom_attribute' => 'company_id',
+						'required'           => true,
+						'attribute_type'     => '',
+						'options'            => get_all_company_list(),
+						'description'        => $description,
+					));
+			endif;
 
 			$fields = apply_filters( 'mplus_intercom_subscription_form_fields_before_consent', $fields );
 
 			$sub_to_intercom = get_option( 'mplusis_subscribe_to_intercom' );
 			$sub_to_intercom = apply_filters( 'mplus_intercom_subscription_consent_enable', $sub_to_intercom );
 
-			if( !empty( $sub_to_intercom ) && $sub_to_intercom == 1 ) :
+			if ( ! empty( $sub_to_intercom ) && $sub_to_intercom == 1 ) :
 				$fields [] = apply_filters( 'mplus_intercom_subscription_form_fields_consent', array(
-						'type' => 'checkbox',
-						'label' => __( 'Subscribe to email', 'mplus-intercom-subscription' ),
-						'name' => 'unsubscribed_from_emails',
+						'type'               => 'checkbox',
+						'label'              => __( 'Subscribe to email', 'mplus-intercom-subscription' ),
+						'name'               => 'unsubscribed_from_emails',
 						'intercom_attribute' => 'unsubscribed_from_emails',
-						'attribute_type' => 'basic'
+						'attribute_type'     => 'basic'
 					));
 			endif;
 
 			$fields = apply_filters( 'mplus_intercom_subscription_form_fields_after_consent', $fields );
 
 			$fields [] = array(
-					'type' => 'submit',
+					'type'  => 'submit',
 					'label' => __( 'Submit', 'mplus-intercom-subscription' ),
-					'name' => 'submit',
+					'name'  => 'submit',
 				);
 
 			$this->fields = apply_filters( 'mplus_intercom_subscription_form_fields', $fields );
@@ -81,11 +106,15 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
 		 *
 		 * @return string
 		 */
-		public function render_form() {
+		public function render_form( $fields = array() ) {
 
 			$html = '';
 
-			$html .= '<form class="mplus_intercom_subscription" method="post">';
+			if ( ! empty( $fields ) ) :
+				$this->fields = $fields;
+			endif;
+
+			$html .= '<form class="mplus_intercom_subscription" method="post" autocomplete="off">';
 				foreach ( $this->fields as $field ) :
 					$html .= $this->render_form_input( $field );
 				endforeach;
@@ -103,14 +132,16 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
 		public function render_form_input( $field ) {
 
 			$default = array(
-					'type' => 'text',
-					'label' => '',
-					'name' => '',
+					'type'               => 'text',
+					'label'              => '',
+					'name'               => '',
 					'intercom_attribute' => '',
-					'attribute_type' => 'basic',
-					'required' => true,
-					'onclick'   => '',
-					'sanitize' => '',
+					'attribute_type'     => 'basic',
+					'required'           => true,
+					'onclick'            => '',
+					'sanitize'           => '',
+					'options'            => array(),
+					'description'        => '',
 				);
 
 			// Merge default field with user submitted field.
@@ -132,6 +163,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
 				case 'text' :
 				case 'tel' :
 				case 'email' :
+				case 'number' :
 					$input = '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" ' . $required . ' value="" />';
 					break;
 				case 'textarea' :
@@ -140,11 +172,27 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
 				case 'checkbox':
 					$input = '<input type="checkbox" name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" value="true"> ';
 					break;
+				case 'select':
+					$input = '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" '. $required .' >';
+					$opt_val = '';
+					foreach ( $options as $key => $opt ) :
+						if ( $key == 0 ) {
+							$key = '';
+						}
+						$opt_val .= '<option value="' . $key . '">' . $opt . '</option>';
+					endforeach;
+					$input .= $opt_val;
+					$input .= '</select>';
+					break;
+				case 'date' :
+					$input = '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $intercom_attribute ) . '" ' . $required . ' value="" />';
+					break;
 				case 'button' :
 				case 'submit' :
 					$input = '<input type="' . esc_attr( $type ) . '" id="' . esc_attr( $name ) . '" value="' . esc_attr( $label ) . '" ' . $onclick . ' />';
 					break;
 				default :
+					$input = '';
 					break;
 			endswitch;
 
@@ -156,6 +204,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
 					$html .= '<label for="' . esc_attr( $name ) . '">' . esc_attr( $label ) . '</label>';
 				endif;
 				$html .= $input;
+				$html .= $description;
 			$html .= '</p>';
 
 			return $html;
@@ -215,6 +264,9 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Form' ) ) {
 					break;
 				case 'esc_textarea':
 					$field_value = esc_textarea( $field_value );
+					break;
+				case 'esc_url':
+					$field_value = esc_url( $field_value );
 					break;
 				default:
 					break;

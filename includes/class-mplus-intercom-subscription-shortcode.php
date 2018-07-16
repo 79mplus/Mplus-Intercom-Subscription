@@ -42,5 +42,23 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Shortcode' ) ) {
 			}
 
 		}
+
+		/**
+		 * Handles the [mplus_intercom_subscription_company] shortcode.
+		 *
+		 * @param array $atts Holds the shortcode parameters.
+		 * @return string Returns html for the ouput.
+		 */
+		public function mplus_intercom_subscription_company( $atts ) {
+
+			if ( ! is_admin() ) {
+				// Generates shortcode output.
+				$html = mplus_intercom_subscription_get_template( 'mplus-intercom-subscription-company-shortcode.php' );
+				return $html;
+			} else {
+				return '';
+			}
+
+		}
 	}
 }

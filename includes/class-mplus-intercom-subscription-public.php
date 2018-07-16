@@ -79,5 +79,101 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Public' ) ) {
 			) );
 
 		}
+
+		/**
+		 * Handles submission of the Company Registration form.
+		 *
+		 * @return void
+		 */
+		public function company_submit_handler() {
+
+			$submitted_fields = array();
+			$response = array();
+			$intercom = Mplus_Intercom_Subscription_Core::get_client();
+
+			$fields = $_POST['fields'];
+
+			foreach ( $fields as $field ) :
+				$submitted_fields[ $field['name'] ] =  $field['value'];
+			endforeach;
+
+			try {
+
+				$company = $intercom->companies->getCompanies( [
+					'name' => $submitted_fields['name']
+				] );
+				$company_fields = [
+					'id'         => $company->id,
+					'plan'       => esc_attr( $submitted_fields['plan'] ),
+					'created_at' => strtotime( $submitted_fields['created_at'] ),
+					'size'       => esc_attr( $submitted_fields['size'] ),
+					'website'    => esc_url( $submitted_fields['website'] ),
+					'industry'   => esc_attr( $submitted_fields['industry'] ),
+				];
+				$company = $intercom->companies->create( $company_fields );
+				$response['company_info'] = $company;
+				$response['message'] = __( 'Company already exists. Company Information updated.', 'mplus-intercom-subscription' );
+				$response['success'] = 0;
+
+			} catch ( Exception $e ) {
+
+				$company_fields = [
+					'name'			=> esc_attr( $submitted_fields['name'] ),
+					'company_id' 	=> mt_rand( 10,999999 ),
+					'plan'			=> esc_attr( $submitted_fields['plan'] ),
+					'created_at'	=> strtotime( $submitted_fields['created_at'] ),
+					'size'			=> esc_attr( $submitted_fields['size'] ),
+					'website'		=> esc_url( $submitted_fields['website'] ),
+					'industry'		=> esc_attr( $submitted_fields['industry'] ),
+				];
+
+				// Assign company creator as a company user
+				$creator_user = $intercom->users->create( [
+					'email'     => $submitted_fields['email'],
+					'name'      => ucwords( $company->name ) . ' Creator',
+					'companies' => [ $company_fields ]
+				] );
+
+				$response['company_info'] = $creator_user->companies;
+				$response['success'] = 1;
+				$response['message'] = __( 'Company Registration Completed.', 'mplus-intercom-subscription' );
+			}
+
+			wp_send_json( $response );
+
+			die();
+
+		}
+
+		/**
+		 * Handles User assign to the Registered Company.
+		 *
+		 * @return void
+		 */
+		public function user_assign_to_company_handler( $new_user, $submitted_fields ) {
+
+			if ( is_object( $new_user ) && isset( $new_user->email ) ) {
+
+				$intercom = Mplus_Intercom_Subscription_Core::get_client();
+
+				foreach ( $submitted_fields as $field ) {
+					if ( array_key_exists( 'name', $field ) && $field['name'] == 'company_id' ) :
+						$company_id = $field['value'];
+						break;
+					endif;
+				}
+				if ( isset( $company_id ) ) :
+					$intercom->users->update( [
+						'email'     => $new_user->email,
+						'companies' => [
+							[
+								'company_id' => $company_id
+							]
+						]
+					] );
+				endif;
+
+			}
+		}
 	}
 }

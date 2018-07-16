@@ -3,7 +3,7 @@ Contributors: 79mplus
 Donate link: https://www.79mplus.com/donate
 Tags: intercom, email, newsletter, marketing, user base, grow, communication
 Requires at least: 4.6
-Tested up to: 4.9.5
+Tested up to: 4.9.6
 Stable tag: trunk
 Requires PHP: 5.2.4
 License: GPLv2 or later
@@ -56,7 +56,8 @@ Download Management:
 - [Easy Digital Downloads](https://www.79mplus.com/product/mplus-intercom-edd/)
 
 Extra Features:
-- Tags (Coming Soon)
+- [Tags](https://www.79mplus.com/product/mplus-intercom-tags/) (Free)
+- [Events](https://www.79mplus.com/product/mplus-intercom-events/) (Free)
 
 They are similarly easy to use and we make sure instructions are provided for all.
 Details here: [https://www.79mplus.com/intercom-subscription/](https://www.79mplus.com/intercom-subscription/)
@@ -67,7 +68,7 @@ Interested? Check out the plugin in action on our demo site:
 
 = Documentation =
 If you need detailed help, we’ve got you covered. Check here:
-https://docs.79mplus.com/intercom-subscription-base-plugin/
+[https://docs.79mplus.com/intercom-subscription-base-plugin/](https://docs.79mplus.com/intercom-subscription-base-plugin/)
 
 = What is Intercom? =
 [Intercom](https://www.intercom.io/) is a fundamentally new way for internet businesses to communicate with customers, personally, at scale. It’s a customer communication platform with a suite of integrated products for every team – including sales, marketing, product, and support. Their products enable targeted communication with customers on your website, inside your web and mobile apps, and by email.
@@ -95,6 +96,13 @@ After you activated the plugin, you can go to WP Admin - Intercom Subscription m
 Then take 2 minutes to add this shortcode in the page you want the form to appear:
 `[mplus_intercom_subscription]`
 
+This should be all needed for a basic setup. If you are interested in more changes, check the other settings.
+
+Optional: If you want to enable the ability for your users to create a company for the company selection field, you can create a new page with this shortcode below:
+`[mplus_intercom_subscription_company]`
+Then select it on settings page.
+The link will appear below the company selection field (see screenshot).
+
 == Frequently Asked Questions ==
 
 = How can I install the plugin? =
@@ -119,8 +127,19 @@ Yes, you can include styles for the form on your theme to customize it.
 
 1. Form on the frontend
 2. Settings page
+3. Settings to enable Company Integration (optional)
+4. Company field on the form
+5. Company create page
 
 == Changelog ==
+
+= 1.0.20 =
+* Added support for Company data integration with Intercom API.
+* Added appropriate settings for company selection fields and company registration page.
+* Added new shortcode for company registration page.
+* Minor Code Cleanup.
+* Updated screenshot.
+* Updated Readme.
 
 = 1.0.18 =
 * Some internal code changes.
@@ -135,6 +154,9 @@ Yes, you can include styles for the form on your theme to customize it.
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.0.20 =
+Upgrade to enjoy company integration feature on Intercom API/Dashboard.
 
 = 1.0.18 =
 Option name for API Access Token has been changed. If API Access Token appears blank, please put it again manually. Has important changes. Please upgrade immediately.
