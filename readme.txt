@@ -3,7 +3,7 @@ Contributors: 79mplus
 Donate link: https://www.79mplus.com/donate
 Tags: intercom, email, newsletter, marketing, user base, grow, communication
 Requires at least: 4.6
-Tested up to: 4.9.6
+Tested up to: 5.0
 Stable tag: trunk
 Requires PHP: 5.2.4
 License: GPLv2 or later
@@ -108,12 +108,12 @@ The link will appear below the company selection field (see screenshot).
 = How can I install the plugin? =
 
 Easiest way is to go to WP Admin - Plugins - Add New, and search for "mplus intercom". You will have an option to Install and Activate it.
-Afterwards, you just need 5 minutes to put the Access Token in the Intercom Subscription settings page.
+Afterwards, you just need 5 minutes to put the Access Token in the Intercom Subscription settings page and put the `[mplus_intercom_subscription]` shortcode in any page or post you like.
 
 = Is there any third party plugins required? =
 
-For the base plugin (this one) no other plugin is required. It takes care of itself. For the addon plugins however, you may need the plugin for which you bought it for.
-For example, to use "Mplus Intercom Subscription - WooCommerce" you would need WooCommerce to be installed.
+For the base plugin (this one), no other plugin is required. It takes care of itself. For the addon plugins however, you may need the plugin for which you bought it for.
+For example, to use "Mplus Intercom Subscription - WooCommerce" addon, you would need WooCommerce to be installed.
 
 = How can I get the Intercom Access Token? =
 
@@ -132,6 +132,16 @@ Yes, you can include styles for the form on your theme to customize it.
 5. Company create page
 
 == Changelog ==
+
+= 1.0.24 =
+* Updated the new logo and banner.
+* Fix for icon not showing on admin sidebar.
+* Changed "Create it" to "Create here" on company field description.
+
+= 1.0.22 =
+* Added Honeypot Spamtrap feature to stop spams.
+* Updated company registration field names and added helpful hints.
+* Updated screenshots.
 
 = 1.0.20 =
 * Added support for Company data integration with Intercom API.
@@ -154,6 +164,9 @@ Yes, you can include styles for the form on your theme to customize it.
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.0.23 =
+Upgrade to fix the menu image not showing issue.
 
 = 1.0.20 =
 Upgrade to enjoy company integration feature on Intercom API/Dashboard.
