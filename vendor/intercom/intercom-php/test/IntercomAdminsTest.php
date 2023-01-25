@@ -1,8 +1,11 @@
 <?php
 
-use Intercom\IntercomAdmins;
+namespace Intercom\Test;
 
-class IntercomAdminsTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomAdmins;
+use PHPUnit\Framework\TestCase;
+
+class IntercomAdminsTest extends TestCase
 {
     public function testAdminsList()
     {

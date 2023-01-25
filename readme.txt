@@ -1,19 +1,19 @@
-﻿=== Mplus Intercom Subscription ===
+﻿=== Intercom Live chat and Lead generation by 79mplus ===
 Contributors: 79mplus
 Donate link: https://www.79mplus.com/donate
-Tags: intercom, email, newsletter, marketing, user base, grow, communication
-Requires at least: 4.6
-Tested up to: 5.0
+Tags: intercom, chat, lead, email, newsletter, marketing, user base, grow, communication
+Requires at least: 5.0
+Tested up to: 6.1.1
 Stable tag: trunk
-Requires PHP: 5.2.4
+Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Offers a subscription form and a wide range of extensions to grow your user base using Intercom.
+Offers a live chat (by Intercom), a lead generation form and a wide range of extensions to grow your user base using Intercom.
 
 == Description ==
 
-The easiest and most extendable WordPress plugin for Intercom. This lets you offer a subscription form for listing your users with Intercom and offers a wide range of extensions for many popular plugins.
+The easiest and most extendable WordPress plugin for Intercom. This lets you offer a live chat bubble, a lead generation form for listing your users with Intercom and offers a wide range of extensions for many popular plugins.
 
 [youtube https://www.youtube.com/watch?v=sCTiod2glu0]
 
@@ -22,6 +22,8 @@ The easiest and most extendable WordPress plugin for Intercom. This lets you off
 Here are some of its features:
 
 - Use Anywhere: Put on page, post, product or wherever!
+- Use OAuth to connect to Intercom
+- Enable the chat bubble in footer
 - No coding required
 - Instructions provided for everything to make it easy for you
 - Easy to configure: Takes 5-10 minutes.
@@ -30,6 +32,9 @@ Here are some of its features:
 
 = Grow and Track =
 Grow your user base and keep track of users. Helps you to gather users and grow your user base. Intercom further helps to keep track of your users.
+
+= Use OAuth to connect to Intercom =
+No need to create your own app to get the access token. Just click the OAuth connect button and give our app the necessary permissions to interact with your Intercom account.
 
 = Subscription Form =
 You will get a standard subscription form to get users in, like any other subscription form. You can place it wherever you want, in a post or page.
@@ -133,6 +138,28 @@ Yes, you can include styles for the form on your theme to customize it.
 
 == Changelog ==
 
+= 2.0.0 =
+* Implemented OAuth connectivity to Intercom.
+* Implemented Intercom chat option.
+* The access token given in the old version will no longer work. Site admin needs to connect to Intercom again using OAuth.
+
+
+= 1.1.0 =
+* Compatible with 2.3 latest version intercom api.
+* Updated intercom php SDK file.
+* Update user, lead and company registration add and update porcess.
+
+= 1.0.27 =
+* Fix PHP error.
+* Update get access token page link in settings page.
+
+= 1.0.26 =
+* Fix new company not registered properly.
+
+= 1.0.25 =
+* Updated intercom php SDK file
+* Fix user not created issue.
+
 = 1.0.24 =
 * Updated the new logo and banner.
 * Fix for icon not showing on admin sidebar.
@@ -176,3 +203,6 @@ Option name for API Access Token has been changed. If API Access Token appears b
 
 = 1.0 =
 (Initial release. Please Install.)
+
+= 2.0.0 =
+Implemented OAuth connection to intercom and chat option.

@@ -1,8 +1,11 @@
 <?php
 
-use Intercom\IntercomCounts;
+namespace Intercom\Test;
 
-class IntercomCountsTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomCounts;
+use PHPUnit\Framework\TestCase;
+
+class IntercomCountsTest extends TestCase
 {
     public function testCountsList()
     {

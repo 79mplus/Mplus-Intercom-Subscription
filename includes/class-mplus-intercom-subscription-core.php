@@ -83,7 +83,11 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 			$this->mplus_load_dependencies();
 			$this->mplus_set_locale();
 			$this->mplus_admin_hooks_define();
-			$this->mplus_public_hooks_define();
+			if( get_option( 'mplusis_api_key' ) ){
+				$this->mplus_public_hooks_define();
+			}
+
+			new Mplus_Intercom_Subscription_OAuth();
 
 		}
 
@@ -152,6 +156,12 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 			 */
 			require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-shortcode.php';
 
+			/**
+			 * The class is responsible for receiving and saving access token
+			 * 
+			 */
+			require_once MPLUSIS_PLUGINS_DIR . 'includes/class-mplus-intercom-subscription-oauth.php';
+
 			$this->loader = new Mplus_Intercom_Subscription_Core_Loader();
 
 		}
@@ -200,6 +210,9 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 			$this->loader->add_shortcode( 'mplus_intercom_subscription', $mplusis_shortcode, 'mplus_intercom_subscription' );
 			$this->loader->add_shortcode( 'mplus_intercom_subscription_company', $mplusis_shortcode, 'mplus_intercom_subscription_company' );
 
+			$access_token = new Mplus_Intercom_Subscription_OAuth();
+			$this->loader->add_action( 'rest_api_init', $access_token, 'rest_route' );
+
 		}
 
 		/**
@@ -223,8 +236,8 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'mplus_enqueue_scripts' );
 			$this->loader->add_action( 'wp_ajax_mplus_intercom_subscription_company_form_submit', $plugin_public, 'company_submit_handler' );
 			$this->loader->add_action( 'wp_ajax_nopriv_mplus_intercom_subscription_company_form_submit', $plugin_public, 'company_submit_handler' );
-			$this->loader->add_action( 'mplus_intercom_subscription_user_created_after', $plugin_public, 'user_assign_to_company_handler', 10, 2 );
-
+			$this->loader->add_action( 'mplus_intercom_subscription_user_created_after', $plugin_public, 'user_assign_to_company_handler', 10, 3 );
+			$this->loader->add_action( 'wp_footer', $plugin_public, 'chat_bubble' );
 		}
 
 		/**
@@ -307,9 +320,12 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Core' ) ) {
 		public static function get_client(){
 
 			if ( is_null( self::$_client ) && class_exists( 'Intercom\IntercomClient' ) ) {
-				// Access token
-				$access_token = get_option( 'mplusis_api_key' );
-				self::$_client = new Intercom\IntercomClient( $access_token, null );
+				try {
+					// Access token
+					$access_token = get_option( 'mplusis_api_key' );
+					self::$_client = new Intercom\IntercomClient( $access_token, null );
+				} catch (Exception $e) {
+				}
 			}
 
 			return self::$_client;

@@ -33,7 +33,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Shortcode' ) ) {
 		 */
 		public function mplus_intercom_subscription( $atts ) {
 
-			if ( ! is_admin() ) {
+			if ( ! is_admin() && get_option( 'mplusis_api_key' ) ) {
 				// Generates shortcode output.
 				$html = mplus_intercom_subscription_get_template( 'mplus-intercom-subscription-shortcode.php' );
 				return $html;
@@ -51,7 +51,7 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Shortcode' ) ) {
 		 */
 		public function mplus_intercom_subscription_company( $atts ) {
 
-			if ( ! is_admin() ) {
+			if ( ! is_admin() && get_option( 'mplusis_api_key' ) ) {
 				// Generates shortcode output.
 				$html = mplus_intercom_subscription_get_template( 'mplus-intercom-subscription-company-shortcode.php' );
 				return $html;

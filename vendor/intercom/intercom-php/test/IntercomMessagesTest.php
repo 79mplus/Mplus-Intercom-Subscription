@@ -1,14 +1,11 @@
 <?php
 
-use Intercom\IntercomMessages;
-use Intercom\IntercomClient;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
+namespace Intercom\Test;
 
-class IntercomMessagesTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomMessages;
+use PHPUnit\Framework\TestCase;
+
+class IntercomMessagesTest extends TestCase
 {
     public function testMessageCreate()
     {

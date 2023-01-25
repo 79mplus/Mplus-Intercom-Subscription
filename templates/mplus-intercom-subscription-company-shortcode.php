@@ -77,6 +77,18 @@ endif;
 		),
 	);
 	$fields = apply_filters( 'mplus_intercom_subscription_company_form_before_submit', $fields );
+	
+	$honeypot_spam_protect = get_option( 'mplusis_subscription_spam_protection' );
+
+	if ( ! empty( $honeypot_spam_protect ) && $honeypot_spam_protect == 1 ) :
+		$fields [] = apply_filters( 'mplus_intercom_subscription_honeypot_field', array(
+				'type'  	=> 'text',
+				'label' 	=> '',
+				'name'  	=> 'honeypot',
+				'class' 	=> 'hide-robot',
+				'required'	=> false,
+			));
+	endif;
 
 	$fields [] = array(
 			'type' => 'submit',

@@ -1,8 +1,11 @@
 <?php
 
-use Intercom\IntercomTags;
+namespace Intercom\Test;
 
-class IntercomTagsTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomTags;
+use PHPUnit\Framework\TestCase;
+
+class IntercomTagsTest extends TestCase
 {
     public function testTagUsers()
     {

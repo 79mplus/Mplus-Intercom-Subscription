@@ -1,8 +1,11 @@
 <?php
 
-use Intercom\IntercomBulk;
+namespace Intercom\Test;
 
-class IntercomBulkTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomBulk;
+use PHPUnit\Framework\TestCase;
+
+class IntercomBulkTest extends TestCase
 {
     public function testBulkUsers()
     {

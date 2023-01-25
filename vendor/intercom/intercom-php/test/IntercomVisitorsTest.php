@@ -1,8 +1,11 @@
 <?php
 
-use Intercom\IntercomVisitors;
+namespace Intercom\Test;
 
-class IntercomVisitorsTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomVisitors;
+use PHPUnit\Framework\TestCase;
+
+class IntercomVisitorsTest extends TestCase
 {
 
     public function testVisitorUpdate()

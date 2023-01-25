@@ -1,20 +1,38 @@
-#, fuzzy
+# Copyright (C) 2022 79mplus
+# This file is distributed under the same license as the Mplus Intercom Subscription plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Mplus Intercom Subscription\n"
-"POT-Creation-Date: 2018-07-05 16:30+0600\n"
-"PO-Revision-Date: 2018-03-09 13:18+0600\n"
-"Last-Translator: \n"
-"Language-Team: 79mplus\n"
-"Language: en_US\n"
+"Project-Id-Version: Mplus Intercom Subscription 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mplus-intercom-subscription\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
-"X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
-"X-Poedit-SearchPath-0: .\n"
+"POT-Creation-Date: 2022-12-14T07:27:13+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.3.0\n"
+"X-Domain: mplus-intercom-subscription\n"
+
+#. Plugin Name of the plugin
+msgid "Mplus Intercom Subscription"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://www.79mplus.com/intercom-subscription/"
+msgstr ""
+
+#. Description of the plugin
+msgid "The easiest and most extendable WordPress plugin for Intercom. This lets you offer a subscription form for Intercom and offers a wide range of extensions to grow your user base with the power of Intercom."
+msgstr ""
+
+#. Author of the plugin
+msgid "79mplus"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.79mplus.com/"
+msgstr ""
 
 #: classes/mplus-intercom-subscription-form.php:34
 msgid "Name"
@@ -24,40 +42,54 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: classes/mplus-intercom-subscription-form.php:56
-#, php-format
-msgid "Your company not listed? %sCreate it%s."
+#. translators: 1: anchor tag start 2: anchor tag end
+#: classes/mplus-intercom-subscription-form.php:57
+msgid "Your company not listed? %1$sCreate here%2$s."
 msgstr ""
 
-#: classes/mplus-intercom-subscription-form.php:67
+#: classes/mplus-intercom-subscription-form.php:68
 msgid "Company"
 msgstr ""
 
-#: classes/mplus-intercom-subscription-form.php:85
+#: classes/mplus-intercom-subscription-form.php:86
 msgid "Subscribe to email"
 msgstr ""
 
-#: classes/mplus-intercom-subscription-form.php:96
+#: classes/mplus-intercom-subscription-form.php:109
 msgid "Submit"
 msgstr ""
 
-#: classes/mplus-intercom-subscription-form.php:122
+#: classes/mplus-intercom-subscription-form.php:135
 msgid "Thank You!"
 msgstr ""
 
-#: classes/mplus-intercom-subscription-handler.php:60
-#: classes/mplus-intercom-subscription-handler.php:95
-msgid "Added New User."
-msgstr ""
-
-#: classes/mplus-intercom-subscription-handler.php:64
-#: classes/mplus-intercom-subscription-handler.php:99
+#: classes/mplus-intercom-subscription-form.php:259
+#: includes/class-mplus-intercom-subscription-public.php:110
 msgid "Something Wrong."
 msgstr ""
 
-#: classes/mplus-intercom-subscription-handler.php:87
-#: classes/mplus-intercom-subscription-handler.php:122
-msgid "An error occurred while registering the user."
+#: classes/mplus-intercom-subscription-handler.php:58
+msgid "Email required."
+msgstr ""
+
+#: classes/mplus-intercom-subscription-handler.php:86
+msgid "Contact has been successfully registered."
+msgstr ""
+
+#: classes/mplus-intercom-subscription-handler.php:94
+msgid "An error occurred while registering the contact."
+msgstr ""
+
+#: classes/mplus-intercom-subscription-handler.php:98
+msgid "This email already registered as an user contact. Please used another email."
+msgstr ""
+
+#: classes/mplus-intercom-subscription-handler.php:108
+msgid "Contact has been successfully updated."
+msgstr ""
+
+#: classes/mplus-intercom-subscription-handler.php:113
+msgid "An error occurred while updating the contact."
 msgstr ""
 
 #: includes/class-mplus-intercom-subscription-admin.php:87
@@ -69,164 +101,180 @@ msgid "Premium Addons"
 msgstr ""
 
 #: includes/class-mplus-intercom-subscription-admin.php:108
-#: includes/class-mplus-intercom-subscription-settings.php:200
+#: includes/class-mplus-intercom-subscription-settings.php:231
 msgid "Settings"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-public.php:115
+#: includes/class-mplus-intercom-subscription-public.php:136
 msgid "Company already exists. Company Information updated."
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-public.php:139
+#: includes/class-mplus-intercom-subscription-public.php:174
+#: includes/class-mplus-intercom-subscription-public.php:204
 msgid "Company Registration Completed."
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:79
+#: includes/class-mplus-intercom-subscription-settings.php:82
 msgid "Intercom Subscription General Settings"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:80
-msgid "Access Token"
-msgstr ""
-
-#: includes/class-mplus-intercom-subscription-settings.php:81
+#: includes/class-mplus-intercom-subscription-settings.php:84
 msgid "Subscription Type"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:103
-msgid "Please enter Intercom API Access Token."
+#: includes/class-mplus-intercom-subscription-settings.php:112
+msgid "You are connected with Intercom."
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:107
-#, php-format
-msgid ""
-"To create your Access Token, go to %1$s and then click &quot;Get an "
-"Access Token&quot;. %2$s"
+#: includes/class-mplus-intercom-subscription-settings.php:114
+msgid "Disconnect"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:109
-msgid "more info"
-msgstr ""
-
-#: includes/class-mplus-intercom-subscription-settings.php:123
+#: includes/class-mplus-intercom-subscription-settings.php:136
 msgid "User"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:124
+#: includes/class-mplus-intercom-subscription-settings.php:137
 msgid "Lead"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:126
+#: includes/class-mplus-intercom-subscription-settings.php:139
 msgid "Please select Intercom Subscription Type."
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:140
-msgid "Check to show a consent checkbox on the form"
+#: includes/class-mplus-intercom-subscription-settings.php:153
+msgid "Show the chat bubble at the bottom."
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:156
+#: includes/class-mplus-intercom-subscription-settings.php:169
 msgid "Check to show company select field on the form"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:172
+#: includes/class-mplus-intercom-subscription-settings.php:185
 msgid "Please select Intercom Company Registration Page."
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:193
-msgid "Overview"
-msgstr ""
-
-#: includes/class-mplus-intercom-subscription-settings.php:194
-#, php-format
-msgid ""
-"<h3>Intercom Subscription Plugin</h3><p>The easiest and most "
-"extendable WordPress plugin for Intercom. This lets you offer a "
-"subscription form for Intercom and offers a wide range of extensions "
-"to grow your user base with the power of Intercom.<br/>Please <a "
-"target='_blank' href='%s'>click here</a> to get more information.</p>"
-msgstr ""
-
-#: includes/class-mplus-intercom-subscription-settings.php:206
-msgid "For more information:"
-msgstr ""
-
-#: includes/class-mplus-intercom-subscription-settings.php:207
-msgid "FAQ"
-msgstr ""
-
-#: includes/class-mplus-intercom-subscription-settings.php:208
-msgid "Support Forum"
+#: includes/class-mplus-intercom-subscription-settings.php:201
+msgid "Check to enable honeypot spam protection for forms."
 msgstr ""
 
 #: includes/class-mplus-intercom-subscription-settings.php:222
-#, php-format
+msgid "Overview"
+msgstr ""
+
+#. translators: %s: link location
+#: includes/class-mplus-intercom-subscription-settings.php:225
+msgid "<h3>Intercom Subscription Plugin</h3><p>The easiest and most extendable WordPress plugin for Intercom. This lets you offer a subscription form for Intercom and offers a wide range of extensions to grow your user base with the power of Intercom.<br/>Please <a target='_blank' href='%s'>click here</a> to get more information.</p>"
+msgstr ""
+
+#: includes/class-mplus-intercom-subscription-settings.php:237
+msgid "For more information:"
+msgstr ""
+
+#: includes/class-mplus-intercom-subscription-settings.php:238
+msgid "FAQ"
+msgstr ""
+
+#: includes/class-mplus-intercom-subscription-settings.php:239
+msgid "Support Forum"
+msgstr ""
+
+#. translators: 1: link location 2: link location
+#: includes/class-mplus-intercom-subscription-settings.php:255
 msgid ""
-"\n"
-"\t\t\t<p><strong>Where is Intercom Access Token?</strong></p>\n"
-"\t\t\t<ol>\n"
-"\t\t\t\t<li>Please visit <a target=\"_blank\" href=\"%1$s\">Intercom "
-"Application</a> to get more about Intercom Access Token.</li>\n"
-"\t\t\t</ol>\n"
-"\n"
-"\t\t\t<p><strong>I am new. How do I get access token?</strong> Please "
-"follow the instruction below to create a Intercom Access Token:</p>\n"
-"\t\t\t<ol>\n"
-"\t\t\t\t<li>To create your Access Token, go to the dashboard in the "
-"Intercom Developer Hub by <a target=\"_blank\" href=\"%2$s\">clicking "
-"here</a> or by clicking on Dashboard at the top of the page and click "
-"<strong>\"Get an Access Token\"</strong></li>\n"
-"\t\t\t\t<li>When you setup your Token, you will be asked to choose "
-"between two levels of scopes. Select Your Scopes.</li>\n"
-"\t\t\t\t<li>Once you have created your Access Token you will see it in "
-"the same section in your Dashboard. You can edit or delete the token "
-"from <a target=\"_blank\" href=\"%3$s\">here</a>.</li>\n"
-"\t\t\t</ol>\n"
+"\n"
+"\t\t\t<p><strong>Where is Intercom Access Token?</strong></p>\n"
+"\t\t\t<ol>\n"
+"\t\t\t\t<li>Please visit <a target=\"_blank\" href=\"%1$s\">Intercom Application</a> to get more about Intercom Access Token.</li>\n"
+"\t\t\t</ol>\n"
+"\n"
+"\t\t\t<p><strong>I am new. How do I get access token?</strong> Please follow the instruction below to create a Intercom Access Token:</p>\n"
+"\t\t\t<ol>\n"
+"\t\t\t\t<li>To create your Access Token, go to the dashboard in the Intercom Developer Hub by <a target=\"_blank\" href=\"%2$s\">clicking here</a> or by clicking on Dashboard at the top of the page and click <strong>\"Get an Access Token\"</strong></li>\n"
+"\t\t\t\t<li>When you setup your Token, you will be asked to choose between two levels of scopes. Select Your Scopes.</li>\n"
+"\t\t\t\t<li>Once you have created your Access Token you will see it in the same section in your Dashboard. You can edit or delete the token from <a target=\"_blank\" href=\"%3$s\">here</a>.</li>\n"
+"\t\t\t</ol>\n"
 "\t\t\t"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:254
-#, php-format
-msgid ""
-"<p><strong>Intercom Subscription Plugin is almost ready.</strong> "
-"Please %1$sAdd Access Token%2$s to use the plugin.</p>"
+#: includes/class-mplus-intercom-subscription-settings.php:281
+msgid "Check to show a consent checkbox on the form"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:288
+#. translators: 1: anchor tag start 2: anchor tag end
+#: includes/class-mplus-intercom-subscription-settings.php:305
+msgid "Intercom Subscription Plugin is almost ready. Please %1$sconnect to Intercom%2$s to use the plugin."
+msgstr ""
+
+#. translators: 1: anchor tag start 2: anchor tag end
+#: includes/class-mplus-intercom-subscription-settings.php:317
+msgid "Intercom Subscription plugin uses %1$sofficial PHP bindings to the Intercom API%2$s. This library supports PHP 7.1 and later. Your web server has PHP version %3$s, which doesn't meet the requirement for this to work as expected."
+msgstr ""
+
+#: includes/class-mplus-intercom-subscription-settings.php:351
 msgid "No Premium Addon Found"
 msgstr ""
 
-#: includes/class-mplus-intercom-subscription-settings.php:302
+#: includes/class-mplus-intercom-subscription-settings.php:365
 msgid "Select Page"
 msgstr ""
 
 #: templates/mplus-intercom-subscription-company-shortcode.php:10
-msgid "Company Names"
+msgid "Company Name"
 msgstr ""
 
-#: templates/mplus-intercom-subscription-company-shortcode.php:19
-msgid "Company Creator Email"
+#: templates/mplus-intercom-subscription-company-shortcode.php:16
+msgid "The name of the company."
 msgstr ""
 
-#: templates/mplus-intercom-subscription-company-shortcode.php:28
-msgid "Company Created"
+#: templates/mplus-intercom-subscription-company-shortcode.php:20
+msgid "Company Email"
 msgstr ""
 
-#: templates/mplus-intercom-subscription-company-shortcode.php:37
-msgid "Company Plan"
+#: templates/mplus-intercom-subscription-company-shortcode.php:26
+msgid "The email of the company."
+msgstr ""
+
+#: templates/mplus-intercom-subscription-company-shortcode.php:30
+msgid "Company Created At"
+msgstr ""
+
+#: templates/mplus-intercom-subscription-company-shortcode.php:36
+msgid "The date at which the company was started. In mm/dd/yyyy format."
+msgstr ""
+
+#: templates/mplus-intercom-subscription-company-shortcode.php:40
+msgid "Plan"
 msgstr ""
 
 #: templates/mplus-intercom-subscription-company-shortcode.php:46
-msgid "Industry"
+msgid "The plan or package the company is under. This is useful if you are selling any package product to the company."
 msgstr ""
 
-#: templates/mplus-intercom-subscription-company-shortcode.php:55
-msgid "Company Size"
+#: templates/mplus-intercom-subscription-company-shortcode.php:50
+msgid "Company Industry"
 msgstr ""
 
-#: templates/mplus-intercom-subscription-company-shortcode.php:64
+#: templates/mplus-intercom-subscription-company-shortcode.php:56
+msgid "The industry in which the company works on. E.g. Computer Accessories, Food Home Delivery."
+msgstr ""
+
+#: templates/mplus-intercom-subscription-company-shortcode.php:60
+msgid "People"
+msgstr ""
+
+#: templates/mplus-intercom-subscription-company-shortcode.php:66
+msgid "How many employees or people are related to the company."
+msgstr ""
+
+#: templates/mplus-intercom-subscription-company-shortcode.php:70
 msgid "Company Website"
 msgstr ""
 
 #: templates/mplus-intercom-subscription-company-shortcode.php:76
+msgid "Website of the company."
+msgstr ""
+
+#: templates/mplus-intercom-subscription-company-shortcode.php:95
 msgid "Register Company"
 msgstr ""

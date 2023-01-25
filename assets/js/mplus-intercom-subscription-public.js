@@ -14,10 +14,11 @@
 				success: function( data, textStatus, jqXHR ) {
 					if ( data.success == 1 ) {
 						$( ".mplus-intercom-subscription-form form.mplus_intercom_subscription" ).remove();
-						$( '.mplus-intercom-subscription-form .message' ).show();
+						$( '.mplus-intercom-subscription-form .message' ).empty().html( data.message ).show();
 					} else {
-						$( '.mplus-intercom-subscription-form .message' ).html( data.message ).show();
+						$( '.mplus-intercom-subscription-form .message' ).empty().html( data.message ).show();
 						$( '.mplus-intercom-subscription-form .message' ).fadeIn().delay( 10000 ).fadeOut();
+						console.log(data);
 					}
 				},
 				error: function( jqXHR, textStatus, errorThrown ) {

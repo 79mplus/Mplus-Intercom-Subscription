@@ -3,8 +3,6 @@
 /**
  * Manages Intercom functionality of this plugin.
  *
- * @package Mplus_Intercom_Subscription
- * @subpackage Mplus_Intercom_Subscription/classes
  * @author 79mplus
  */
 
@@ -15,9 +13,8 @@ endif;
 
 if ( ! class_exists( 'Mplus_Intercom_Subscription_Handler' ) ) {
 	class Mplus_Intercom_Subscription_Handler {
-
 		/**
-		 * @var \Intercom\IntercomClient $client Holds the Intercom client instance.
+		 * @var \Intercom\IntercomClient Holds the Intercom client instance.
 		 */
 		public $client;
 
@@ -25,139 +22,137 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Handler' ) ) {
 		 * Constructor for the class.
 		 *
 		 * @param string|null $access_token Access token for Intercom API.
+		 *
 		 * @return void
 		 */
-		public function __construct( $access_token = null ) {
-
+		public function __construct($access_token = null) {
 			// Initializes the api with the accesstoken.
 			if ( empty( $access_token ) ) {
 				$access_token = get_option( 'mplusis_api_key' );
 			}
 			$this->client = new Intercom\IntercomClient( $access_token, null );
-
 		}
 
 		/**
 		 * Creates user with the given info.
 		 *
-		 * @param array $submitted_fields Fields to submit.
-		 * @param string $user_type (optional) Either user or lead.
+		 * @param array  $submitted_fields Fields to submit.
+		 * @param string $user_type        (optional) Either user or lead.
+		 *
 		 * @return array
 		 */
-		public function create_user( $submitted_fields, $user_type = 'user' ) {
-
+		public function create_user($submitted_fields, $user_type = 'user') {
+			$contact_id = null;
+			$response   = [
+				'success' => 0,
+			];
 			$client = $this->client;
-
 			$fields = self::get_fields( $submitted_fields );
+			$fields = array_merge( ['role' => $user_type ], $fields );
+			$email  = isset( $fields['email'] ) ? $fields['email'] : '';
 
-			do_action( 'mplus_intercom_subscription_user_created_before', $fields, $user_type );
+			do_action( 'mplus_intercom_subscription_user_created_before', $fields, $user_type, $this->client );
 
-			$response = array();
-			if ( $user_type == 'lead' ) {
-				try {
-					$new_user = $client->leads->create( $fields );
-					if ( ! empty( $new_user->id ) ) :
-						$response['massage'] =  __( 'Added New User.', 'mplus-intercom-subscription' );
-						$response['success'] = 1;
-						$response['user_info'] = $new_user;
-					else :
-						$response['massage'] =  __( 'Something Wrong.', 'mplus-intercom-subscription' );
-						$response['success'] = 0;
-					endif;
-				} catch ( Exception $e ) {
-					$response['success'] = 0;
-					if ( $e->getCode() == 409 ) {
-						/*
-						There are multiple users with this email.
-						in this case creates the user using a custom user_id and saves that in wp.
-						But at first checks if it has already been done this for this email.
-						*/
-						$user_id = get_option( 'mplus_intercom_subscription' . $fields->email );
-						$user_found = $user_id;
-						if ( ! $user_found ) {
-							$user_id = 'mplus-intercom-subscription-' . time();
-						}
-						$fields['user_id'] = "$user_id";
-						$new_user = $client->leads->create( $fields );
-						if ( $new_user && ! $user_found ) {
-							update_option( 'mplus_intercom_subscription' . $fields->email, $user_id );
-						}
+			// Email validation.
+			if ( '' == $email && ! is_email( $email ) ) {
+				$response['message'] = __( 'Email required.', 'mplus-intercom-subscription' );
 
-					} else {
-						$response['message'] = __( 'An error occurred while registering the user.', 'mplus-intercom-subscription' );
-						return $response;
-					}
-				}
-			} else {
-				try {
-					$new_user = $client->users->create( $fields );
-					if ( ! empty( $new_user->id ) ) :
-						$response['massage'] =  __( 'Added New User.', 'mplus-intercom-subscription' );
-						$response['success'] = 1;
-						$response['user_info'] = $new_user;
-					else :
-						$response['massage'] =  __( 'Something Wrong.', 'mplus-intercom-subscription' );
-						$response['success'] = 0;
-					endif;
-				} catch ( Exception $e ) {
-					$response['success'] = 0;
-					if ( $e->getCode() == 409 ) {
-						/*
-						There are multiple users with this email.
-						In this case it creates the user using a custom user_id and save that in wp.
-						But at first checks if it has already been done this for this email.
-						*/
-						$user_id = get_option( 'mplus_intercom_subscription' . $fields->email );
-						$user_found = $user_id;
-						if ( ! $user_found ) {
-							$user_id = 'mplus-intercom-subscription-' . time();
-						}
-						$fields['user_id'] = "$user_id";
-						$new_user = $client->users->create( $fields );
-						if ( $new_user && ! $user_found ) {
-							update_option( 'mplus_intercom_subscription' . $fields->email, $user_id );
-						}
+				return $response;
+			}
 
-					} else {
-						$response['message'] = __( 'An error occurred while registering the user.', 'mplus-intercom-subscription' );
-						return $response;
+			/* Checking if contact exist or not exist. */
+			$search_contacts = $client->contacts->search([
+				'pagination' => ['per_page' => 10],
+				'query'      => [ 'field' => 'email', 'operator' => '=', 'value' => $email ],
+			]);
+
+			$contacts = $search_contacts->data;
+
+			// Validate contact role with user type.
+			if ( count( $contacts ) > 0 ) {
+				foreach ( $contacts as $contact ) {
+					if ( $contact->role == $user_type ) {
+						$contact_id = $contact->id;
 					}
 				}
 			}
-			
-			do_action( 'mplus_intercom_subscription_user_created_after', $new_user, $submitted_fields );
+
+			// If contact id null create a new contact. If not null update existing contact.
+			if ( is_null( $contact_id ) ) {
+				try {
+					$new_contact = $client->contacts->create( $fields );
+
+					if ( isset( $new_contact->id ) ) {
+						$response['message']   = __( 'Contact has been successfully registered.', 'mplus-intercom-subscription' );
+						$response['success']   = 1;
+						$response['type']      = $user_type;
+						$response['user_info'] = $new_contact;
+					}
+
+					return $response;
+				} catch ( Exception $e ) {
+					$response['message'] = __( 'An error occurred while registering the contact.', 'mplus-intercom-subscription' );
+					$response['code']    = $e->getCode();
+
+					if ( 409 == $e->getCode() && 'lead' == $user_type ) {
+						$response['message'] = __( 'This email already registered as an user contact. Please used another email.', 'mplus-intercom-subscription' );
+					}
+
+					return $response;
+				}
+			} else {
+				/* Update existing contact */
+				try {
+					$fields['role']        = $user_type;
+					$new_contact           = $client->contacts->update( $contact_id, $fields );
+					$response['message']   = __( 'Contact has been successfully updated.', 'mplus-intercom-subscription' );
+					$response['success']   = 1;
+					$response['type']      = $user_type;
+					$response['user_info'] = $new_contact;
+				} catch ( Exception $e ) {
+					$response['message'] = __( 'An error occurred while updating the contact.', 'mplus-intercom-subscription' );
+
+					return $response;
+				}
+			}
+
+			do_action( 'mplus_intercom_subscription_user_created_after', $new_contact, $submitted_fields, $this->client );
 
 			return $response;
-
 		}
 
 		/**
 		 * Gets fields.
 		 *
 		 * @param object $fields Fields to submit.
+		 *
 		 * @return array
 		 */
-		public function get_fields( $fields ) {
-
-			$basic = array();
-			$custom = array();
+		public static function get_fields($fields) {
+			$basic  = [];
+			$custom = [];
 			/*default value for unsubscribed_from_emails*/
 			$basic['unsubscribed_from_emails'] = true;
 			foreach ( $fields as $field ) {
-				if ( $field['intercom_attribute'] == 'unsubscribed_from_emails' ) {
-					$field['value'] = false;
-				}
-				if ( $field['attribute_type'] == 'basic' ) {
-					$basic[ $field['intercom_attribute'] ] = $field['value'];
-				} elseif ( $field['attribute_type'] == 'custom' ) {
-					$custom[ $field['intercom_attribute'] ] = $field['value'];
-				} else {
+				if ( array_key_exists( 'intercom_attribute', $field ) ) {
+					if ( 'unsubscribed_from_emails' == $field['intercom_attribute'] ) {
+						$field['value'] = false;
+					}
 
+					if ( 'basic' == $field['attribute_type'] ) {
+						$basic[ $field['intercom_attribute'] ] = $field['value'];
+					} elseif ( 'custom' == $field['attribute_type'] ) {
+						$custom[ $field['intercom_attribute'] ] = $field['value'];
+					} else {
+					}
 				}
 			}
-			$basic['custom_attributes'] = $custom;
-			return $basic;
 
+			if ( ! empty( $custom ) ) {
+				$basic['custom_attributes'] = $custom;
+			}
+
+			return $basic;
 		}
 	}
 }

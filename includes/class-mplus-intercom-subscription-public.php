@@ -86,39 +86,61 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Public' ) ) {
 		 * @return void
 		 */
 		public function company_submit_handler() {
-
 			$submitted_fields = array();
-			$response = array();
-			$intercom = Mplus_Intercom_Subscription_Core::get_client();
+			$response         = array();
+			$intercom         = Mplus_Intercom_Subscription_Core::get_client();
+			$honeypot         = false;
+			$fields           = wp_unslash( $_POST['fields'] );
 
-			$fields = $_POST['fields'];
+			foreach ( $fields as $field ) {
+				if( $field['name'] == 'honeypot' ) {
+					if( $field['value'] != '' ) {
+						$honeypot = true;
+					}
+					continue;
+				}
 
-			foreach ( $fields as $field ) :
 				$submitted_fields[ $field['name'] ] =  $field['value'];
-			endforeach;
+			}
+
+			$spam_protection = get_option( 'mplusis_subscription_spam_protection' );
+
+			if( $spam_protection == 1 && $honeypot ) {
+				$response['success'] = 0;
+				$response['message'] = __( 'Something Wrong.', 'mplus-intercom-subscription' );
+				wp_send_json( $response );
+				die();
+			}
 
 			try {
-
+				// Check in conpany exists or not. If exists update company informations.
 				$company = $intercom->companies->getCompanies( [
-					'name' => $submitted_fields['name']
+					'name' => esc_attr( trim( $submitted_fields['name'] ) ),
 				] );
+
+				// Conpany fields new data.
 				$company_fields = [
 					'id'         => $company->id,
+					'company_id' => $company->company_id,
 					'plan'       => esc_attr( $submitted_fields['plan'] ),
 					'created_at' => strtotime( $submitted_fields['created_at'] ),
 					'size'       => esc_attr( $submitted_fields['size'] ),
 					'website'    => esc_url( $submitted_fields['website'] ),
 					'industry'   => esc_attr( $submitted_fields['industry'] ),
 				];
-				$company = $intercom->companies->create( $company_fields );
+
+				// Update Company information
+				$company = $intercom->companies->update( $company_fields );
+
 				$response['company_info'] = $company;
-				$response['message'] = __( 'Company already exists. Company Information updated.', 'mplus-intercom-subscription' );
-				$response['success'] = 0;
-
-			} catch ( Exception $e ) {
-
+				$response['message']      = __( 'Company already exists. Company Information updated.', 'mplus-intercom-subscription' );
+				$response['success']      = 0;
+				wp_send_json( $response );
+				die();
+			} catch (Exception $e) {
+				// Conpany fields data.
 				$company_fields = [
-					'name'			=> esc_attr( $submitted_fields['name'] ),
+					'name'			=> esc_attr( trim( $submitted_fields['name'] ) ),
 					'company_id' 	=> mt_rand( 10,999999 ),
 					'plan'			=> esc_attr( $submitted_fields['plan'] ),
 					'created_at'	=> strtotime( $submitted_fields['created_at'] ),
@@ -127,22 +149,76 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Public' ) ) {
 					'industry'		=> esc_attr( $submitted_fields['industry'] ),
 				];
 
-				// Assign company creator as a company user
-				$creator_user = $intercom->users->create( [
-					'email'     => $submitted_fields['email'],
-					'name'      => ucwords( $company->name ) . ' Creator',
-					'companies' => [ $company_fields ]
-				] );
+				try {
+					// Create A New company.
+					$company = $intercom->companies->create($company_fields);
 
-				$response['company_info'] = $creator_user->companies;
-				$response['success'] = 1;
-				$response['message'] = __( 'Company Registration Completed.', 'mplus-intercom-subscription' );
+					try {
+						// Create a new user using email address. And assign as a company user.
+						$creator_user = $intercom->contacts->create([
+							'name'      => ucwords( trim( $submitted_fields['name'] ) ) . ' Creator',
+							'email' 	=> $submitted_fields['email'],
+							'companies' => [
+								//[ 'company_id' => $company->company_id ]
+								[ 'id'  => $company->id ]
+							],
+							'type' 		=> 'user',
+						]);
+						/**
+						 * Add companies to a contact with IDs
+						 */
+						$intercom->companies->attachContact( $creator_user->id, $company->id );
+
+						$response['company_info'] = $creator_user;
+						$response['success']      = 1;
+						$response['message']      = __( 'Company Registration Completed.', 'mplus-intercom-subscription' );
+						wp_send_json( $response );
+						die();
+					} catch (Exception $e) {
+						//If use exists for submitted email address. Update user's company information.
+						try {
+							/** Search for contacts */
+							$query = [ 'field' => 'email', 'operator' => '=', 'value' => $submitted_fields['email'] ];
+							$query_users = $intercom->contacts->search([
+								'pagination' => ['per_page' => 1],
+								'query'      => $query,
+							]);
+
+							$exists_users = $query_users->data;
+							$exists_user  = $exists_users[0];
+
+							// Update user company information.
+							$creator_user = $intercom->contacts->update( $exists_user->id, [
+								'email' 	=> $submitted_fields['email'],
+								'companies' => [
+									[ 'id' => $company->id ]
+								],
+							]);
+							/**
+							 * Add companies to a contact with IDs
+							 */
+							$intercom->companies->attachContact( $creator_user->id, $company->id );
+
+							$response['company_info'] = $creator_user;
+							$response['success']      = 1;
+							$response['message']      = __( 'Company Registration Completed.', 'mplus-intercom-subscription' );
+							wp_send_json( $response );
+							die();
+						} catch (Exception $e) {
+							$response['success'] = 0;
+							$response['message'] = __( $e->getMessage(), 'mplus-intercom-subscription' );
+							wp_send_json( $response );
+							die();
+						}
+					}
+				} catch (Exception $e) {
+					// If company not created properly send error message.
+					$response['success'] = 0;
+					$response['message'] = __( $e->getMessage(), 'mplus-intercom-subscription' );
+					wp_send_json( $response );
+					die();
+				}
 			}
-
-			wp_send_json( $response );
-
-			die();
-
 		}
 
 		/**
@@ -150,29 +226,44 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Public' ) ) {
 		 *
 		 * @return void
 		 */
-		public function user_assign_to_company_handler( $new_user, $submitted_fields ) {
+		public function user_assign_to_company_handler( $new_user, $submitted_fields, $client ) {
 
 			if ( is_object( $new_user ) && isset( $new_user->email ) ) {
-
-				$intercom = Mplus_Intercom_Subscription_Core::get_client();
-
 				foreach ( $submitted_fields as $field ) {
 					if ( array_key_exists( 'name', $field ) && $field['name'] == 'company_id' ) :
 						$company_id = $field['value'];
 						break;
 					endif;
 				}
+
 				if ( isset( $company_id ) ) :
-					$intercom->users->update( [
-						'email'     => $new_user->email,
-						'companies' => [
-							[
-								'company_id' => $company_id
-							]
-						]
-					] );
+					$client->companies->attachContact( $new_user->id, $company_id );
 				endif;
 
+			}
+		}
+		/**
+		 * print the chat bubble
+		 *
+		 * @return void
+		 */
+		public function chat_bubble(){
+			if( get_option( 'mplusis_enable_chat' ) ){
+				$app_id = get_option( 'mplusis_app_id' );
+				if($app_id){
+					echo <<<EOT
+					<script>
+						window.intercomSettings = {
+						api_base: "https://api-iam.intercom.io",
+						app_id: "{$app_id}"
+						};
+					</script>
+					
+					<script>
+					(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/{$app_id}';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+					</script>
+	EOT;
+				}
 			}
 		}
 	}

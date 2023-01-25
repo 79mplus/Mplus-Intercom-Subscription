@@ -87,34 +87,53 @@ function mplus_intercom_subscription_get_template( $template_name, $args = array
  */
 function get_all_company_list() {
 	$intercom = Mplus_Intercom_Subscription_Core::get_client();
+	$companies_data = [];
 	$companies_options = array();
 
-	try {
-		$company = $intercom->companies->getCompanies( [] );
+	$companies = $intercom->companies->getCompanies( [
+			"per_page" => 50,
+	] );
 
-		$companies = $company->companies;
-		$companies_options[] = 'Select Company';
-		foreach ( $companies as $company ) :
-			if ( isset( $company->name ) ) :
-				$companies_options[ $company->company_id ] = $company->name;
-			endif;
-		endforeach;
-	} catch ( Exception $e ) {
-		$companies_options[] = 'Select Company';
+	if ( property_exists( $companies, 'data' ) ) {
+		$companies_data = array_merge( $companies_data, $companies->data );
+		$pages = $companies->pages;
+		$total_pages = $pages->total_pages;
+
+        $page = 2;
+        do {
+			$companies = $intercom->companies->getCompanies( [
+					"per_page" => 50,
+					"page" => $page
+			] );
+			if ( property_exists( $companies, 'data' ) ) {
+            	$companies_data = array_merge( $companies_data, $companies->data );
+            }
+            ++$page;
+        } while( $page <= $total_pages );
+
+	} else {
+		return $companies_options[] = 'Select Company';
+	}
+
+	$companies_options[] = 'Select Company';
+	foreach ( $companies_data as $company ) {
+		if ( isset( $company->name ) ) {
+			$companies_options[ $company->id ] = $company->name;
+		}
 	}
 
 	return $companies_options;
 }
 
-
 /**
  * Gets company information.
  *
- * @param int $company_id Company id to be used for function.
+ * @param int $company_ID Company ID to be used for function.
  * @return mixed
  */
-function get_company_information( $company_id ) {
+function get_company_information( $company_ID ) {
 
 	$intercom = Mplus_Intercom_Subscription_Core::get_client();
-	return $company = $intercom->companies->getCompanies( [ 'company_id' => $company_id ] );
+	/** Get a company by ID */
+	return $company = $intercom->companies->getCompany( $company_ID );
 }

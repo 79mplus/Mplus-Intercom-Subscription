@@ -54,6 +54,9 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 		 */
 		public function mplusis_personal_token_settings() {
 
+			if(isset($_GET['disconnect'])){
+				delete_option('mplusis_api_key');
+			}
 			?>
 				<div class="wrap">
 					<form method="post" action="options.php">
@@ -76,39 +79,49 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 		 */
 		public function mplusis_settings_fields() {
 
-			add_settings_section( 'mplusis-section', __( 'Intercom Subscription General Settings', 'mplus-intercom-subscription' ), null, 'mplusis-options' );
-			add_settings_field( 'mplusis_api_key', __( 'Access Token', 'mplus-intercom-subscription' ), array( $this, 'mplusis_display_api_key' ), 'mplusis-options', 'mplusis-section' );
+			add_settings_section( 'mplusis-section', __( 'Intercom Subscription General Settings', 'mplus-intercom-subscription' ), [ $this, 'intercom_connect_section' ], 'mplusis-options' );
+			//add_settings_field( 'mplusis_api_key', __( 'Access Token', 'mplus-intercom-subscription' ), array( $this, 'mplusis_display_api_key' ), 'mplusis-options', 'mplusis-section' );
 			add_settings_field( 'mplusis_subscription_type', __( 'Subscription Type', 'mplus-intercom-subscription' ), array( $this, 'mplusis_display_subscription_type' ), 'mplusis-options', 'mplusis-section' );
 			add_settings_field( 'mplusis_subscribe_to_intercom', 'Enable Consent Checkbox', array( $this, 'mplusis_display_subscribe_to_intercom' ), 'mplusis-options', 'mplusis-section' );
 			add_settings_field( 'mplusis_subscribe_company_field', 'Enable Company Field', array( $this, 'mplusis_display_company_field' ), 'mplusis-options', 'mplusis-section' );
 			add_settings_field( 'mplusis_subscribe_company_register_page', 'Company Registration Page', array( $this, 'mplusis_display_company_register_page' ), 'mplusis-options', 'mplusis-section' );
+			add_settings_field( 'mplusis_subscription_spam_protection', 'Enable Spam Protection', array( $this, 'mplusis_display_spam_protection' ), 'mplusis-options', 'mplusis-section' );
+			add_settings_field( 'mplusis_enable_chat', 'Enable Live Chat', array( $this, 'mplusis_display_chat_option' ), 'mplusis-options', 'mplusis-section' );
 
-
-			register_setting( 'mplusis-section', 'mplusis_api_key' );
+			//register_setting( 'mplusis-section', 'mplusis_api_key' );
 			register_setting( 'mplusis-section', 'mplusis_subscription_type' );
 			register_setting( 'mplusis-section', 'mplusis_subscribe_to_intercom' );
 			register_setting( 'mplusis-section', 'mplusis_subscribe_company_field' );
 			register_setting( 'mplusis-section', 'mplusis_subscribe_company_register_page' );
+			register_setting( 'mplusis-section', 'mplusis_subscription_spam_protection' );
+			register_setting( 'mplusis-section', 'mplusis_enable_chat' );
 
 		}
 
 		/**
-		 * Shows Intercom API Access Token field.
+		 * Intercom connect section.
 		 *
 		 * @return void
 		 */
-		public function mplusis_display_api_key() {
+		public function intercom_connect_section() {
 
-			echo '<textarea name="mplusis_api_key" id="mplusis_api_key" class="regular-text mpss-settings-apikey" style="height:70px">' . get_option( 'mplusis_api_key' ) . '</textarea>';
-			echo sprintf( '<p class="description">%s</p>', __( 'Please enter Intercom API Access Token.', 'mplus-intercom-subscription' ) );
-			echo sprintf(
-					'<p class="description">%s</p>',
-					sprintf(
-						__( 'To create your Access Token, go to %1$s and then click &quot;Get an Access Token&quot;. %2$s', 'mplus-intercom-subscription' ),
-						'<a href="https://app.intercom.com/developers/_" target="_blank">https://app.intercom.com/developers/_</a>',
-						sprintf( '<a href="https://developers.intercom.com/docs/personal-access-tokens#section-creating-your-access-token" target="_blank">%s</a>', __( 'more info', 'mplus-intercom-subscription' ) )
-					)
-				);
+			$access_token = get_option( 'mplusis_api_key' );
+
+			if( $access_token ){
+				$disconnect_url = site_url('wp-admin/admin.php?page=mplusis-settings&disconnect=1');
+				echo __( 'You are connected with Intercom.', 'mplus-intercom-subscription') .
+				 ' ' .
+				 sprintf( "<a href='%s'>" . __('Disconnect', 'mplus-intercom-subscription') . "</a>", $disconnect_url );
+			}else{
+				$connect_url = Mplus_Intercom_Subscription_OAuth::connect_url();
+				printf("<a href='%s' class='intercom-connect'><img src='%s'></a>", $connect_url, MPLUSIS_PLUGINS_DIR_URI. 'assets/images/intercom-connect.png');
+			}
+			echo "<style>a.intercom-connect:active, a.intercom-connect:focus {
+					outline: 0;
+					border: none;
+					box-shadow: none;
+					-moz-outline-style: none;
+				}</style>";
 
 		}
 
@@ -132,12 +145,12 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 		 *
 		 * @return void
 		 */
-		public function mplusis_display_subscribe_to_intercom() {
+		public function mplusis_display_chat_option() {
 
-			$sub_to_intercom = get_option( 'mplusis_subscribe_to_intercom' );
+			$enable_chat = get_option( 'mplusis_enable_chat' );
 
-			$html = '<input type="checkbox" id="mplusis_subscribe_to_intercom" name="mplusis_subscribe_to_intercom" value="1"' . checked( 1, $sub_to_intercom, false ) . '/>';
-			$html .= '<label for="mplusis_subscribe_to_intercom">' . __( 'Check to show a consent checkbox on the form', 'mplus-intercom-subscription' ) . '</label>';
+			$html = '<input type="checkbox" id="mplusis_enable_chat" name="mplusis_enable_chat" value="1"' . checked( 1, $enable_chat, false ) . '/>';
+			$html .= '<label for="mplusis_enable_chat">' . __( 'Show the chat bubble at the bottom.', 'mplus-intercom-subscription' ) . '</label>';
 
 			echo $html;
 
@@ -176,6 +189,22 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 		}
 
 		/**
+		 * Shows Company Select Field.
+		 *
+		 * @return void
+		 */
+		public function mplusis_display_spam_protection() {
+
+			$intercom_spam_protection = get_option( 'mplusis_subscription_spam_protection' );
+
+			$html = '<input type="checkbox" id="mplusis_subscription_spam_protection" name="mplusis_subscription_spam_protection" value="1"' . checked( 1, $intercom_spam_protection, false ) . '/>';
+			$html .= '<label for="mplusis_subscription_spam_protection">' . __( 'Check to enable honeypot spam protection for forms.', 'mplus-intercom-subscription' ) . '</label>';
+
+			echo $html;
+
+		}
+
+		/**
 		 * Displays Help page.
 		 *
 		 * @since 1.0
@@ -191,7 +220,9 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 			$screen->add_help_tab( array(
 				'id'      => 'mplusis_settings_overview',
 				'title'   => __( 'Overview', 'mplus-intercom-subscription' ),
-				'content' => sprintf( __( "<h3>Intercom Subscription Plugin</h3><p>The easiest and most extendable WordPress plugin for Intercom. This lets you offer a subscription form for Intercom and offers a wide range of extensions to grow your user base with the power of Intercom.<br/>Please <a target='_blank' href='%s'>click here</a> to get more information.</p>", 'mplus-intercom-subscription' ),
+				'content' => sprintf( 
+					/* translators: %s: link location */
+					__( "<h3>Intercom Subscription Plugin</h3><p>The easiest and most extendable WordPress plugin for Intercom. This lets you offer a subscription form for Intercom and offers a wide range of extensions to grow your user base with the power of Intercom.<br/>Please <a target='_blank' href='%s'>click here</a> to get more information.</p>", 'mplus-intercom-subscription' ),
 					esc_url( 'https://www.79mplus.com/' ) ),
 			));
 
@@ -219,7 +250,9 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 		 */
 		public static function mplusis_settings_connect() {
 
-			return sprintf( __( '
+			return sprintf( 
+				/* translators: 1: link location 2: link location */
+				__( '
 			<p><strong>Where is Intercom Access Token?</strong></p>
 			<ol>
 				<li>Please visit <a target="_blank" href="%1$s">Intercom Application</a> to get more about Intercom Access Token.</li>
@@ -231,7 +264,23 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 				<li>When you setup your Token, you will be asked to choose between two levels of scopes. Select Your Scopes.</li>
 				<li>Once you have created your Access Token you will see it in the same section in your Dashboard. You can edit or delete the token from <a target="_blank" href="%3$s">here</a>.</li>
 			</ol>
-			', 'mplus-intercom-subscription' ), 'https://developers.intercom.com/docs/personal-access-tokens', 'https://app.intercom.com/developers/_', 'https://app.intercom.com/developers/_' );
+			', 'mplus-intercom-subscription' ), 'https://developers.intercom.com/docs/personal-access-tokens', 'https://app.intercom.com/a/developer-signup', 'https://app.intercom.com/a/developer-signup' );
+
+		}
+
+		/**
+		 * Shows Consent Checkbox to enable chat.
+		 *
+		 * @return void
+		 */
+		public function mplusis_display_subscribe_to_intercom() {
+
+			$sub_to_intercom = get_option( 'mplusis_subscribe_to_intercom' );
+
+			$html = '<input type="checkbox" id="mplusis_subscribe_to_intercom" name="mplusis_subscribe_to_intercom" value="1"' . checked( 1, $sub_to_intercom, false ) . '/>';
+			$html .= '<label for="mplusis_subscribe_to_intercom">' . __( 'Check to show a consent checkbox on the form', 'mplus-intercom-subscription' ) . '</label>';
+
+			echo $html;
 
 		}
 
@@ -251,7 +300,21 @@ if ( ! class_exists( 'Mplus_Intercom_Subscription_Settings' ) ) {
 
 			if ( empty( $access_token ) && $page != 'mplusis-settings' && current_user_can( 'manage_options' ) ) :
 				echo '<div class="error fade">';
-					echo sprintf( __( '<p><strong>Intercom Subscription Plugin is almost ready.</strong> Please %1$sAdd Access Token%2$s to use the plugin.</p>', 'mplus-intercom-subscription' ), '<a href="admin.php?page=mplusis-settings">', '</a>' );
+					echo '<p>' . sprintf( 
+						/* translators: 1: anchor tag start 2: anchor tag end */
+						__( 'Intercom Subscription Plugin is almost ready. Please %1$sconnect to Intercom%2$s to use the plugin.', 'mplus-intercom-subscription' ),
+						'<a href="admin.php?page=mplusis-settings">', '</a>' 
+						) . '</p>';
+				echo '</div>';
+			endif;
+
+			$phpversion = phpversion();
+
+			if ( $phpversion < 7.1 ) :
+				echo '<div class="error fade">';
+					echo '<p>' . sprintf( 
+						/* translators: 1: anchor tag start 2: anchor tag end */
+						__( 'Intercom Subscription plugin uses %1$sofficial PHP bindings to the Intercom API%2$s. This library supports PHP 7.1 and later. Your web server has PHP version %3$s, which doesn\'t meet the requirement for this to work as expected.', 'mplus-intercom-subscription' ), '<a href="https://github.com/intercom/intercom-php" target="_blank">', '</a>', $phpversion ) . '</p>';
 				echo '</div>';
 			endif;
 

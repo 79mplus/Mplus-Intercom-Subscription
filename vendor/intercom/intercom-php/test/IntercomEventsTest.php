@@ -1,14 +1,11 @@
 <?php
 
-use Intercom\IntercomEvents;
-use Intercom\IntercomClient;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
+namespace Intercom\Test;
 
-class IntercomEventsTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomEvents;
+use PHPUnit\Framework\TestCase;
+
+class IntercomEventsTest extends TestCase
 {
     public function testEventCreate()
     {

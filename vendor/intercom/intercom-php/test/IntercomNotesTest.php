@@ -1,8 +1,11 @@
 <?php
 
-use Intercom\IntercomNotes;
+namespace Intercom\Test;
 
-class IntercomNotesTest extends PHPUnit_Framework_TestCase
+use Intercom\IntercomNotes;
+use PHPUnit\Framework\TestCase;
+
+class IntercomNotesTest extends TestCase
 {
     public function testNoteCreate()
     {

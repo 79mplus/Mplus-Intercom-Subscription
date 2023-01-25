@@ -89,3 +89,7 @@ input:focus {
 	display: inline-block;
 	margin-top: 2px;
 }
+
+.input-group.hide-robot{
+	display: none;
+}
